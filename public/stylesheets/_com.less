@@ -13,6 +13,7 @@ a{
 body {
   font: 14px "Helvetica Neue","Hiragino Sans GB","Microsoft YaHei","\9ED1\4F53",Arial,sans-serif;
   background: @bg-color;
+  -webkit-font-smoothing: antialiased;
 }
 
 li{
@@ -28,4 +29,8 @@ li{
   min-height: 700px;
   .clearfix();
   overflow: hidden;
+  .col-main{
+    float: right;
+    width: 82.5%;;
+  }
 }

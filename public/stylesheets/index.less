@@ -1,0 +1,86 @@
+@import "_rese.less";
+@import "_func.less";
+@import "_com.less";
+
+.index_show{
+  padding: 20px 15px 16px;
+  text-align: justify;
+  font-size: 0;
+  .index_tap{
+    display: inline-block;
+    width: 65%;
+    text-align: center;
+    &.left{
+      ul{
+        font-size: 0;
+        background-color: #7cbae5;
+        border: 1px solid #6eb0dd;
+      }
+      li{
+        display: inline-block;
+        width: 50%;
+        &:first-child{
+          span{
+            border-left-width: 0;
+          }
+        }
+      }
+      li:hover{
+        background: #6fa7ce;
+      }
+      li:hover+li{
+        span{
+          border-left-width: 0;
+        }
+      }
+      span{
+        border-left: 1px solid #6fa7ce;
+      }
+    }
+    &.right{
+      width: 34%;
+      ul{
+        background-color: #60d295;
+        border: 1px solid #57c78b;
+      }
+      li:hover{
+        background: #57c78b;
+      }
+    }
+    a{
+      display: block;
+      padding-top: 26px;
+      padding-bottom: 26px;
+      color: #fff;
+      font-size: 35px;
+      span{
+        display: block;
+        padding-top: 8px;
+      }
+      i{
+        font-size: 35px;
+      }
+      em{
+        vertical-align: bottom;
+        padding-left: 5px;
+        font-style: normal;
+      }
+      strong{
+        display: block;
+        font-size: 16px;
+        font-weight: normal;
+        margin-top: -5px;
+      }
+    }
+  }
+  &:after{
+    display: inline-block;
+    width: 100%;
+    height: 0;
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    content: ".";
+  }
+}

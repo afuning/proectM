@@ -1,9 +1,31 @@
 extends layout
 block append head
-  link(rel='stylesheet', href='/css/style.css')
+  link(rel='stylesheet', href='/css/index.css')
 block content
   #container
     include leftside
     .col-main
-      h1= title
-      p Welcome to #{title}
+      div.block.index_show
+        div.index_tap.left
+          ul.inner
+            li
+              a(href="#")
+                span
+                  i.iconfont &#xe601
+                  em 20
+                  strong 测试数
+            li
+              a(href="#")
+                span
+                  i.iconfont &#xe601
+                  em 5
+                  strong 测试人数
+        &nbsp;
+        div.index_tap.right
+          ul.inner
+            li
+              a(href="#")
+                span
+                  i.iconfont &#xe601
+                  em 25
+                  strong 总bug数
