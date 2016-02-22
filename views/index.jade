@@ -1,5 +1,9 @@
 extends layout
-
+block append head
+  link(rel='stylesheet', href='/css/style.css')
 block content
-  h1= title
-  p Welcome to #{title}
+  #container
+    include leftside
+    .col-main
+      h1= title
+      p Welcome to #{title}

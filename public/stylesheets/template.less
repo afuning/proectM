@@ -1,0 +1,83 @@
+@import "_rese.less";
+@import "_func.less";
+@import "_com.less";
+/*模块*/
+
+//顶部，底部样式
+header{
+  background: #fff;
+  color: @font-color;
+  height: 60px;
+  border-bottom:1px solid @border-color-o;
+  .inner{
+    width: @width;
+    margin: 0 auto;
+    height: 60px;
+  }
+  h1{
+    padding-top: 10px;
+    float: left;
+  }
+  a.logo{
+    display: block;
+    width: 248px;
+    height: 40px;
+    overflow: hidden;
+    text-decoration: none;
+    &:before{
+      display: inline-block;
+      content: url(https://res.wx.qq.com/mpres/htmledition/images/bg/bg_logo2491a6.png);
+    }
+  }
+}
+footer{
+  padding: 24px 0;
+  text-align: center;
+  background-color: #b8b9b9;
+  a{
+    font-size: 12px;
+    padding: 0 12px;
+    border-left: 1px solid #fff;
+    color: @color-gray-f1;
+    &:first-child{
+      border-left: 0;
+    }
+  }
+}
+
+//左侧菜单栏
+.col-side{
+  float: left;
+  width: 17.5%;
+  max-width: 208px;
+  border-right: 1px solid @border-color;
+  min-height: 700px;
+  .menu_box{
+    margin-bottom: 150px;
+    ul{
+      padding-top: 6px;
+      padding-bottom: 6px;
+      border-top: 1px solid @border-color;
+      &:first-child{
+        border-top: none;
+        margin-top: 13px;
+      }
+    }
+    li{
+      line-height: 34px;
+      a{
+        display: block;
+        padding-left: 58px;
+        color: @font-color;
+      }
+    }
+    li.title{
+      color: @color-gray-8d;
+      padding: 0 30px 0;
+      i{
+        font-size: 18px;
+        margin-right: 10px;
+      }
+    }
+  }
+}
