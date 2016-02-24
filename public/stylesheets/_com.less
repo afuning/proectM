@@ -22,13 +22,24 @@ li{
   list-style: none;
 }
 
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.clearfix { display: inline-block; }
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+
 #container{
   width: 1200px;
   margin: 36px auto 88px;
   background: #fff;
   border: 1px solid @border-color-o;
   min-height: 700px;
-  .clearfix();
   overflow: hidden;
   .col-main{
     float: right;
