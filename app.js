@@ -11,7 +11,7 @@ var autorouter = require('express-autoroute');
 var app = express();
 autorouter(app, {
   throwErrors: false,
-  logger: require('winston'),
+  //logger: require('winston'),
   routesDir: __dirname+'/routes'
 });
 

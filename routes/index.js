@@ -1,5 +1,7 @@
 var express = require('express');
-var router = express.Router();
+var userDao = require('../dao/userDao');
+//var router = express.Router();
+
 
 module.exports.autoroute = {
   'get' : {
@@ -10,7 +12,8 @@ module.exports.autoroute = {
 /*router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });*/
-function showIndexView(req,res){
+function showIndexView(req,res,next){
+  userDao.add(req, res, next);
   res.render('index', { title: 'Express' });
 }
 
