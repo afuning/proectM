@@ -4,16 +4,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 /*var routes = require('./routes/index');
 var users = require('./routes/users');*/
 var autorouter = require('express-autoroute');
 var app = express();
-autorouter(app, {
-  throwErrors: false,
-  //logger: require('winston'),
-  routesDir: __dirname+'/routes'
-});
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,14 +24,46 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// 设置 Session
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true
+}));
 
 
 
+
+app.use(function(req, res, next){
+  //console.dir(req.session.user);
+  if(req.session.user){
+    next();
+  }else{
+    var notLoginUrl=[];
+    var arr = req.url.split('/');
+
+    if(arr.length>1&&arr[1]==''){
+        next();
+    }else if(arr.length>1&&(arr[1]=='login'||arr[1]=='register')){
+        next();
+    }else{
+        req.session.originalUrl = req.originalUrl ? req.originalUrl : null;
+        //req.flash('error','请先登录');
+        res.redirect('/');
+    }
+  }
+});
 //console.dir(__dirname);
 //app.use(app.router);
 /*app.use('/', routes);
 app.use('/index', routes);
 app.use('/users', users);*/
+
+autorouter(app, {
+  throwErrors: false,
+  //logger: require('winston'),
+  routesDir: __dirname+'/routes'
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -66,6 +95,9 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+
+
 
 
 module.exports = app;

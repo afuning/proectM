@@ -12,6 +12,7 @@ html
           h1
             a(href="#", title="胡宁的管理平台").logo
           div#user
+          - if(isLogin)
             .left
               div.account
                 a(href="#").tag.group 组织
@@ -25,7 +26,11 @@ html
                   i.iconfont &#xe62f;
               div.account
                 a(href="#").logout 退出
-
+          - else
+            .left
+              div.account.un_log
+                p 还未开通自己公司管理账号？
+                  a(href='#') 立即注册
     block content
     block footer
       footer
@@ -33,4 +38,6 @@ html
         a(href="#") 服务协议
         a(href="#") Copyright &copy 2012-2016 Tencent. All Rights Reserved.
   block script
+    script(src='http://libs.baidu.com/jquery/1.10.2/jquery.min.js')
+    script(src='/src/plugin/lib-storage.js')
     script(src='/src/layout.js')

@@ -5,7 +5,7 @@ var userDao = require('../dao/userDao');
 
 module.exports.autoroute = {
   'get' : {
-    '/' : showIndexView
+    '/index' : showIndexView
   }
 };
 /* GET home page. */
