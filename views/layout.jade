@@ -12,22 +12,22 @@ html
           h1
             a(href="#", title="胡宁的管理平台").logo
           div#user
-          - if(isLogin)
-            .left
-              div.account
-                a(href="#").tag.group 组织
-                a(href="#").tag.job 职位
-                br
-                a(href="#").name 名字
-                a(href="#").head
-                  i.iconfont &#xe630
-              div.account
-                a(href="#")
-                  i.iconfont &#xe62f;
-              div.account
-                a(href="#").logout 退出
-          - else
-            .left
+            - if(isLogin)
+              .left
+                div.account
+                  a(href="#").tag.group 组织
+                  a(href="#").tag.job 职位
+                  br
+                  a(href="#").name 名字
+                  a(href="#").head
+                    i.iconfont &#xe630
+                div.account
+                  a(href="#")
+                    i.iconfont &#xe62f;
+                div.account
+                  a(href="#").logout 退出
+            - else
+              .left
               div.account.un_log
                 p 还未开通自己公司管理账号？
                   a(href='#') 立即注册

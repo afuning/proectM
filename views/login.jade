@@ -2,6 +2,22 @@ extends layout
 block append head
   link(rel='stylesheet', href='/css/login.css')
 block content
+  div.banner
+    div.inner
+      div.login_frame
+        h3 登录
+        form
+          div.input_group
+            div.input_inner
+              i.iconfont &#xe632
+              input(type='text')
+            div.input_inner
+              i.iconfont &#xe631
+              input(type='password')
+            div.btn_inner
+              a.btn(href='#' title='点击登录') 登录
+
+
 
 append script
   script(src='/src/login.js')
