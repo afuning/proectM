@@ -39,7 +39,6 @@ app.use(function(req, res, next){
   if(req.session.user){
     next();
   }else{
-    var notLoginUrl=[];
     var arr = req.url.split('/');
 
     if(arr.length>1&&arr[1]==''){

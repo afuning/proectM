@@ -3,7 +3,9 @@
 @import "_com.less";
 @import "template.less";
 
-
+body{
+  background: #fff;
+}
 .banner{
   background: url(https://res.wx.qq.com/mpres/htmledition/images/bg/bg_login_banner_v5218877.jpg) no-repeat center top;
   background-color: #090b1a;
@@ -32,8 +34,8 @@
         i{
           position: absolute;
           top: 8px;
-          left: 15px;
-          font-size: 28px;
+          left: 12px;
+          font-size: 26px;
           color: @border-color-o;
         }
         input{
@@ -46,6 +48,51 @@
           border-top: 1px solid @border-color;
         }
       }
+      .text_inner{
+        margin-top: 10px;
+        .right{
+            float: right;
+            color: @bg-blue-l;
+            &:hover{
+              color: @bg-blue;
+              text-decoration: underline;
+            }
+        }
+        .left{
+          float: left;
+        }
+        .check_inner{
+          position: relative;
+          i{
+            vertical-align: middle;
+            color: @border-color-o;
+            font-size: 18px;
+          }
+          input{
+            width: 100%;
+            height: 16px;
+            vertical-align: middle;
+            position: absolute;
+            left: 0;
+            top: 0;
+            cursor: pointer;
+            &+i{
+              display: none;
+            }
+            &:hover+i{
+                font-weight: bold;
+            }
+            &:checked+i{
+              font-weight: bold;
+              color: @bg-green;
+              display: inline-block;
+            }
+            &:checked+i+i{
+              display: none;
+            }
+          }
+        }
+      }
       .btn_inner{
         margin-top: 20px;
         margin-bottom: 10px;
@@ -54,5 +101,45 @@
         }
       }
     }
+  }
+}
+
+.notice{
+  width: 880px;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  border: 1px solid @border-color;
+  line-height: 40px;
+  padding-left: 20px;
+  padding-right: 100px;
+  position: relative;
+  .inner{
+    ul{
+      height: 40px;
+      line-height: 40px;
+    }
+    li{
+      &:first-child i{
+        color: @bg-blue;
+        font-size: 20px;
+        vertical-align: sub;
+      }
+      i{
+        font-size: 10px;
+        vertical-align: middle;
+        color: @border-color-o;
+        margin-right: 5px;
+      }
+      display: inline-block;
+      padding-right: 20px;
+      max-width: 200px;
+      .single-ellipsis();
+    }
+  }
+  .more{
+    position: absolute;
+    right: 10px;
+    top: 0;
   }
 }

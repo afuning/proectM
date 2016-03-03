@@ -10,14 +10,36 @@ block content
           div.input_group
             div.input_inner
               i.iconfont &#xe632
-              input(type='text')
+              input(type='text' placeholder='请输入账号')
             div.input_inner
               i.iconfont &#xe631
-              input(type='password')
+              input(type='password' placeholder='密码')
+            div.text_inner.clearfix
+              label.check_inner
+                input(type='checkbox')
+                i.iconfont &#xe633
+                i.iconfont &#xe634
+                span 记住账号
+              a.right(href='#') 忘记密码
             div.btn_inner
               a.btn(href='#' title='点击登录') 登录
-
-
-
+  div.notice
+    div.inner
+      ul
+        li
+          i.iconfont &#xe635
+          span 最新公告:
+        li
+          i.iconfont &#xe636
+          a(href='#') 公司春节放假具体安排公司春节放假具体安排公司春节放假具体安排
+        li
+          i.iconfont &#xe636
+          a(href='#') 新办公地址具体方位
+        li
+          i.iconfont &#xe636
+          a(href='#') 公司春节放假具体安排公司春节放假具体安排公司春节放假具体安排
+    a.more(href="#")
+      span 查看更多
+      i.iconfont &#xe637
 append script
   script(src='/src/login.js')
