@@ -10,10 +10,10 @@ block content
           div.input_group
             div.input_inner
               i.iconfont &#xe632
-              input(type='text' placeholder='请输入账号')
+              input(id = 'username' type='text' placeholder='请输入账号')
             div.input_inner
               i.iconfont &#xe631
-              input(type='password' placeholder='密码')
+              input(id = 'password' type='password' placeholder='密码')
             div.text_inner.clearfix
               label.check_inner
                 input(type='checkbox')
@@ -22,7 +22,7 @@ block content
                 span 记住账号
               a.right(href='#') 忘记密码
             div.btn_inner
-              a.btn(href='#' title='点击登录') 登录
+              a.btn(id ='login' href='javascript:void(0);' title='点击登录') 登录
   div.notice
     div.inner
       ul

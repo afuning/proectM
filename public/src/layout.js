@@ -4,9 +4,7 @@
 ;(function($){
     var main = {
         init: function(){
-            if(lib.login.isLogin()){
 
-            }
         }
     }
 
