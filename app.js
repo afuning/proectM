@@ -5,11 +5,19 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-
+var MongoStore = require('connect-mongo')(session);
+var settings = require('./conf/setting');
+var mongoose = require('mongoose');
 /*var routes = require('./routes/index');
 var users = require('./routes/users');*/
+//设置路由
 var autorouter = require('express-autoroute');
 var app = express();
+
+autorouter(app, {
+  throwErrors: false,
+  routesDir: __dirname+'/routes'
+});
 
 
 // view engine setup
@@ -25,13 +33,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // 设置 Session
+
 app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true
+  secret: settings.cookieSecret,
+  key: settings.db,//cookie name
+  cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
+  store: new MongoStore({
+    mongooseConnection : mongoose.connection
+  })
 }));
-
-
 
 
 app.use(function(req, res, next){
@@ -43,7 +53,7 @@ app.use(function(req, res, next){
 
     if(arr.length>1&&arr[1]==''){
         next();
-    }else if(arr.length>1&&(arr[1]=='login'||arr[1]=='register')){
+    }else if(arr.length>1&&(arr[1]=='login'||arr[1]=='reg')){
         next();
     }else{
         req.session.originalUrl = req.originalUrl ? req.originalUrl : null;
@@ -58,11 +68,6 @@ app.use(function(req, res, next){
 app.use('/index', routes);
 app.use('/users', users);*/
 
-autorouter(app, {
-  throwErrors: false,
-  //logger: require('winston'),
-  routesDir: __dirname+'/routes'
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

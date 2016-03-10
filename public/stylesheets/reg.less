@@ -1,0 +1,41 @@
+@import "_rese.less";
+@import "_func.less";
+@import "_com.less";
+@import "template.less";
+
+.head{
+  ul{
+    .box();
+    border-bottom:1px solid @border-color;
+    li{
+      .box-flex();
+      height: 44px;
+      line-height: 44px;
+      text-align: center;
+      background: url(../images/bg_reg.png) no-repeat 0 0;
+      &:first-child{
+        background: none;
+      }
+      &.active{
+        background-color: @btn-green;
+        color: #fff;
+        &+li{
+          background: url(../images/bg_reg.png) no-repeat 0 0;
+          background-position: 0 -88px
+        }
+      }
+    }
+  }
+}
+
+.body{
+  padding: 60px 0;
+  .left{
+    float: left;
+    width: 60%;
+  }
+  .right{
+    float: right;
+    width: 40%;
+  }
+}
