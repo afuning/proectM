@@ -58,7 +58,6 @@
             type: ajaxType,
             data: data,
             dataType: 'json',
-            contentType:"application/x-www-form-urlencoded; charset=utf-8",
             success: function (data) {
                 //状态码处理
                 handleError(opts,data);

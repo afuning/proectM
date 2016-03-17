@@ -5,5 +5,6 @@ module.exports = {
     cookieSecret: 'projectM',
     db: 'projectM',
     host: 'localhost',
-    port: 27017
+    port: 27017,
+    url: 'mongodb://localhost/projectM'
 };

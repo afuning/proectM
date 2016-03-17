@@ -14,10 +14,7 @@ var users = require('./routes/users');*/
 var autorouter = require('express-autoroute');
 var app = express();
 
-autorouter(app, {
-  throwErrors: false,
-  routesDir: __dirname+'/routes'
-});
+
 
 
 // view engine setup
@@ -33,6 +30,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // 设置 Session
+
 
 app.use(session({
   secret: settings.cookieSecret,
@@ -61,6 +59,12 @@ app.use(function(req, res, next){
         res.redirect('/');
     }
   }
+});
+
+//设置路由配置要放在bodyParser配置后面
+autorouter(app, {
+  throwErrors: false,
+  routesDir: __dirname+'/routes'
 });
 //console.dir(__dirname);
 //app.use(app.router);

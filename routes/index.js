@@ -13,7 +13,7 @@ module.exports.autoroute = {
   res.render('index', { title: 'Express' });
 });*/
 function showIndexView(req,res,next){
-  userDao.add(req, res, next);
+  //userDao.add(req, res, next);
   res.render('index', { title: 'Express' });
 }
 

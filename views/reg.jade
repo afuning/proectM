@@ -12,8 +12,26 @@ block content
         li 账户信息
     .body
       .left
-
-      .right
+          .input_group
+            .input_inner
+              label 账号
+              input(type="text" id="username" placeholder="请输入您的登录账号")
+              p.tip.tip-warn 请输入符合规则的账号
+              p.tip.tip-text 作为登录帐号，请填写未被注册的账号，字母、数字或者英文符号，最短8位，区分大小写
+            .input_inner
+              label 密码
+              input(type="password" id="password" placeholder="请输入您的登录密码")
+              p.tip.tip-warn 请输入符合规则的密码
+              p.tip.tip-text 字母、数字或者英文符号，最短8位，区分大小写
+            .input_inner
+              label 重复密码
+              input(type="password" id="password-repeat" placeholder="请输入您的登录密码")
+              p.tip.tip-warn 两次输入密码不一致
+              p.tip.tip-text 请再次输入密码
+            .btn_inner
+              a.btn-disable(id ='reg' href='javascript:void(0);' title='点击注册')  立即注册
+      .right 已有公司账号？
+        a(href="/login") 立即登录
 
 append script
-  script(src='/src/login.js')
+  script(src='/src/reg.js')

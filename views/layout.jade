@@ -12,7 +12,7 @@ html
           h1
             a(href="#", title="胡宁的管理平台").logo
           div#user
-            - if(isLogin)
+            - if(isLogin==2)
               .left
                 div.account
                   a(href="#").tag.group 组织
@@ -26,11 +26,11 @@ html
                     i.iconfont &#xe62f;
                 div.account
                   a(href="#").logout 退出
-            - else
+            - else if(isLogin==0)
               .left
               div.account.un_log
                 p 还未注册自己公司账号？
-                  a(href='#') 申请注册
+                  a(href='reg') 申请注册
     block content
     block footer
       footer

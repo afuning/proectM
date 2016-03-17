@@ -1,8 +1,8 @@
-#ctrl-modal window
+#项目管理系统
 
 ## 最新版本
 
-**0.1.0**
+**1.0.0**
 
 ## 安装依赖
 
@@ -12,16 +12,16 @@
 
 运行 `grunt`，来对项目进行打包。关于Grunt的知识，请参见[gruntjs](http://gruntjs.com/);
 
-## 如何使用
+## 安装mongodb
 
-### 从头打包部署
+运用mongodb作为该项目数据库
 
-grunt
-
-### 开发及时调试
-
-grunt dev
-
-### api
-
-见 api.md
+## 各文件用处
+＊ bin 启动项目脚本
+＊ conf mongodb配置及链接，请求返回参数设置
+＊ models 抽象数据库模型
+＊ public 静态目录，放置css less js img
+＊ routes 路由
+＊ util 放置项目小工具
+＊ view jada模版
+＊ models 抽象数据库模型
