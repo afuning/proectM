@@ -1,5 +1,4 @@
 var express = require('express');
-var userDao = require('../dao/userDao');
 //var router = express.Router();
 
 
