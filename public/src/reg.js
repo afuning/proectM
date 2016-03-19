@@ -10,6 +10,10 @@
             var self= this;
             $('#reg').on('click',function(){
                 self.goReg();
+            });
+
+            $('input').on('focus',function(){
+                $(this).siblings('.tip-warn').hide();
             })
         },
         goReg: function(){
@@ -31,10 +35,15 @@
                     },
                     success: function(data){
                         //location.href='index';
-                        console.log(data);
+                        //console.log(data);
                     },
                     error: function(err){
-                        console.log(err.message);
+                        if(typeof  Number(err.msg) == 'number'){
+                            var i = Number(err.msg);
+                            var tip = $('.tip-warn').eq(i);
+                            tip.show();
+                            tip.siblings('input');
+                        }
                     },
                     complete: function(){
                         self.isReg = false;
@@ -43,7 +52,6 @@
             }
         },
         verity: function(){
-
             this.username = $('#username').val();
             this.password = $('#password').val();
             this.password_repeat = $('#password-repeat').val();
