@@ -3,7 +3,11 @@
  */
 
 var express = require('express');
+var crypto = require('../util/tokenUtils');
 var UserModel = require('../models/User').UserModel;
+var RestResult = require('../conf/RestResult');
+var validator = require('validator');
+var eventproxy =require('eventproxy');
 
 
 module.exports.autoroute = {
@@ -21,7 +25,7 @@ function showLoginView(req,res,next){
 }
 
 function goLogin(req,res,next){
-
+    var username =
     //var query = {username: req.body.username,password:req.body.password};
 
     UserModel.count(query).exec(function(err, doc){    //count返回集合中文档的数量，和 find 一样可以接收查询条件。query 表示查询的条件
