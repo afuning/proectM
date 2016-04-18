@@ -5,6 +5,12 @@
     var main = {
         init: function(){
 
+        },
+
+        addEvent: function(){
+            $('.J-logout').on('click',function(){
+                lib.cookie.remove('projectM');
+            })
         }
     }
 

@@ -4,7 +4,7 @@ html
     block head
       title= title
       meta(name="viewport", content="width=device-width")
-      //link(rel='stylesheet', href='/css/template.css')
+      link(rel='stylesheet', href='/src/plugin/nofication.css')
   body
     block header
       header
@@ -25,12 +25,12 @@ html
                   a(href="#")
                     i.iconfont &#xe62f;
                 div.account
-                  a(href="#").logout 退出
+                  a.J-logout(href="javascript:void(0);").logout 退出
             - else if(isLogin==0)
               .left
               div.account.un_log
                 p 还未注册自己公司账号？
-                  a(href='reg') 申请注册
+                  a(href='reg?step=0') 申请注册
     block content
     block footer
       footer
@@ -41,4 +41,5 @@ html
     script(src='http://libs.baidu.com/jquery/1.10.2/jquery.min.js')
     script(src='/src/plugin/lib-storage.js')
     script(src='/src/plugin/lib-api.js')
+    script(src='/src/plugin/lib-notification.js')
     script(src='/src/layout.js')

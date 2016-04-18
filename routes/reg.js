@@ -17,7 +17,15 @@ module.exports.autoroute = {
 };
 
 function showRegView(req,res,next){
-    res.render('reg', { isLogin: 1 })
+    var step = req.query.step;
+    if(step == '0' || step == '1' || step == '2'){
+        res.render('reg', { isLogin: 1,step: step });
+    }else{
+        res.render('error', {
+            message: "未找到该页",
+            error: ""
+        });;
+    }
 }
 
 function goReg(req,res,next){
@@ -33,19 +41,6 @@ function goReg(req,res,next){
     ep.on('prop_err', function (msg) {
         res.send(result.isError("ILLEGAL_ARGUMENT_ERROR_CODE",msg));
     });
-    // 验证信息的正确性
-    /*if([username,password,password_repeat].some(function(item){return item==''})){
-        ep.emit('prop_err', '1');
-        return ;
-    }
-    if(username.length<6){
-        ep.emit('prop_err', '2');
-        return ;
-    }
-    if(password != password_repeat){
-        ep.emit('prop_err', '3');
-        return ;
-    }*/
     if(username==""||username.length<8){
         ep.emit('prop_err', '0');
         return ;
@@ -58,7 +53,6 @@ function goReg(req,res,next){
         ep.emit('prop_err', '2');
         return ;
     }
-
 
     var passwordMd5 = crypto.updateMd5(password);
 

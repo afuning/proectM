@@ -25,13 +25,16 @@ function showLoginView(req,res,next){
 }
 
 function goLogin(req,res,next){
-    var username =
-    //var query = {username: req.body.username,password:req.body.password};
+    var username = req.body.username;
+    var password = req.body.password;
+    var passwordMd5 = crypto.updateMd5(password);
+    var query = {username: username,password:passwordMd5};
 
-    UserModel.count(query).exec(function(err, doc){    //count返回集合中文档的数量，和 find 一样可以接收查询条件。query 表示查询的条件
-        //console.log(doc);
-        if(doc == 1){
+    UserModel.find(query).exec(function(err, user){    //count返回集合中文档的数量，和 find 一样可以接收查询条件。query 表示查询的条件
+        console.log(user.length);
+        if(user.length >= 1){
             res.statusCode = 200;
+            req.session.user = user[0];
             res.send({ code: 10000,msg:'登录成功',data:{}});
         }else{
             res.statusCode = 200;

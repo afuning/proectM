@@ -1,0 +1,87 @@
+.c-mask{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background:rgba(0,0,0,0);
+    z-index:99
+}
+.c-mask.hide{
+    display:none
+}
+.c-mask.show{
+    display:block
+}
+.c-float-popWrap{
+    width:268px;
+    border-radius:3px;
+    z-index:9999;
+    position:absolute;
+    overflow:hidden
+}
+.c-float-popWrap.msgMode{
+    position: fixed;
+    top: 20px;
+}
+.c-float-popWrap.msgMode .c-float-modePop{
+    text-align: center;
+}
+.c-float-popWrap.msgMode .warnMsg{
+    display: inline-block;
+    min-width: 200px;
+    padding: 5px 12px;
+}
+.c-float-popWrap .c-float-modePop{
+    background:#f4f4f3;
+    border-radius:3px;
+    padding:0
+}
+.c-float-popWrap .warnMsg{
+    padding:30px 15px;
+    text-align:center;
+    color:#333;
+    font-size:15px;
+    line-height:1.5
+}
+.c-float-popWrap .content{
+    display:none
+}
+.c-float-popWrap .doBtn{
+    border-top:solid 1px #c4c4c4;
+    display:-webkit-box;
+    display:-moz-box;
+    display:box
+}
+.c-float-popWrap .doBtn>*{
+    -moz-box-flex:1;
+    -webkit-box-flex:1;
+    box-flex:1;
+    width:0;
+    display:block;
+    padding:15px 0;
+    text-align:center;
+    color:#333;
+    font-size:16px;
+    text-decoration:none
+}
+.c-float-popWrap .doBtn>:last-child{
+    border-left:solid 1px #c4c4c4
+}
+.c-float-popWrap.hide{
+    display:none;
+    -webkit-box-shadow:none
+}
+.c-float-popWrap.show{
+    display:block;
+    -webkit-box-shadow:0 0 2px 2px rgba(0,0,0,.3)
+}
+.c-float-popWrap.msgMode .c-float-modePop .content,.c-float-popWrap.msgMode .c-float-modePop .doBtn{
+    display:none
+}
+.c-float-popWrap.alertMode .c-float-modePop .content{
+    display:none
+}
+.c-float-popWrap.alertMode .c-float-modePop .doBtn .cancel{
+    display:none
+}

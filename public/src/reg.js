@@ -15,6 +15,14 @@
             $('input').on('focus',function(){
                 $(this).siblings('.tip-warn').hide();
             })
+
+            $('input').on('input propertychange',function(){
+                if($('#username').val()&&$('#password').val()&&$('#password-repeat').val()){
+                    $('.J-reg').addClass('btn-success').removeClass('btn-disable');
+                }else{
+                    $('.J-reg').addClass('btn-disable').removeClass('btn-success');
+                }
+            })
         },
         goReg: function(){
             var self = this;
@@ -34,15 +42,17 @@
                         "password-repeat" : self.password_repeat
                     },
                     success: function(data){
-
+                        //alert(data.msg);
+                        lib.notification.simple("注册成功",{bg:'#44b549',font:'#fff'},2000);
+                        self.goLogin()
                     },
                     error: function(err){
-                        if(typeof  Number(err.msg) == 'number'){
-                            var i = Number(err.msg);
+                        if(typeof err.msg === 'string'){
+                            lib.notification.simple(err.msg,{bg:'#e15f63',font:'#fff'},2000);
+                        }else if(typeof  Number(err.msg) === 'number'){
+                            var i = err.msg;
                             var tip = $('.tip-warn').eq(i);
                             tip.show();
-                        }else if(typeof err.msg == 'string'){
-                            alert(err.msg);
                         }
                     },
                     complete: function(){
@@ -64,10 +74,11 @@
                     "password" : self.password
                 },
                 success: function(data){
-                    console.log(data);
+                    //console.log(data);
                 },
                 error: function(err){
-                    console.log(data);
+                    //console.log(data);
+                    lib.notification.simple(err.msg,{bg:'#e15f63',font:'#fff'},2000);
                 },
                 complete: function(){
                     self.isLogin = false;

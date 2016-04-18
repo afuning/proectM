@@ -45,13 +45,14 @@ app.use(session({
 app.use(function(req, res, next){
   //console.dir(req.session.user);
   if(req.session.user){
+    console.log(req.session.user);
     next();
   }else{
     var arr = req.url.split('/');
 
     if(arr.length>1&&arr[1]==''){
         next();
-    }else if(arr.length>1&&(arr[1]=='login'||arr[1]=='reg')){
+    }else if(arr.length>1&&(arr[1]=='login'||arr[1]=='reg'||arr[1]=='reg?step=0')){
         next();
     }else{
         req.session.originalUrl = req.originalUrl ? req.originalUrl : null;
