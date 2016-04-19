@@ -1,15 +1,15 @@
 /**
  * Created by huning on 16/2/23.
  */
-;(function($){
+;(function($,win){
     var main = {
         init: function(){
-
+            this.addEvent();
         },
 
         addEvent: function(){
             $('.J-logout').on('click',function(){
-                lib.cookie.remove('projectM');
+                alert(1);
             })
         }
     }
@@ -17,4 +17,4 @@
     $(function(){
         main.init();
     })
-})(jQuery)
+})(jQuery,window)

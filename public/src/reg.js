@@ -74,7 +74,7 @@
                     "password" : self.password
                 },
                 success: function(data){
-                    //console.log(data);
+                    location.replace('./reg?step=1');
                 },
                 error: function(err){
                     //console.log(data);

@@ -181,4 +181,5 @@
     lib.storage = ST;
     lib.cookie = docCookies;
     lib.login = login;
-})(window,window['lib']||(window['lib']={}))
+    console.log(lib);
+})(window,window['lib'] || (window['lib'] = {}))

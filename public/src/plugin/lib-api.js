@@ -89,4 +89,4 @@
             fun_ajax(option,'post');
         }
     }
-})(jQuery,window[lib]||(window.lib = {}));
+})(jQuery,window['lib']||(window.lib = {}));

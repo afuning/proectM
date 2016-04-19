@@ -4,13 +4,13 @@ block append head
   title #{title}
 block content
   #container.clearfix
-    .head
-      ul
-        li.active 基本信息
-        li 信息登记
-        li 完成
-    .body
-      - if(step==0)
+    - if(step==0)
+      .head
+        ul
+          li.active 基本信息
+          li 信息登记
+          li 完成
+      .body
         .left
           .input_group
             .input_inner
@@ -32,7 +32,13 @@ block content
               a.btn-disable.J-reg(id ='reg' href='javascript:void(0);' title='点击注册')  立即注册
         .right 已有公司账号？
           a(href="/login") 立即登录
-      - else if(step === 1 )
+    - else if(step == 1 )
+      .head
+        ul
+          li 基本信息
+          li.active 信息登记
+          li 完成
+      .body
         .left
           .input_group
             .input_inner
@@ -52,5 +58,25 @@ block content
               p.tip.tip-text 请再次输入密码
             .btn_inner
               a.btn-disable.J-reg(id ='reg' href='javascript:void(0);' title='点击注册')  立即注册
+    - else if(step == 2 )
+      .head
+        ul
+          li 基本信息
+          li 信息登记
+          li.active 完成
+      .body
+        div.success_inner
+          h1
+            i.iconfont &#xe638;
+            span恭喜你，注册成功！
+          h2
+            span 从现在开始，你就是公司的一份子了
+            br
+            a(href="#")
+              i.iconfont &#xe62b;
+              进入首页
+            a(href="#")
+              i.iconfont &#xe61b;
+              进入个人中心－设置
 append script
   script(src='/src/reg.js')
