@@ -11,15 +11,25 @@
     }
 }*/
 var mongoose = require('mongoose');
-var setting = require('./setting')
-mongoose.connect(setting.url);//；连接数据库
+var setting = require('./setting');
+
+mongoose.connect(setting.url);
+var db = mongoose.connection;
+db.on('error', function(error){
+    console.log(error);
+});
+
+db.on('open',function(error){
+    if(error){
+        console.log(error);
+    }
+    console.log('connect success');
+});
+
+
+
 
 module.exports.mongoose = mongoose;
-var db = mongoose.connection;
-db.on('error', console.error);
-db.on('open', function() {
-    console.log('连接成功');
-});
 //
 //var Schema = mongoose.Schema;   //  创建模型
 //var userSchema = new Schema({

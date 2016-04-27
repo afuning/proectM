@@ -4,7 +4,14 @@
 ;(function($,win){
     var main = {
         init: function(){
+            var httpurl = new lib.httpurl(location.href);
+            var params = httpurl.params;
+            var step = params["step"]?params["step"]:'';
+            this.department = [];
             this.addEvents();
+            if( step == 1){
+                this.getJob();
+            }
         },
         addEvents: function(){
             var self= this;
@@ -22,6 +29,10 @@
                 }else{
                     $('.J-reg').addClass('btn-disable').removeClass('btn-success');
                 }
+            })
+
+            $('#update').on('click',function(){
+                self.updateUser();
             })
         },
         goReg: function(){
@@ -82,6 +93,70 @@
                 },
                 complete: function(){
                     self.isLogin = false;
+                }
+            })
+        },
+
+        //获取职位列表
+        getJob: function(){
+            lib.api.get({
+                api:'/department/get',
+                success: function(data){
+                    var role = data.data;
+                    var $depart = $('.J-depart');
+                    var $role = $('.J-role');
+                    var depart = {};
+                    role.forEach(function(ele,i){
+                        if(!(depart[ele.department._id] && depart[ele.department._id].length > 0)){
+                            depart[ele.department._id] = [];
+                        }
+                        depart[ele.department._id].push(ele);
+                    });
+
+                    for(var one in depart){
+                        $depart.append('<option value='+one+'>'+depart[one][0].department.name+'</option>');
+                    }
+
+                    $depart.on('change',function(){
+                        var val = $(this).val();
+                        depart[val].forEach(function(ele,i){
+                            $role.append('<option value='+ele._id+'>'+ele.name+'</option>');
+                        })
+                    })
+                    $depart.change();
+                },
+                error: function(err){
+                    console.log(err);
+                    //lib.notification.simple(err.msg,{bg:'#e15f63',font:'#fff'},2000);
+                },
+                complete: function(){
+
+                }
+            })
+        },
+
+        //修改用户信息
+        updateUser: function(){
+            var self = this;
+            var role = $('.J-role').val();
+            var realname = $('#realname').val();
+            if(self.isUpdate) return;
+            self.isUpdate = true;
+            lib.api.post({
+                api:'/user/change',
+                data: {
+                    "role" : role,
+                    "realname" : realname
+                },
+                success: function(data){
+                    location.replace('./reg?step=2');
+                },
+                error: function(err){
+                    //console.log(data);
+                    lib.notification.simple(err.msg,{bg:'#e15f63',font:'#fff'},2000);
+                },
+                complete: function(){
+                    self.isUpdate = false;
                 }
             })
         },

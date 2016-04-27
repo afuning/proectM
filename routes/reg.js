@@ -28,6 +28,7 @@ function showRegView(req,res,next){
     }
 }
 
+
 function goReg(req,res,next){
     var username        = validator.trim(req.body.username);
     var password        = validator.trim(req.body.password);
@@ -62,6 +63,7 @@ function goReg(req,res,next){
     });
 
     UserModel.count({username:req.body.username}).exec(function(err,doc){
+        //console.dir(doc);
         if(doc){
             res.send(result.isError("ILLEGAL_ARGUMENT_ERROR_CODE","该用户已注册"));
         }else{

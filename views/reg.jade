@@ -39,25 +39,19 @@ block content
           li.active 信息登记
           li 完成
       .body
-        .left
+        .center
           .input_group
             .input_inner
-              label 账号
-              input(type="text" id="username" placeholder="请输入您的登录账号")
-              p.tip.tip-warn 请输入符合规则的账号
-              p.tip.tip-text 作为登录帐号，请填写未被注册的账号，字母、数字或者英文符号，最短8位，区分大小写
+              label 真实姓名
+              input(type="text" id="realname" placeholder="请输入您的真实姓名" autocomplete="off")
             .input_inner
-              label 密码
-              input(type="password" id="password" placeholder="请输入您的登录密码")
-              p.tip.tip-warn 请输入符合规则的密码
-              p.tip.tip-text 字母、数字或者英文符号，最短8位，区分大小写
+              label 部门
+              select.J-depart(style="width: 332px")
             .input_inner
-              label 重复密码
-              input(type="password" id="password-repeat" placeholder="请输入您的登录密码")
-              p.tip.tip-warn 两次输入密码不一致
-              p.tip.tip-text 请再次输入密码
+              label 职位
+              select.J-role(style="width: 332px")
             .btn_inner
-              a.btn-disable.J-reg(id ='reg' href='javascript:void(0);' title='点击注册')  立即注册
+              a.btn-success(href='javascript:void(0);' title='下一步' id="update")  下一步
     - else if(step == 2 )
       .head
         ul
@@ -72,10 +66,10 @@ block content
           h2
             span 从现在开始，你就是公司的一份子了
             br
-            a(href="#")
+            a(href="./index")
               i.iconfont &#xe62b;
               进入首页
-            a(href="#")
+            a(href="./setting")
               i.iconfont &#xe61b;
               进入个人中心－设置
 append script

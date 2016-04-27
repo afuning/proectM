@@ -4,7 +4,7 @@
 var mongodb = require('../conf/db.js');
 var mongoose = mongodb.mongoose;
 var Schema = mongoose.Schema;
-var ObjectId = Schema.Types.ObejectId;
+var ObjectId = Schema.Types.ObjectId;
 
 exports.mongodb = mongodb;//导出mongodb
 exports.mongoose = mongoose; //导出mongoose

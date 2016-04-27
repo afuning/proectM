@@ -13,8 +13,11 @@ var eventproxy =require('eventproxy');
 module.exports.autoroute = {
     'get':{
         '/': showLoginView,
-        '/login': showLoginView
+        '/login': showLoginView,
+        '/logout': goLogout,
+        '/islogin': isLogin
     },
+
     'post':{
         '/login': goLogin
     }
@@ -41,4 +44,18 @@ function goLogin(req,res,next){
             res.send({ code: 10000,msg:'该用户不存在或密码不正确',data:{}});
         }
     });
+}
+
+function goLogout(req,res,next){
+    req.session.destroy(function () {
+        res.redirect('/');
+    });
+}
+
+function isLogin(req,res,next){
+    if(req.session.user){
+        res.send({ code: 10000,msg:'已登录',data:{isLogin:1}});
+    }else{
+        res.send({ code: 10000,msg:'未登录',data:{isLogin:0}});
+    }
 }

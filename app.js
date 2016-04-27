@@ -8,6 +8,8 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var settings = require('./conf/setting');
 var mongoose = require('mongoose');
+//模版预渲染
+require('./util/jade-util');
 /*var routes = require('./routes/index');
 var users = require('./routes/users');*/
 //设置路由
@@ -35,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: settings.cookieSecret,
   key: settings.db,//cookie name
-  cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
+  cookie: {maxAge: 1000 * 60 * 60 * 24},//1 days
   store: new MongoStore({
     mongooseConnection : mongoose.connection
   })
@@ -45,14 +47,13 @@ app.use(session({
 app.use(function(req, res, next){
   //console.dir(req.session.user);
   if(req.session.user){
-    console.log(req.session.user);
     next();
   }else{
     var arr = req.url.split('/');
 
     if(arr.length>1&&arr[1]==''){
         next();
-    }else if(arr.length>1&&(arr[1]=='login'||arr[1]=='reg'||arr[1]=='reg?step=0')){
+    }else if(arr.length>1&&(arr[1]=='login'||arr[1]=='reg'||arr[1]=='reg?step=0'||arr[1]=='isLogin')){
         next();
     }else{
         req.session.originalUrl = req.originalUrl ? req.originalUrl : null;
@@ -104,7 +105,6 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 
 

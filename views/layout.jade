@@ -11,26 +11,6 @@ html
         div.inner
           h1
             a(href="#", title="胡宁的管理平台").logo
-          div#user
-            - if(isLogin==2)
-              .left
-                div.account
-                  a(href="#").tag.group 组织
-                  a(href="#").tag.job 职位
-                  br
-                  a(href="#").name 名字
-                  a(href="#").head
-                    i.iconfont &#xe630
-                div.account
-                  a(href="#")
-                    i.iconfont &#xe62f;
-                div.account
-                  a.J-logout(href="javascript:void(0);").logout 退出
-            - else if(isLogin==0)
-              .left
-              div.account.un_log
-                p 还未注册自己公司账号？
-                  a(href='reg?step=0') 申请注册
     block content
     block footer
       footer
@@ -40,6 +20,9 @@ html
   block script
     script(src='http://libs.baidu.com/jquery/1.10.2/jquery.min.js')
     script(src = '/src/plugin/lib-api.js')
+    script(src = '/src/plugin/lib-httpurl.js')
     script(src='/src/plugin/lib-storage.js')
     script(src='/src/plugin/lib-notification.js')
+    script(src='/src/plugin/runtime.js')
+    script(src='/template/jade-template.js')
     script(src='/src/layout.js')
