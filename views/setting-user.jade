@@ -1,0 +1,61 @@
+extends layout
+block append head
+  link(rel='stylesheet', href='/css/setting.css')
+block content
+  #container.clearfix
+    include leftside
+    .col-main
+      div.main_hd
+        h2 账号设置
+        div.tab_inner
+          ul.tab_list
+            li.tab_item.active
+              a(href='javascript:void(0);') 账号详情
+            li.tab_item
+              a(href='javascript:void(0);') 隐私设置
+      div(style='padding-top: 10px')
+      div.main_bd
+        div.change_table
+          //h3.table_title 公开信息
+          ul
+            li.row
+              h4 头像
+              div.meta_action
+                a(href='javascript:void(0);' class='J-head') 修改头像
+              div.meta_content(id= 'head_img')
+                //img(src="http://static.yunmadou.13980.com/static/modelcard/ios2_0_2d647d6c03eab956817e289782e952382.jpg@80w_80h_1e_1c" alt="")
+                a.head_empty(href='javascript:void(0);')
+                  i.iconfont &#xe630
+            li.row
+              h4 真实姓名
+              div.meta_action
+              div.meta_content(id= 'realname') &nbsp;
+            li.row
+              h4 QQ号
+              div.meta_action
+                a(href='javascript:void(0);' class="J-qq") 修改
+              div.meta_content(id= 'qqnum') &nbsp;
+            li.row
+              h4 职位
+              div.meta_action
+                a(href='javascript:void(0);' class="J-role") 修改
+              div.meta_content(id= 'role') &nbsp;
+            li.row
+              h4 手机号码
+              div.meta_action
+                a(href='javascript:void(0);' class="J-mobile") 修改
+              div.meta_content(id= 'mobile') &nbsp;
+        div.change_table(style='display:none')
+          //h3.table_title 隐私信息
+          ul
+            li.row
+              h4 账号
+              div.meta_action
+              div.meta_content(id= "username") &nbsp;
+            li.row
+              h4 密码
+              div.meta_action
+                a(href='javascript:void(0);' class="J-password") 修改密码
+              div.meta_content 保密
+append script
+  script(src='/src/setting-user.js')

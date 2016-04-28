@@ -1,0 +1,75 @@
+.d-mask{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background:rgba(0,0,0,0.5);
+    z-index:99
+}
+.d-mask.hide{
+    display:none
+}
+.d-mask.show{
+    display:block
+}
+.d-float-popWrap{
+    border-radius:3px;
+    z-index:9999;
+    position:absolute;
+    overflow:hidden
+}
+
+
+.d-float-popWrap .d-float-modePop{
+    background:#fff;
+    border-radius:3px;
+    padding:0
+}
+.d-float-popWrap .warnMsg{
+    text-align:left;
+    color:#333;
+    line-height:52px;
+    padding: 0 12px;
+    background: #f4f5f9;
+}
+
+.d-float-popWrap .content {
+    padding: 66px 45px 108px;
+}
+
+.d-float-popWrap .doBtn{
+    text-align: center;
+    background: #f4f5f9;
+    padding: 12px;
+}
+.d-float-popWrap .doBtn>*{
+    display:inline-block;
+    padding:8px 40px;
+    text-align:center;
+    color:#333;
+    font-size:14px;
+    text-decoration:none;
+    border-radius: 3px;
+    margin: 0 20px;
+}
+.d-float-popWrap .doBtn .ok{
+    background: #44b549;
+    color: #fff;
+}
+.d-float-popWrap .doBtn .ok:hover {
+    background: #2f9833;
+}
+
+.d-float-popWrap .doBtn .cancel{
+    background: #fff;
+}
+
+.d-float-popWrap .doBtn .cancel:hover {
+    background: #eee;
+}
+
+.d-float-popWrap.hide{
+    display:none;
+    -webkit-box-shadow:none
+}

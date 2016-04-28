@@ -12,7 +12,7 @@
 
         config: function(){
             var httpurl = new lib.httpurl(location.href);
-            var pathname = httpurl.pathname.substring(1);
+            var pathname = httpurl.pathname.substring(1).replace('/','-');
             $('li[data-index='+pathname+']').addClass('active');
         },
 
@@ -55,14 +55,15 @@
                     var user = data.data;
                     if(user.role){
                         var $inner = $('header .inner');
-                        var user = topUser_template({
+                        var userhtml = topUser_template({
                             isLogin: isLogin,
                             depart: user.role.department.name,
                             role: user.role.name,
                             realname: user.realname
                         });
-                        $inner.append(user);
+                        $inner.append(userhtml);
                     }
+                    lib.storage.set('user',user);
                 },
                 error: function(err){
                     //console.log(err);

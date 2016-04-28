@@ -24,6 +24,10 @@ li{
   list-style: none;
 }
 
+h1,h2,h3,h4,h5,h6 {
+  font-weight: normal;
+}
+
 .clearfix:after {
   visibility: hidden;
   display: block;
@@ -46,5 +50,100 @@ li{
   .col-main{
     float: right;
     width: 82.5%;;
+  }
+}
+
+
+/*头部title*/
+.main_hd{
+  border-bottom: 1px solid @border-color;
+  h2 {
+    font-size: 16px;
+    padding: 0 30px;
+    line-height: 75px;
+  }
+}
+
+/*主要body*/
+.main_bd {
+  padding: 0 30px 40px;
+}
+
+/*横条tab*/
+.tab_inner {
+  .tab_list {
+    .tab_item {
+      display: inline-block;
+      padding: 0 18px;
+      height: 40px;
+      line-height: 40px;
+      border-bottom: 3px solid transparent;
+      &:first-child {
+        padding-left: 30px;
+      }
+      &.active {
+        border-bottom-color: @border-color-green !important;
+      }
+      &:hover {
+        border-bottom-color: @color-gray-9;
+      }
+    }
+  }
+}
+
+/*修改table*/
+.change_table {
+  border: 1px solid @border-color;
+  margin-top: 40px;
+  &>h3 {
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid @border-color;
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    background-color: #f4f5f9;
+  }
+  .row {
+    border-top: 1px solid #e7e7eb;
+    padding: 18px 20px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    &:first-child {
+      border-top: 0;
+    }
+    h4 {
+      float: left;
+      width: 100px;
+      margin-right: 20px;
+    }
+    .meta_action {
+      float: right;
+      margin-left: 16px;
+      a {
+        color: @color-blur;
+      }
+    }
+    .meta_content {
+      margin-bottom: 10px;
+      img{
+        width: 80px;
+        height: 80px;
+      }
+      .head_empty {
+        width: 80px;
+        height: 80px;
+        line-height: 80px;
+        display: inline-block;
+        vertical-align: top;
+        background: @color-gray-9;
+        text-align: center;
+        i.iconfont {
+          font-size: 60px;
+          color: #fff;
+        }
+      }
+    }
   }
 }

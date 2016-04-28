@@ -10,14 +10,14 @@ var validator = require('validator');
 var eventproxy =require('eventproxy');
 module.exports.autoroute = {
     'get':{
-        '/user/detail': showUser
+        '/user/detail': getUser
     },
     'post':{
         '/user/change': changeUser
     }
 };
 
-function showUser(req,res,next){
+function getUser(req,res,next){
     var _id = req.session.user._id;
     var result = new RestResult();
     UserModel.findById(_id).populate('role').exec(function(erruser,user){
@@ -40,6 +40,7 @@ function showUser(req,res,next){
         }
     });
 }
+
 
 function changeUser(req,res,next){
     var _id = req.session.user._id;

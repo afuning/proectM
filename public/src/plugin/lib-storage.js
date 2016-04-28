@@ -6,16 +6,21 @@
     * 本地存储
     * localstorage
     * */
-    var ST = (function(){
+    var localStorage;
+    var DB = (function () {
         var main = {
-            isLocalstorage : false,
-            data : {},
-            init: function(){
-                this.checkLocalstorage();
-            },
+            isLocalStorageOk: false,
+            prefix: '',
+            data: {},
+            init: function () {
+                this.checkLocalStorage();
+                this.setMethod();
 
-            checkLocalstorage: function(){
+                return this;
+            },
+            checkLocalStorage: function () {
                 if ('localStorage' in window && window['localStorage'] !== null) {
+                    // ios7 暂时存在问题
                     try{
                         window.localStorage.setItem('test', 'test');
                         window.localStorage.removeItem('test');
@@ -28,20 +33,38 @@
                 }
             },
 
-            set: function(key,value){
-                this.data[key] = value;
-                if(typeof value == 'object'){
-                    value = JSON.stringify(value)
-                }
-
-                localStorage.setItem(key,value);
+            setPrefix: function (prefix) {
+                this.prefix = prefix;
             },
 
-            get: function(key){
+            // 设置存储方式
+            setMethod: function (method) {
+                method = method || '';
+
+                if (this.isLocalStorageOk) {
+                    localStorage = method == 'cookie' ? docCookies : window.localStorage;
+                } else {
+                    localStorage = docCookies;
+                }
+            },
+
+            set: function (key, value) {
+                this.data[key] = value;
+
+                if (typeof value == 'object') {
+                    value = JSON.stringify(value);
+                }
+
+                //if (this.isLocalStorageOk) {
+                localStorage.setItem(this.prefix + key, value);
+                //}
+            },
+
+            get: function (key) {
                 var d = this.data[key];
 
                 if (typeof d == 'undefined') {
-                    d = localStorage.getItem(key);
+                    d = localStorage.getItem(this.prefix + key);
 
                     try {
                         d = JSON.parse(d);
@@ -52,9 +75,9 @@
                 return d;
             },
 
-            rm: function(key){
+            rm: function (key) {
                 if (key) {
-                    key = key;
+                    key = this.prefix + key;
                     localStorage.removeItem(key);
                 }
             }
@@ -168,18 +191,10 @@
         }
     };
 
-    /*
-    * 登陆操作
-    * */
-    var login = {
-        isLogin: function(){
-           return !!lib.cookie.get('access_token');
-       }
-    };
 
 
-    lib.storage = ST;
+
+    lib.storage = DB;
     lib.cookie = docCookies;
-    lib.login = login;
     console.log(lib);
 })(window,window['lib'] || (window['lib'] = {}))
