@@ -17,9 +17,11 @@
     "express-session": "^1.13.0",
     "jade": "~1.11.0",
     "lodash": "^4.11.1",
+    "moment": "^2.13.0",
     "mongoose": "^4.4.6",
     "morgan": "~1.6.1",
     "mysql": "^2.10.2",
+    "qiniu": "^6.1.10",
     "serve-favicon": "~2.3.0",
     "validator": "^5.1.0"
   },

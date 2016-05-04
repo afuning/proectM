@@ -5,6 +5,9 @@ var UserSchema = new base.Schema({
     username: {type: String},
     password: {type: String},
     realname: {type: String,default:'未知'},
+    head_url: {type: String},
+    qq_num: {type: String},
+    mobile: {type: String},
     role: {
         type: ObjectId,
         ref: 'role'

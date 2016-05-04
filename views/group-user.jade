@@ -1,0 +1,56 @@
+extends layout
+block append head
+  link(rel='stylesheet', href='/css/group.css')
+block content
+  #container.clearfix
+    include leftside
+    .col-main
+      div.main_hd
+        h2 用户管理
+        div.tab_inner
+          ul.tab_list
+            li.tab_item.active
+              a(href='javascript:void(0);') 用户列表
+      div(style='padding-top: 10px')
+      div.main_bd
+        div.clearfix(id="screen")
+          div.screen_group
+            div.screen_inner
+              input(type="text" placeholder='请输入真实姓名')
+            div.screen_action
+              button(class="btn-success") 筛选
+        div.common_table
+          table
+            tr
+              th
+                span 头像
+              th
+                span 姓名
+              th
+                span QQ号码
+              th
+                span 手机号码
+              th
+                span 所在部门
+              th
+                span 职位
+              th
+                span 操作
+            tr
+              td
+                img(width="40" height="40" src="http://7xthm1.com1.z0.glb.clouddn.com/FrgeYBE3QgEFpY-nwokFWFZzJ8uF?imageView2/1/w/40/h/40/q/100/format/jpg")
+              td
+                span 胡宁
+              td
+                span 304873772
+              td
+                span 18072762521
+              td
+                span 技术部
+              td
+                span 前端开发
+              td
+                a(href="javascript:void(0);") 删除
+
+append script
+  script(src='/src/group-user.js')

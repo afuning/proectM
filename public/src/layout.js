@@ -59,7 +59,8 @@
                             isLogin: isLogin,
                             depart: user.role.department.name,
                             role: user.role.name,
-                            realname: user.realname
+                            realname: user.realname,
+                            head_url: user.head_url
                         });
                         $inner.append(userhtml);
                     }

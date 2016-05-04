@@ -3,3 +3,108 @@
 @import "_com.less";
 @import "template.less";
 
+//上传头像弹框
+.selectHeaderLog {
+  .btn {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    border: 1px solid @border-color;
+    line-height: 80px;
+    text-align: center;
+    cursor: pointer;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    i.iconfont {
+      display: block;
+      font-size: 50px;
+      color: @color-gray-9;
+      vertical-align: middle;
+      &.change {
+        font-size: 25px;
+        .animation(myfirst,1s,linear,0s,infinite,normal);
+      }
+    }
+  }
+  p {
+    text-align: center;
+    margin-top: 20px;
+  }
+}
+
+@keyframes myfirst{
+  from{-webkit-transform:rotate(0deg)}
+  to{-webkit-transform:rotate(360deg)}
+}
+
+@-webkit-keyframes myfirst{
+  from{-webkit-transform:rotate(0deg)}
+  to{-webkit-transform:rotate(360deg)}
+}
+@-moz-keyframes myfirst{
+  from{-moz-transform:rotate(0deg)}
+  to{-moz-transform:rotate(360deg)}
+}
+@-ms-keyframes myfirst{
+  from{-ms-transform:rotate(0deg)}
+  to{-ms-transform:rotate(360deg)}
+}
+@-o-keyframes myfirst{
+  from{-o-transform:rotate(0deg)}
+  to{-o-transform:rotate(360deg)}
+}
+
+.input_group{
+  text-align: center;
+  .input_inner{
+    display: inline-block;
+    padding-bottom: 40px;
+    label{
+      display: inline-block;
+      min-width: 56px;
+      margin-right: 14px;
+      text-align: left;
+    }
+    input,select{
+      display: inline-block;
+      border: 1px solid @border-color;
+      height: 30px;
+      line-height: 30px;
+      padding: 0 5px;
+      width: 320px;
+      font-size: 14px;
+      .border-radius(3px);
+      background: transparent;
+    }
+    .tip{
+      width: 320px;
+      font-size: 12px;
+      text-align: left;
+      margin-left: 70px;
+      padding: 5px 0;
+    }
+    .tip-text{
+      color: @color-gray-9;
+    }
+    .tip-warn{
+      display: none;
+      color: @color-red;
+      font-size: 14px;
+    }
+  }
+  .btn_inner{
+    margin: 0 auto;
+    width: 400px;
+    padding-top: 30px;
+    margin-bottom: 10px;
+    border-top: 1px solid @border-color;
+    .btn-success{
+      .btn-success();
+    }
+    .btn-disable{
+      .btn-disable();
+    }
+  }
+}
