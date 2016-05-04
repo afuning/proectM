@@ -1,5 +1,6 @@
 extends layout
 block append head
+  link(rel='stylesheet', href='/src/plugin/pageination.css')
   link(rel='stylesheet', href='/css/group.css')
 block content
   #container.clearfix
@@ -51,6 +52,9 @@ block content
                 span 前端开发
               td
                 a(href="javascript:void(0);") 删除
+        div.page_container.clearfix
+          div#page
 
 append script
+  script(src='/src/plugin/lib-pagination.js')
   script(src='/src/group-user.js')

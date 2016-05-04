@@ -232,8 +232,8 @@
                 api:'/department/get',
                 success: function(data){
                     var role = data.data;
-                    var $depart = $('.J-depart');
-                    var $role = $('.J-role');
+                    var $depart = $('.d-float-popWrap .J-depart');
+                    var $role = $('.d-float-popWrap .J-role');
                     var depart = {};
                     role.forEach(function(ele,i){
                         if(!(depart[ele.department._id] && depart[ele.department._id].length > 0)){

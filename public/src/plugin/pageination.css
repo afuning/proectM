@@ -1,0 +1,29 @@
+.pagination_group li{
+    float: left;
+    border-radius: 6px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    display: inline-block;
+    border: 1px solid #d9d9d9;
+    margin-right: 8px;
+    min-width: 28px;
+    cursor: pointer;
+}
+
+.pagination_group li.pagination-prev,
+.pagination_group li.pagination-next{
+    padding: 0 5px;
+}
+
+.pagination_group li.pagination-item-active {
+    background: #2db7f5;
+    border-color: #2db7f5;
+}
+.pagination_group li.pagination-item-active a{
+    color: #fff;
+}
+
+.pagination_group li.pagination-item-ellipsis {
+    border: none;
+}
