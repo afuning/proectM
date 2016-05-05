@@ -23,7 +23,8 @@ module.exports.autoroute = {
         '/user/detail': getUser,
         '/qiniu/upToken': getupToken,
         '/user/list': getList,
-        '/user/delete': deleteUser
+        '/user/delete': deleteUser,
+        '/user/addAdmin': addAdmin
     },
     'post':{
         '/user/change': changeUser,
@@ -179,6 +180,30 @@ function deleteUser(req,res,next){
                 res.send(result.isError("ILLEGAL_ARGUMENT_ERROR_CODE","删除失败"));
             }
         })
+    }else{
+        res.send(result.isError("ILLEGAL_ARGUMENT_ERROR_CODE","你不是管理员"));
+    }
+}
+
+function addAdmin(req,res,next){
+    var isadmin = req.session.user.isadmin;
+    var _id = req.query._id;
+    var result =  new RestResult(); //添加返回状态格式
+    if(isadmin==1){
+        UserModel.findById(_id,function(err,user){
+            user.isadmin = 1;
+            user.updateTime = Date.now();
+            delete user._id;    //再将其删除
+            UserModel.update({_id:_id},user,function(err,docs){
+                if(err){
+                    res.send(result.isError("ILLEGAL_ARGUMENT_ERROR_CODE",err));
+                }else{
+                    res.send(result.isSuccess());//返回成功结果
+                }
+            });
+        });
+    }else{
+        res.send(result.isError("ILLEGAL_ARGUMENT_ERROR_CODE","你不是管理员"));
     }
 }
 

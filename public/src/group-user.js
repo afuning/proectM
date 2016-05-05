@@ -27,6 +27,15 @@
                     this.hide();
                 }).show();
             })
+            $('body').on('click','.change_admin',function(){
+                var _id = $(this).parent().parent().attr('_id');
+                lib.notification.confirm('确定要将该用户设为管理员?','',function(e,isOk){
+                    if(isOk){
+                        self.addAdmin(_id);
+                    }
+                    this.hide();
+                }).show();
+            })
         },
 
         addPage: function(){
@@ -80,6 +89,26 @@
                 },
                 success: function(data){
                     location.reload();
+                },
+                error: function(err){
+                    //console.log(err);
+                    lib.notification.simple(err.msg,{bg:'#e15f63',font:'#fff'},2000);
+                },
+                complete: function(){
+
+                }
+            })
+        },
+
+        addAdmin: function(_id){
+            var self = this;
+            lib.api.get({
+                api:'/user/addAdmin',
+                data: {
+                    _id: _id
+                },
+                success: function(data){
+                    lib.notification.simple('设置成功',{bg:'#57c78b',font:'#fff'},2000);
                 },
                 error: function(err){
                     //console.log(err);

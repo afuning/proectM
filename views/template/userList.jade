@@ -16,6 +16,9 @@ if(users.length>0)
          td
             if(isadmin == 1)
                a.delete_action(href="javascript:void(0);") 删除
+               if(item.isadmin == 0)
+                  span /
+                  a.change_admin(href="javascript:void(0);") 设为管理员
 else
    tr
       td(colspan=7 style="text-align: center") 无记录

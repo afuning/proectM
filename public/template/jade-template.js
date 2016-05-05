@@ -42,6 +42,10 @@ buf.push("<tr" + (jade.attr("_id", item._id, true, false)) + "><td><img width=\"
 if ((isadmin == 1))
 {
 buf.push("<a href=\"javascript:void(0);\" class=\"delete_action\">删除</a>");
+if ((item.isadmin == 0))
+{
+buf.push("<span>/</span><a href=\"javascript:void(0);\" class=\"change_admin\">设为管理员</a>");
+}
 }
 buf.push("</td></tr>");
     }
@@ -55,6 +59,10 @@ buf.push("<tr" + (jade.attr("_id", item._id, true, false)) + "><td><img width=\"
 if ((isadmin == 1))
 {
 buf.push("<a href=\"javascript:void(0);\" class=\"delete_action\">删除</a>");
+if ((item.isadmin == 0))
+{
+buf.push("<span>/</span><a href=\"javascript:void(0);\" class=\"change_admin\">设为管理员</a>");
+}
 }
 buf.push("</td></tr>");
     }

@@ -1,0 +1,19 @@
+extends layout
+block append head
+  link(rel='stylesheet', href='/css/group.css')
+block content
+  #container.clearfix
+    include leftside
+    .col-main
+      div.main_hd
+        h2 公司管理
+        div.tab_inner
+          ul.tab_list
+            li.tab_item.active
+              a(href='javascript:void(0);') 公司组织架构
+      div(style='padding-top: 10px')
+      div.main_bd
+
+
+append script
+  script(src='/src/group-company.js')

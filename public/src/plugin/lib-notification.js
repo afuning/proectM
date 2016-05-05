@@ -81,6 +81,9 @@
             background && (E_float.firstChild.style.background = background);
             color && (E_float.firstChild.firstChild.style.color = color);
 
+            background || (E_float.firstChild.style.background = '#fff');
+            color || (E_float.firstChild.firstChild.style.color = '#333');
+
             // set text & content
             text && (E_floatMsg.innerHTML = text);
             okText && (E_floatOk.innerHTML = okText);

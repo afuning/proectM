@@ -10,7 +10,8 @@ var validator = require('validator');
 var eventproxy =require('eventproxy');
 module.exports.autoroute = {
     'get':{
-        '/group/user': userList
+        '/group/user': userList,
+        '/group/company': companyList
     },
     'post':{
 
@@ -19,6 +20,10 @@ module.exports.autoroute = {
 
 function userList(req,res,next){
     res.render('group-user', {});
+}
+
+function companyList(req,res,next){
+    res.render('group-company', {});
 }
 
 
