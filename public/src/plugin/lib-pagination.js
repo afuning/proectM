@@ -22,8 +22,6 @@
     P_next.innerHTML = '<a href="javascript:void(0)">下一页</a>';
     P_next.className = 'pagination-next';
 
-    P_group.appendChild(P_prev);
-    P_group.appendChild(P_next);
 
     function _extend(a, b) {
         for(var key in b ){
@@ -54,11 +52,13 @@
         _doc: function(){
             var that = this,
                 page_item = '',
+                page_prev = '',
+                page_next = '',
                 container  = this._options.container,
-                page_container = doc.getElementById(container),
-                callback   = this._options.callback;
+                page_container = doc.getElementById(container);
             P_group.innerHTML='';
-            P_group.appendChild(P_prev);
+            page_prev=P_prev.cloneNode(true);
+            P_group.appendChild(page_prev);
             if(that.total<=5){
                 for(var i = 1;i<=that.total;i++){
                     page_item=P_inner.cloneNode(false);
@@ -125,48 +125,60 @@
                     P_group.appendChild(page_item);
                 }
             }
-            P_group.appendChild(P_next);
+            page_next=P_next.cloneNode(true);
+            P_group.appendChild(page_next);
             page_container.appendChild(P_group);
+        },
 
-            item = P_group.querySelectorAll('.pagination-item');
+        _goNext: function(){
+            var callback   = this._options.callback;
+            var that = this ;
+            if(this.pno<=this.total-1){
+                this.pno++;
+                this._doc();
+                callback.apply(that, arguments);
+            }
+        },
+        _goPrev: function(){
+            var callback   = this._options.callback;
+            var that = this ;
+            if(this.pno>1){
+                this.pno--;
+                this._doc();
+                callback.apply(that, arguments);
+            }
+
+        },
+
+        _go: function(a){
+            var callback   = this._options.callback;
+            var that = this ;
+            var index = a.target.innerText;
+            this.pno = index;
+            this._doc();
+            callback.apply(that, arguments);
+        },
+
+        _action: function(){
+            var that = this;
+
+            var item = P_group.querySelectorAll('.pagination-item');
+            var item_prev = P_group.querySelectorAll('.pagination-prev')[0];
+            var item_next = P_group.querySelectorAll('.pagination-next')[0];
+
+            item_prev.addEventListener('click',function(){
+                that._goPrev.apply(that, arguments);
+            });
+
+            item_next.addEventListener('click',function(){
+                that._goNext.apply(that, arguments);
+            });
 
             for(var i =0;i<item.length;i++){
                 item[i].addEventListener('click',function(e){
                     that._go.apply(that, arguments);
                 });
             }
-
-            callback.apply(that, arguments);
-        },
-
-        _goNext: function(){
-            if(this.pno<=this.total-1){
-                this.pno++;
-                this._doc();
-            }
-
-        },
-        _goPrev: function(){
-            if(this.pno>1){
-                this.pno--;
-                this._doc();
-            }
-        },
-
-        _go: function(a){
-            var index = a.target.innerText;
-            this.pno = index;
-            this._doc();
-        },
-
-        _action: function(){
-            var that = this;
-            P_prev.addEventListener('click',function(){
-                that._goPrev.apply(that, arguments);
-            });
-            P_next.addEventListener('click',function(){
-                that._goNext.apply(that, arguments);
-            });
         }
     });
 

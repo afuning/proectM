@@ -10,6 +10,7 @@ var validator = require('validator');
 var eventproxy =require('eventproxy');
 var settings = require('../conf/setting');
 var moment = require('moment');
+var dbHelper = require('../conf/dbHelper');
 //七牛获取uptoken
 //七牛云存储
 var qiniu = require('qiniu');
@@ -20,7 +21,9 @@ qiniu.conf.SECRET_KEY = settings.QINIUSECRET_KEY;
 module.exports.autoroute = {
     'get':{
         '/user/detail': getUser,
-        '/qiniu/upToken': getupToken
+        '/qiniu/upToken': getupToken,
+        '/user/list': getList,
+        '/user/delete': deleteUser
     },
     'post':{
         '/user/change': changeUser,
@@ -143,6 +146,40 @@ function changePwd(req,res,next){
             res.send(result.isError("ILLEGAL_ARGUMENT_ERROR_CODE","旧密码错误"));
         }
     })
+}
+
+function getList(req,res,next){
+    var page = req.query.page || 1;
+    var pagesize = req.query.pagesize*1 || 1;
+    var keyword = req.query.keyword || '';
+    var qs=new RegExp(keyword);
+    var result = new RestResult(); //添加返回状态格式
+
+    dbHelper.pageQuery(page, pagesize, UserModel,{path:"role",populate: { path: "department" }}, {realname: qs}, {
+        createTime: 'desc'
+    }, function(error, $page){
+        if(error){
+            next(error);
+        }else{
+            res.send(result.isSuccess($page));//返回成功结果
+        }
+    });
+}
+
+
+function deleteUser(req,res,next){
+    var isadmin = req.session.user.isadmin;
+    var _id = req.query._id;
+    var result =  new RestResult(); //添加返回状态格式
+    if(isadmin==1){
+        UserModel.remove({_id: _id}).exec(function(err,docs){
+            if(docs){
+                res.send(result.isSuccess());
+            }else{
+                res.send(result.isError("ILLEGAL_ARGUMENT_ERROR_CODE","删除失败"));
+            }
+        })
+    }
 }
 
 

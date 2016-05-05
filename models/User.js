@@ -8,6 +8,7 @@ var UserSchema = new base.Schema({
     head_url: {type: String},
     qq_num: {type: String},
     mobile: {type: String},
+    isadmin: {type: Number,default: 0},
     role: {
         type: ObjectId,
         ref: 'role'

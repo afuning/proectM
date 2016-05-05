@@ -1,0 +1,21 @@
+if(users.length>0)
+   each item in users
+      tr(_id= item._id)
+         td
+            img(width="40" height="40" src= item.head_url?item.head_url: '')
+         td
+            span= item.realname?item.realname:'未设置'
+         td
+            span= item.qq_num?item.qq_num:'未设置'
+         td
+            span= item.mobile?item.mobile:'未设置'
+         td
+            span= item.role?item.role.department.name:'未设置'
+         td
+            span= item.role?item.role.name:'未设置'
+         td
+            if(isadmin == 1)
+               a.delete_action(href="javascript:void(0);") 删除
+else
+   tr
+      td(colspan=7 style="text-align: center") 无记录

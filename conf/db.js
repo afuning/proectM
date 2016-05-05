@@ -26,9 +26,6 @@ db.on('open',function(error){
     console.log('connect success');
 });
 
-
-
-
 module.exports.mongoose = mongoose;
 //
 //var Schema = mongoose.Schema;   //  创建模型
