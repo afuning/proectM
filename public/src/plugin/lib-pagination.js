@@ -47,24 +47,8 @@
                 that.pno        = this._options.pno;
                 that.total      = this._options.total;
                 that.totalRecord= this._options.totalRecord;
-            var container  = this._options.container,
-
-                page_item  = '';
-            ;
-
-
             this._doc();
             this._action();
-            // click event
-            //E_floatOk.removeEventListener('touchend', successHandler);
-            //E_floatOk.removeEventListener('click', successHandler);
-            //E_floatCancel.removeEventListener('touchend', successHandler);
-            //E_floatCancel.removeEventListener('click', successHandler);
-            //E_floatOk.addEventListener(clickEvent, successHandler, false);
-            //E_floatCancel.addEventListener(clickEvent, failureHandler, false);
-            //E_floatOk.callback = E_floatCancel.callback = function() {
-            //    callback.apply(that, arguments);
-            //};
 
         },
         _doc: function(){
@@ -72,8 +56,7 @@
                 page_item = '',
                 container  = this._options.container,
                 page_container = doc.getElementById(container),
-                callback   = this._options.callback,
-                item = '';
+                callback   = this._options.callback;
             P_group.innerHTML='';
             P_group.appendChild(P_prev);
             if(that.total<=5){
