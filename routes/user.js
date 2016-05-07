@@ -83,7 +83,13 @@ function changeUser(req,res,next){
             if(err){
                 res.send(result.isError("ILLEGAL_ARGUMENT_ERROR_CODE",err));
             }else{
-                res.send(result.isSuccess());//返回成功结果
+                UserModel.findById(_id).populate({path:"role",populate: { path: "department" }}).exec(function(erruser,user){
+                    if(erruser){
+                        res.send(result.isError("ILLEGAL_ARGUMENT_ERROR_CODE",err));
+                    }else{
+                        res.send(result.isSuccess(user));//返回成功结果
+                    }
+                });
             }
         });
     });
@@ -191,7 +197,7 @@ function addAdmin(req,res,next){
     var result =  new RestResult(); //添加返回状态格式
     if(isadmin==1){
         UserModel.findById(_id,function(err,user){
-            user.isadmin = 1;
+            user.isadmin ==1?user.isadmin =0:user.isadmin =1;
             user.updateTime = Date.now();
             delete user._id;    //再将其删除
             UserModel.update({_id:_id},user,function(err,docs){

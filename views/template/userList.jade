@@ -19,6 +19,9 @@ if(users.length>0)
                if(item.isadmin == 0)
                   span /
                   a.change_admin(href="javascript:void(0);") 设为管理员
+               else if(_id != item._id)
+                  span /
+                  a.change_admin(href="javascript:void(0);") 取消管理员
 else
    tr
       td(colspan=7 style="text-align: center") 无记录

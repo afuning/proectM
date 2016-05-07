@@ -9,7 +9,12 @@ var RestResult = require('../conf/RestResult');
 var eventproxy =require('eventproxy');
 module.exports.autoroute = {
     'get':{
-        '/department/get': getRole
+        '/department/get': getRole,
+        '/department/list': getDepartment,
+        '/department/add': addDepartment,
+        '/role/list': getRolelist,
+        '/role/add': addRole,
+        '/department/delete': delDepart
     }
 };
 
@@ -39,4 +44,79 @@ function getRole(req,res,next){
             ep.emit('department', doc);
         }
     });*/
+}
+
+//获取所有部门
+function getDepartment(req,res,next){
+    var result = new RestResult(); //添加返回状态格式
+
+    DepartmentModel.find({}).exec(function(err,doc){
+        if(doc){
+            res.send(result.isSuccess(doc));//返回成功结果
+        }else {
+            res.send(result.isError("ILLEGAL_ARGUMENT_ERROR_CODE","获取失败"));
+        }
+    })
+}
+
+function addDepartment(req,res,next){
+    var name = req.query.name;
+
+    var result = new RestResult(); //添加返回状态格式
+
+    var departEntity = new DepartmentModel({
+        name : name
+    });
+    departEntity.save(function(err,doc){
+        if (err) {//服务器保存异常
+            res.send(result.isError("SERVER_EXCEPTION_ERROR_CODE","服务器异常"));
+            return;
+        }
+        var roleEntity = new RoleModel({
+            name : '未分组',
+            department : doc._id
+        });
+        roleEntity.save(function(err,row){
+            if (err) {//服务器保存异常
+                res.send(result.isError("SERVER_EXCEPTION_ERROR_CODE","服务器异常"));
+                return;
+            }
+            res.send(result.isSuccess(doc));//返回成功结果
+        })
+    })
+}
+
+function getRolelist(req,res,next){
+    var _id = req.query._id;
+    var result = new RestResult(); //添加返回状态格式
+    RoleModel.find({department: _id}).exec(function(err,doc){
+        if(doc){
+            res.send(result.isSuccess(doc));//返回成功结果
+        }else {
+            res.send(result.isError("ILLEGAL_ARGUMENT_ERROR_CODE","获取失败"));
+        }
+    })
+}
+
+function addRole(req,res,next){
+    var _id = req.query.depart_id;
+    var name = req.query.name;
+
+    var result = new RestResult(); //添加返回状态格式
+
+    var roleEntity = new RoleModel({
+        name : name,
+        department : _id
+    });
+    roleEntity.save(function(err,row){
+        if (err) {//服务器保存异常
+            res.send(result.isError("SERVER_EXCEPTION_ERROR_CODE","服务器异常"));
+            return;
+        }
+        res.send(result.isSuccess(row));//返回成功结果
+    })
+}
+
+function delDepart(req,res,next){
+
 }

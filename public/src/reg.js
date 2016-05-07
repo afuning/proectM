@@ -119,6 +119,7 @@
 
                     $depart.on('change',function(){
                         var val = $(this).val();
+                        $role.html('');
                         depart[val].forEach(function(ele,i){
                             $role.append('<option value='+ele._id+'>'+ele.name+'</option>');
                         })

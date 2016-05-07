@@ -1,3 +1,118 @@
+function departList_template(locals) {
+var buf = [];
+var jade_mixins = {};
+var jade_interp;
+;var locals_for_with = (locals || {});(function (depart, isAdmin, undefined) {
+if ((isAdmin == 1))
+{
+// iterate depart
+;(function(){
+  var $$obj = depart;
+  if ('number' == typeof $$obj.length) {
+
+    for (var $index = 0, $$l = $$obj.length; $index < $$l; $index++) {
+      var item = $$obj[$index];
+
+buf.push("<div class=\"select_inner\"><a href=\"javascript:void(0);\"" + (jade.attr("_id", item._id, true, false)) + " class=\"select\">" + (jade.escape(null == (jade_interp = item.name) ? "" : jade_interp)) + "</a><i class=\"iconfont delete\">&#xe600</i></div>");
+    }
+
+  } else {
+    var $$l = 0;
+    for (var $index in $$obj) {
+      $$l++;      var item = $$obj[$index];
+
+buf.push("<div class=\"select_inner\"><a href=\"javascript:void(0);\"" + (jade.attr("_id", item._id, true, false)) + " class=\"select\">" + (jade.escape(null == (jade_interp = item.name) ? "" : jade_interp)) + "</a><i class=\"iconfont delete\">&#xe600</i></div>");
+    }
+
+  }
+}).call(this);
+
+buf.push("<div class=\"select_inner select_action\"><button class=\"addDepart btn-success\">新增部门</button></div>");
+}
+else
+{
+// iterate depart
+;(function(){
+  var $$obj = depart;
+  if ('number' == typeof $$obj.length) {
+
+    for (var $index = 0, $$l = $$obj.length; $index < $$l; $index++) {
+      var item = $$obj[$index];
+
+buf.push("<div class=\"select_inner\"><a href=\"javascript:void(0);\"" + (jade.attr("_id", item._id, true, false)) + " class=\"select\">" + (jade.escape(null == (jade_interp = item.name) ? "" : jade_interp)) + "</a></div>");
+    }
+
+  } else {
+    var $$l = 0;
+    for (var $index in $$obj) {
+      $$l++;      var item = $$obj[$index];
+
+buf.push("<div class=\"select_inner\"><a href=\"javascript:void(0);\"" + (jade.attr("_id", item._id, true, false)) + " class=\"select\">" + (jade.escape(null == (jade_interp = item.name) ? "" : jade_interp)) + "</a></div>");
+    }
+
+  }
+}).call(this);
+
+}}.call(this,"depart" in locals_for_with?locals_for_with.depart:typeof depart!=="undefined"?depart:undefined,"isAdmin" in locals_for_with?locals_for_with.isAdmin:typeof isAdmin!=="undefined"?isAdmin:undefined,"undefined" in locals_for_with?locals_for_with.undefined:typeof undefined!=="undefined"?undefined:undefined));;return buf.join("");
+}
+function roleList_template(locals) {
+var buf = [];
+var jade_mixins = {};
+var jade_interp;
+;var locals_for_with = (locals || {});(function (isAdmin, role, undefined) {
+if ((isAdmin == 1))
+{
+// iterate role
+;(function(){
+  var $$obj = role;
+  if ('number' == typeof $$obj.length) {
+
+    for (var $index = 0, $$l = $$obj.length; $index < $$l; $index++) {
+      var item = $$obj[$index];
+
+buf.push("<div class=\"select_inner\"><a href=\"javascript:void(0);\"" + (jade.attr("_id", item._id, true, false)) + " class=\"select\">" + (jade.escape(null == (jade_interp = item.name) ? "" : jade_interp)) + "</a><i class=\"iconfont delete\">&#xe600</i></div>");
+    }
+
+  } else {
+    var $$l = 0;
+    for (var $index in $$obj) {
+      $$l++;      var item = $$obj[$index];
+
+buf.push("<div class=\"select_inner\"><a href=\"javascript:void(0);\"" + (jade.attr("_id", item._id, true, false)) + " class=\"select\">" + (jade.escape(null == (jade_interp = item.name) ? "" : jade_interp)) + "</a><i class=\"iconfont delete\">&#xe600</i></div>");
+    }
+
+  }
+}).call(this);
+
+buf.push("<div class=\"select_inner select_action\"><button class=\"back btn-line\">返回部门</button><button" + (jade.attr("depart_id", role[0].department, true, false)) + " class=\"addRole btn-success\">新增职位</button></div>");
+}
+else
+{
+// iterate role
+;(function(){
+  var $$obj = role;
+  if ('number' == typeof $$obj.length) {
+
+    for (var $index = 0, $$l = $$obj.length; $index < $$l; $index++) {
+      var item = $$obj[$index];
+
+buf.push("<div class=\"select_inner\"><a href=\"javascript:void(0);\"" + (jade.attr("_id", item._id, true, false)) + " class=\"select\">" + (jade.escape(null == (jade_interp = item.name) ? "" : jade_interp)) + "</a></div>");
+    }
+
+  } else {
+    var $$l = 0;
+    for (var $index in $$obj) {
+      $$l++;      var item = $$obj[$index];
+
+buf.push("<div class=\"select_inner\"><a href=\"javascript:void(0);\"" + (jade.attr("_id", item._id, true, false)) + " class=\"select\">" + (jade.escape(null == (jade_interp = item.name) ? "" : jade_interp)) + "</a></div>");
+    }
+
+  }
+}).call(this);
+
+buf.push("<div class=\"select_inner select_action\"><button class=\"back btn-line\">返回部门</button></div>");
+}}.call(this,"isAdmin" in locals_for_with?locals_for_with.isAdmin:typeof isAdmin!=="undefined"?isAdmin:undefined,"role" in locals_for_with?locals_for_with.role:typeof role!=="undefined"?role:undefined,"undefined" in locals_for_with?locals_for_with.undefined:typeof undefined!=="undefined"?undefined:undefined));;return buf.join("");
+}
 function topUser_template(locals) {
 var buf = [];
 var jade_mixins = {};
@@ -27,7 +142,7 @@ function userList_template(locals) {
 var buf = [];
 var jade_mixins = {};
 var jade_interp;
-;var locals_for_with = (locals || {});(function (isadmin, undefined, users) {
+;var locals_for_with = (locals || {});(function (_id, isadmin, undefined, users) {
 if ((users.length>0))
 {
 // iterate users
@@ -46,6 +161,10 @@ if ((item.isadmin == 0))
 {
 buf.push("<span>/</span><a href=\"javascript:void(0);\" class=\"change_admin\">设为管理员</a>");
 }
+else if ((_id != item._id))
+{
+buf.push("<span>/</span><a href=\"javascript:void(0);\" class=\"change_admin\">取消管理员</a>");
+}
 }
 buf.push("</td></tr>");
     }
@@ -63,6 +182,10 @@ if ((item.isadmin == 0))
 {
 buf.push("<span>/</span><a href=\"javascript:void(0);\" class=\"change_admin\">设为管理员</a>");
 }
+else if ((_id != item._id))
+{
+buf.push("<span>/</span><a href=\"javascript:void(0);\" class=\"change_admin\">取消管理员</a>");
+}
 }
 buf.push("</td></tr>");
     }
@@ -74,5 +197,5 @@ buf.push("</td></tr>");
 else
 {
 buf.push("<tr><td colspan=\"7\" style=\"text-align: center\">无记录</td></tr>");
-}}.call(this,"isadmin" in locals_for_with?locals_for_with.isadmin:typeof isadmin!=="undefined"?isadmin:undefined,"undefined" in locals_for_with?locals_for_with.undefined:typeof undefined!=="undefined"?undefined:undefined,"users" in locals_for_with?locals_for_with.users:typeof users!=="undefined"?users:undefined));;return buf.join("");
+}}.call(this,"_id" in locals_for_with?locals_for_with._id:typeof _id!=="undefined"?_id:undefined,"isadmin" in locals_for_with?locals_for_with.isadmin:typeof isadmin!=="undefined"?isadmin:undefined,"undefined" in locals_for_with?locals_for_with.undefined:typeof undefined!=="undefined"?undefined:undefined,"users" in locals_for_with?locals_for_with.users:typeof users!=="undefined"?users:undefined));;return buf.join("");
 }

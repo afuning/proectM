@@ -7,60 +7,6 @@
   float: right;
   margin: 20px 0;
 }
-.select_group {
-  .select_inner {
-    display: inline-block;
-    width: 25%;
-    margin: 12px 0;
-    text-align: center;
-    position: relative;
-    .delete {
-      display: inline-block;
-      position: absolute;
-      top: 3px;
-      right: 23px;
-      cursor: pointer;
-      opacity: 0;
-    }
-    .select {
-      display: block;
-      border: 1px solid @border-color;
-      height: 38px;
-      line-height: 38px;
-      margin: 0 20px;
-      .transition(all 300ms);
-    }
-    &:hover {
-      .select {
-        border-color: @bg-blue-l;
-        background: @bg-blue;
-        color: #fff;
-      }
-      .delete {
-        opacity: 1;
-        &:hover {
-          color: #fff;
-        }
-      }
-    }
-    .btn-success {
-      .btn-success();
-      line-height: inherit;
-      margin: 0 10px;
-    }
-    .btn-line {
-      .btn-line();
-      line-height: inherit;
-      margin: 0 10px;
-    }
-  }
-
-  .select_action {
-    display: block;
-    width: 100%;
-    margin: 20px auto;
-  }
-}
 
 .input_group{
   text-align: center;

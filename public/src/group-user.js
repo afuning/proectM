@@ -29,7 +29,7 @@
             })
             $('body').on('click','.change_admin',function(){
                 var _id = $(this).parent().parent().attr('_id');
-                lib.notification.confirm('确定要将该用户设为管理员?','',function(e,isOk){
+                lib.notification.confirm('确定要修改该用户权限?','',function(e,isOk){
                     if(isOk){
                         self.addAdmin(_id);
                     }
@@ -64,7 +64,8 @@
                     $('.common_table table tr:not(.table_hd)').remove();
                     var userhtml = userList_template({
                         users: data.data.results,
-                        isadmin: lib.storage.get('user').isadmin?lib.storage.get('user').isadmin: 0
+                        isadmin: lib.storage.get('user').isadmin?lib.storage.get('user').isadmin: 0,
+                        _id: lib.storage.get('user')._id
                     });
                     $inner.append(userhtml);
 
@@ -109,6 +110,7 @@
                 },
                 success: function(data){
                     lib.notification.simple('设置成功',{bg:'#57c78b',font:'#fff'},2000);
+                    location.reload();
                 },
                 error: function(err){
                     //console.log(err);

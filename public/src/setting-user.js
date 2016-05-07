@@ -49,7 +49,7 @@
                     '<div class="input_group"><div class="input_inner"><label>部门</label><select class="J-depart" style="332px"></select></div><br /><div class="input_inner"><label>职位</label><select class="J-role" style="332px"></select></div></div>',
                     function(e,isOk){
                         if(isOk){
-                            var role = $('.J-role').val();
+                            var role = $('.J-role option:selected').val();
                             self.changeUser({role: role});
                         }
                         this.hide()
@@ -184,11 +184,12 @@
                 api:'/user/change',
                 data: _data,
                 success: function(data){
-                    _data.head_url&&$('#head_img,#user .head').html('<img src='+_data.head_url+'/>');
-                    _data.qq_num&&$('#qqnum').text(_data.qq_num);
-                    _data.mobile&&$('#mobile').text(_data.mobile);
-                    _data.role&&$('#role').text(_data.role.name+'-'+_data.role.department.name);
-                    //lib.storage.set('user',data.data);
+                    var user = data.data;
+                    user.head_url&&$('#head_img,#user .head').html('<img src='+user.head_url+'/>');
+                    user.qq_num&&$('#qqnum').text(user.qq_num);
+                    user.mobile&&$('#mobile').text(user.mobile);
+                    user.role&&$('#role').text(user.role.name+'-'+user.role.department.name);
+                    lib.storage.set('user',user);
                 },
                 error: function(err){
                     //console.log(data);
@@ -236,6 +237,7 @@
                     var $role = $('.d-float-popWrap .J-role');
                     var depart = {};
                     role.forEach(function(ele,i){
+                        console.log(depart[ele.department._id]);
                         if(!(depart[ele.department._id] && depart[ele.department._id].length > 0)){
                             depart[ele.department._id] = [];
                         }
@@ -248,6 +250,7 @@
 
                     $depart.on('change',function(){
                         var val = $(this).val();
+                        $role.html('');
                         depart[val].forEach(function(ele,i){
                             $role.append('<option value='+ele._id+'>'+ele.name+'</option>');
                         })
