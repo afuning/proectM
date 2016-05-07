@@ -1,3 +1,9 @@
+if(isadmin==1)
+   tr
+      th.table_action(colspan=7 style="text-align: left")
+         a.J-addProject(class='btn-success' href="javascript:void(0)")
+            i.iconfont &#xe639
+            新增项目
 if(projects.length>0)
    each item in projects
       tr(_id= item._id)
@@ -6,24 +12,15 @@ if(projects.length>0)
          td
             span= item.creater_id?item.creater_id.realname:'未设置'
          td
-            span= item.partner_id?item.partner_id:'未设置'
+            span= moment(item.updateTime).format("LLL")
          td
-            span= item.createTime?item.createTime:'未设置'
+            span= item.total
          td
-            span= item.total?item.total:'未设置'
+            span= item.total_ing
          td
-            span= item.total_ing?item.total_ing:'未设置'
+            span= item.total_ed
          td
-            span= item.total_ed?item.total_td:'未设置'
-         td
-            if(isadmin == 1)
-               a.delete_action(href="javascript:void(0);") 删除
-               if(item.isadmin == 0)
-                  span /
-                  a.change_admin(href="javascript:void(0);") 设为管理员
-               else if(_id != item._id)
-                  span /
-                  a.change_admin(href="javascript:void(0);") 取消管理员
+            a(href="javascript:void(0);") 查看详情
 else
    tr
       td(colspan=7 style="text-align: center") 当前无项目记录

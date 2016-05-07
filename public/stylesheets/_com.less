@@ -210,6 +210,16 @@ h1,h2,h3,h4,h5,h6 {
       -webkit-transition: background .3s ease;
       transition: background .3s ease;
       text-align: left;
+      &.table_action {
+        background: #fff;
+        border-bottom:1px solid @border-color;
+        .btn-success {
+          .btn-success();
+          i.iconfont {
+            vertical-align: middle;
+          }
+        }
+      }
     }
     td {
       padding: 16px 8px;

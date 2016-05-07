@@ -4,12 +4,8 @@ var ProjectSchema = new base.Schema({
     name: {type: String},
     creater_id: {
         type: ObjectId,
-        ref: 'user'
+        ref: 'UserEntity'
     },
-    partner_id: [{
-        type: ObjectId,
-        ref: 'user'
-    }],
     total: {type: Number,default: 0},
     total_ing: {type: Number,default: 0},
     total_ed: {type: Number,default: 0},
@@ -17,6 +13,6 @@ var ProjectSchema = new base.Schema({
     createTime:{type:Date,default:Date.now}//创建时间
 });
 
-var ProjectModel = base.mongoose.model('ProjectEntity',ProjectSchema,'project');
+var ProjectModel = base.mongoose.model('project',ProjectSchema,'project');
 
-module.exports.UserModel = ProjectModel;
+module.exports.ProjectModel = ProjectModel;

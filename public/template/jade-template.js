@@ -55,6 +55,45 @@ buf.push("<div class=\"select_inner\"><a href=\"javascript:void(0);\"" + (jade.a
 
 }}.call(this,"depart" in locals_for_with?locals_for_with.depart:typeof depart!=="undefined"?depart:undefined,"isAdmin" in locals_for_with?locals_for_with.isAdmin:typeof isAdmin!=="undefined"?isAdmin:undefined,"undefined" in locals_for_with?locals_for_with.undefined:typeof undefined!=="undefined"?undefined:undefined));;return buf.join("");
 }
+function projectList_template(locals) {
+var buf = [];
+var jade_mixins = {};
+var jade_interp;
+;var locals_for_with = (locals || {});(function (isadmin, moment, projects, undefined) {
+if ((isadmin==1))
+{
+buf.push("<tr><th colspan=\"7\" style=\"text-align: left\" class=\"table_action\"><a href=\"javascript:void(0)\" class=\"J-addProject btn-success\"><i class=\"iconfont\">&#xe639</i>新增项目</a></th></tr>");
+}
+if ((projects.length>0))
+{
+// iterate projects
+;(function(){
+  var $$obj = projects;
+  if ('number' == typeof $$obj.length) {
+
+    for (var $index = 0, $$l = $$obj.length; $index < $$l; $index++) {
+      var item = $$obj[$index];
+
+buf.push("<tr" + (jade.attr("_id", item._id, true, false)) + "><td><span>" + (jade.escape(null == (jade_interp = item.name?item.name:'未设置') ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.creater_id?item.creater_id.realname:'未设置') ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = moment(item.updateTime).format("LLL")) ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.total) ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.total_ing) ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.total_ed) ? "" : jade_interp)) + "</span></td><td><a href=\"javascript:void(0);\">查看详情</a></td></tr>");
+    }
+
+  } else {
+    var $$l = 0;
+    for (var $index in $$obj) {
+      $$l++;      var item = $$obj[$index];
+
+buf.push("<tr" + (jade.attr("_id", item._id, true, false)) + "><td><span>" + (jade.escape(null == (jade_interp = item.name?item.name:'未设置') ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.creater_id?item.creater_id.realname:'未设置') ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = moment(item.updateTime).format("LLL")) ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.total) ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.total_ing) ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.total_ed) ? "" : jade_interp)) + "</span></td><td><a href=\"javascript:void(0);\">查看详情</a></td></tr>");
+    }
+
+  }
+}).call(this);
+
+}
+else
+{
+buf.push("<tr><td colspan=\"7\" style=\"text-align: center\">当前无项目记录</td></tr>");
+}}.call(this,"isadmin" in locals_for_with?locals_for_with.isadmin:typeof isadmin!=="undefined"?isadmin:undefined,"moment" in locals_for_with?locals_for_with.moment:typeof moment!=="undefined"?moment:undefined,"projects" in locals_for_with?locals_for_with.projects:typeof projects!=="undefined"?projects:undefined,"undefined" in locals_for_with?locals_for_with.undefined:typeof undefined!=="undefined"?undefined:undefined));;return buf.join("");
+}
 function roleList_template(locals) {
 var buf = [];
 var jade_mixins = {};
