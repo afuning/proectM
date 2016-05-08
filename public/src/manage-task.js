@@ -36,7 +36,7 @@
                 $('#name_input').val('');
                 $("select option:first").prop("selected",'selected');
                 $('#to_input option:first').prop("selected",'selected');
-                $('#time_input').val(moment().format('YYYY-MM-DD hh:mm:ss'));
+                $('#time_input').val('');
                 $('#detail_input').val('');
             })
 
@@ -51,6 +51,12 @@
                 var isown = $(this).hasClass('active');
                 self.isown = isown;
             })
+
+            $('#time_input').datetimepicker({
+                showSecond: true,
+                showMillisec: true,
+                timeFormat: 'hh:mm:ss'
+            });
 
         },
 

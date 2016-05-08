@@ -1,6 +1,7 @@
 extends layout
 block append head
   link(rel='stylesheet', href='/src/plugin/pageination.css')
+  link(rel='stylesheet', href='/src/plugin/timepicker/css/jquery-ui.css')
   link(rel='stylesheet', href='/css/manage.css')
 block content
   #container.clearfix
@@ -86,7 +87,7 @@ block content
           br
           div.input_inner
             label 完成期限:
-            input(type="text" id='time_input' value="2012-06-15 14:45:40" placeholder='请选择时间')
+            input(type="text" id='time_input' placeholder='请选择时间')
           br
           div.input_inner
             label 详情:
@@ -96,6 +97,10 @@ block content
             a.btn-success(id= 'submit') 提交
 
 append script
+  script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
+  script(src="/src/plugin/timepicker/js/jquery-ui.js")
+  script(src="/src/plugin/timepicker/js/jquery-ui-slide.min.js")
+  script(src="/src/plugin/timepicker/js/jquery-ui-timepicker-addon.js")
   script(src='/src/plugin/lib-pagination.js')
   script(src='/src/plugin/moment.js')
   script(src='/src/manage-task.js')
