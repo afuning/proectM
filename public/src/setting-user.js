@@ -46,7 +46,7 @@
 
             $('.J-role').on('click',function(){
                 var role_dialog = new lib.dialog.confirm('账号详情修改',
-                    '<div class="input_group"><div class="input_inner"><label>部门</label><select class="J-depart" style="332px"></select></div><br /><div class="input_inner"><label>职位</label><select class="J-role" style="332px"></select></div></div>',
+                    '<div class="input_group"><div class="input_inner"><label>部门</label><select class="J-depart" style="width: 332px"></select></div><br /><div class="input_inner"><label>职位</label><select class="J-role" style="width:332px"></select></div></div>',
                     function(e,isOk){
                         if(isOk){
                             var role = $('.J-role option:selected').val();

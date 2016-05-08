@@ -156,12 +156,11 @@ h1,h2,h3,h4,h5,h6 {
     .screen_inner {
       float: left;
       margin-right: 20px;
-      input {
+      input,select {
         position: relative;
         display: inline-block;
         vertical-align: middle;
         padding: 4px 7px;
-        width: 90%;
         height: 28px;
         cursor: text;
         font-size: 12px;
@@ -170,6 +169,36 @@ h1,h2,h3,h4,h5,h6 {
         background-color: #fff;
         border: 1px solid #d9d9d9;
         border-radius: 6px;
+      }
+      select {
+        height: 38px;
+        min-width: 120px;
+      }
+      label {
+        margin-right: 12px;
+      }
+      .btn-line {
+        .btn-line();
+        font-size: 12px;
+        width: auto;
+        padding-left: 10px;
+        padding-right: 10px;
+        height: 28px;
+        line-height: 28px;
+        margin-right: 12px;
+        .transition(all 300ms);
+        &.active {
+          border-color: @bg-green;
+          color: @bg-green;
+        }
+        &:hover{
+          border-color: @bg-green;
+          color: @bg-green;
+        }
+        &.isown.active {
+          background-color:  @bg-green;
+          color: #fff;
+        }
       }
     }
     .screen_action{
@@ -187,6 +216,17 @@ h1,h2,h3,h4,h5,h6 {
         .btn-disable();
         width: 80px;
       }
+    }
+    .line {
+      float: left;
+      margin-top: 10px;
+      margin-right: 10px;
+      color: @color-gray-9;
+    }
+    .br {
+      float: left;
+      width: 100%;
+      height: 15px;
     }
   }
 }

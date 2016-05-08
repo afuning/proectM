@@ -1,0 +1,14 @@
+extends layout
+block append head
+  link(rel='stylesheet', href='/css/manage.css')
+block content
+  #container.clearfix
+    include leftside
+    .col-main
+      div.main_hd
+        h2 任务详情
+      div(style='padding-top: 10px')
+
+append script
+  script(src='/src/plugin/moment.js')
+  script(src='/src/manage-task-detail.js')

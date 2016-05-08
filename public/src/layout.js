@@ -12,8 +12,9 @@
 
         config: function(){
             var httpurl = new lib.httpurl(location.href);
-            var pathname = httpurl.pathname.substring(1).replace('/','-');
-            $('li[data-index='+pathname+']').addClass('active');
+            var pathname = httpurl.pathname.substring(1).split('/');//.replace('/','-');
+            var mainpath = pathname[0]+'-'+pathname[1];
+            $('li[data-index='+mainpath+']').addClass('active');
         },
 
         addEvent: function(){

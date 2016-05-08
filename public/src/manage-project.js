@@ -25,6 +25,11 @@
                         this.hide()
                     }).show();
             })
+
+            $('.screen_submit').on('click',function(){
+                self.keyword = $('#project_name').val();
+                self.getList(1);
+            })
         },
 
         addProject: function(name){
@@ -63,7 +68,7 @@
                 api:'/project/list',
                 data: {
                     page: pno,
-                    pagesize: 1,
+                    pagesize: 20,
                     keyword: self.keyword
                 },
                 success: function(data){

@@ -52,7 +52,7 @@
                 api:'/user/list',
                 data: {
                     page: pno,
-                    pagesize: 1,
+                    pagesize: 20,
                     keyword: self.keyword
                 },
                 success: function(data){

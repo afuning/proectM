@@ -152,6 +152,42 @@ buf.push("<div class=\"select_inner\"><a href=\"javascript:void(0);\"" + (jade.a
 buf.push("<div class=\"select_inner select_action\"><button class=\"back btn-line\">返回部门</button></div>");
 }}.call(this,"isAdmin" in locals_for_with?locals_for_with.isAdmin:typeof isAdmin!=="undefined"?isAdmin:undefined,"role" in locals_for_with?locals_for_with.role:typeof role!=="undefined"?role:undefined,"undefined" in locals_for_with?locals_for_with.undefined:typeof undefined!=="undefined"?undefined:undefined));;return buf.join("");
 }
+function taskList_template(locals) {
+var buf = [];
+var jade_mixins = {};
+var jade_interp;
+;var locals_for_with = (locals || {});(function (moment, tasks, undefined) {
+buf.push("<tr><th colspan=\"8\" style=\"text-align: left\" class=\"table_action\"><a href=\"javascript:void(0)\" class=\"J-addTask btn-success\"><i class=\"iconfont\">&#xe639</i>新增任务</a></th></tr>");
+if ((tasks.length>0))
+{
+// iterate tasks
+;(function(){
+  var $$obj = tasks;
+  if ('number' == typeof $$obj.length) {
+
+    for (var $index = 0, $$l = $$obj.length; $index < $$l; $index++) {
+      var item = $$obj[$index];
+
+buf.push("<tr" + (jade.attr("_id", item._id, true, false)) + "><td><span>" + (jade.escape(null == (jade_interp = item.name?item.name:'未设置') ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.project_id.name) ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.from_id?item.from_id[0].realname:'未设置') ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.to_id?item.to_id.realname:'未设置') ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = moment(item.updateTime).format("YYYY-MM-DD hh:mm:ss")) ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = moment(item.forecastTime).format("YYYY-MM-DD hh:mm:ss")) ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.endTime?moment(item.endTime).format("YYYY-MM-DD hh:mm:ss"):'待完成') ? "" : jade_interp)) + "</span></td><td><a" + (jade.attr("href", './task/detail?_id='+item._id, true, false)) + " target=\"_blank\">查看详情</a></td></tr>");
+    }
+
+  } else {
+    var $$l = 0;
+    for (var $index in $$obj) {
+      $$l++;      var item = $$obj[$index];
+
+buf.push("<tr" + (jade.attr("_id", item._id, true, false)) + "><td><span>" + (jade.escape(null == (jade_interp = item.name?item.name:'未设置') ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.project_id.name) ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.from_id?item.from_id[0].realname:'未设置') ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.to_id?item.to_id.realname:'未设置') ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = moment(item.updateTime).format("YYYY-MM-DD hh:mm:ss")) ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = moment(item.forecastTime).format("YYYY-MM-DD hh:mm:ss")) ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.endTime?moment(item.endTime).format("YYYY-MM-DD hh:mm:ss"):'待完成') ? "" : jade_interp)) + "</span></td><td><a" + (jade.attr("href", './task/detail?_id='+item._id, true, false)) + " target=\"_blank\">查看详情</a></td></tr>");
+    }
+
+  }
+}).call(this);
+
+}
+else
+{
+buf.push("<tr><td colspan=\"7\" style=\"text-align: center\">当前无任务记录</td></tr>");
+}}.call(this,"moment" in locals_for_with?locals_for_with.moment:typeof moment!=="undefined"?moment:undefined,"tasks" in locals_for_with?locals_for_with.tasks:typeof tasks!=="undefined"?tasks:undefined,"undefined" in locals_for_with?locals_for_with.undefined:typeof undefined!=="undefined"?undefined:undefined));;return buf.join("");
+}
 function topUser_template(locals) {
 var buf = [];
 var jade_mixins = {};
