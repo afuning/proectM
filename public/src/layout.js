@@ -14,6 +14,9 @@
             var httpurl = new lib.httpurl(location.href);
             var pathname = httpurl.pathname.substring(1).split('/');//.replace('/','-');
             var mainpath = pathname[0]+'-'+pathname[1];
+            if(pathname.length<2){
+                mainpath = pathname[0]
+            }
             $('li[data-index='+mainpath+']').addClass('active');
         },
 

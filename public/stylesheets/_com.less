@@ -265,6 +265,7 @@ h1,h2,h3,h4,h5,h6 {
       padding: 16px 8px;
       word-break: break-all;
       border-bottom: 1px solid #e9e9e9;
+      max-width: 200px;
       a {
         color: #2db7f5;
         text-decoration: none;
@@ -321,6 +322,11 @@ ul.timeline {
       padding-bottom: 10px;
       padding-right: 20px;
       border-bottom: 1px solid #F1F1F1;
+      &.balanced {
+        .positive {
+          color: @bg-green;
+        }
+      }
       p{
         padding: 3px 0;
       }
@@ -333,7 +339,7 @@ ul.timeline {
   }
 }
 
-//时间选择弃器
+//时间选择器
 #ui-datepicker-div{font:12px/18px Tahoma, Helvetica, Arial, Verdana, "\5b8b\4f53", sans-serif; color:#51555C;}
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px;}
 .ui-timepicker-div dl { text-align: left; }
@@ -341,3 +347,60 @@ ul.timeline {
 .ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
 .ui-timepicker-div td { font-size: 90%; }
 .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+
+//详情列表
+.text_group {
+  .text_inner {
+    position: relative;
+    margin-bottom: 15px;
+    label {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 80px;
+      text-align: right;
+    }
+    p {
+      padding-left: 100px;
+      padding-right: 100px;
+    }
+    a {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 80px;
+      text-align: center;
+      color: @color-blur;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .text_action {
+    padding: 10px 0;
+    border-top: 1px solid @border-color;
+    text-align: right;
+    .btn {
+      font-size: 14px;
+      margin: 0 5px;
+      .iconfont {
+        font-size: 12px;
+      }
+    }
+    .btn-success {
+      .btn-success();
+      width: 80px;
+    }
+    .btn-gray {
+      .btn-gray();
+      width: 80px;
+    }
+    .btn-blue {
+      .btn-blue();
+      width: 80px;
+    }
+  }
+}

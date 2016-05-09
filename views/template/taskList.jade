@@ -15,11 +15,11 @@ if(tasks.length>0)
          td
             span= item.to_id?item.to_id.realname:'未设置'
          td
-            span= moment(item.updateTime).format("YYYY-MM-DD hh:mm:ss")
+            span= moment(item.updateTime).format("YYYY-MM-DD HH:mm:ss")
          td
-            span= moment(item.forecastTime).format("YYYY-MM-DD hh:mm:ss")
+            span= moment(item.forecastTime).format("YYYY-MM-DD HH:mm:ss")
          td
-            span= item.endTime?moment(item.endTime).format("YYYY-MM-DD hh:mm:ss"):'待完成'
+            span= item.endTime?moment(item.endTime).format("YYYY-MM-DD HH:mm:ss"):'待完成'
          td
             a(href='./task/detail?_id='+item._id target= '_blank') 查看详情
 else

@@ -9,6 +9,7 @@ var TaskModel = require('../models/Task').TaskModel;
 var RestResult = require('../conf/RestResult');
 var validator = require('validator');
 var eventproxy =require('eventproxy');
+var moment = require('moment');
 module.exports.autoroute = {
     'get':{
         '/manage/project': projectList,
@@ -50,9 +51,22 @@ function taskList(req,res,next){
 function taskDetail(req,res,next){
     var task_id = req.query._id;
     var _id = req.session.user._id;
-    TaskModel.findById(task_id).populate({path: 'project_id from_id to_id'})
+    TaskModel.findById(task_id).populate({path: 'project_id from_id to_id schedule_user'})
         .exec(function(err,doc){
             if(doc){
+                for(var i in doc.schedule_time){
+                    doc.schedule_time[i]= moment(doc.schedule_time[i]).format("YYYY-MM-DD HH:mm:ss");
+                }
+
+                doc.createtime = moment(doc.createTime).format("YYYY-MM-DD HH:mm:ss");
+                doc.forecasttime = moment(doc.forecastTime).format("YYYY-MM-DD HH:mm:ss");
+                doc.updatetime = moment(doc.updateTime).format("YYYY-MM-DD HH:mm:ss");
+                if(doc.endTime){
+                    doc.endtime = moment(doc.endTime).format("YYYY-MM-DD HH:mm:ss");
+                }
+                doc.schedule_detail.reverse();
+                doc.schedule_time.reverse();
+                doc.schedule_user.reverse();
                 res.render('manage-task-detail', {taskDetail: doc});
             }else{
                 next();

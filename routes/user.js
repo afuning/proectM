@@ -157,7 +157,7 @@ function changePwd(req,res,next){
 
 function getList(req,res,next){
     var page = req.query.page || 1;
-    var pagesize = req.query.pagesize*1 || 1;
+    var pagesize = req.query.pagesize*1 || 10000;
     var keyword = req.query.keyword || '';
     var qs=new RegExp(keyword);
     var result = new RestResult(); //添加返回状态格式

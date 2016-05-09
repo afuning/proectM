@@ -8,24 +8,99 @@ block content
       div.main_hd
         h2 任务详情
       div(style='padding-top: 10px')
-      div.main_bd
+      div.main_bd.clearfix
         div.timeline_group
-          ul.timeline
-            li.timeline-item
-              div.timeline-item-tail
-              div.timeline-item-head.timeline-item-head-balanced
-              div.timeline-item-content.balanced
-                p 浙江省宁波市科技园区公司 派件中 电话:
-                p.positive 159887647631
-                p.timeline-item-content-time 2016-03-01 12:47:59
-            li.timeline-item
-              div.timeline-item-tail
-              div.timeline-item-head
-              div.timeline-item-content.balanced
-                p 浙江省宁波市科技园区公司 派件中 电话:
-                p.positive 159887647631
-                p.timeline-item-content-time 2016-03-01 12:47:59
+            //
+              ul.timeline
+                each item, i in taskDetail.schedule_time
+                  li.timeline-item
+                    div.timeline-item-tail
+                    if(i == 0)
+                      div.timeline-item-head.timeline-item-head-balanced
+                      div.timeline-item-content.balanced
+                        p= taskDetail.schedule_user[i].realname+':'
+                        p.positive= taskDetail.schedule_detail[i]
+                        p.timeline-item-content-time= item
+                    else
+                      div.timeline-item-head
+                      div.timeline-item-content
+                        p= taskDetail.schedule_user[i].realname+':'
+                        p.positive= taskDetail.schedule_detail[i]
+                        p.timeline-item-content-time= item
+            ul.timeline
+              each item, i in taskDetail.schedule_time
+                li.timeline-item
+                  div.timeline-item-tail
+                  if(i == 0)
+                    div.timeline-item-head.timeline-item-head-balanced
+                    div.timeline-item-content.balanced
+                      p.positive= taskDetail.schedule_user[i].realname+':'
+                      p.positive= taskDetail.schedule_detail[i]
+                      p.timeline-item-content-time= item
+                  else
+                    div.timeline-item-head
+                    div.timeline-item-content
+                      p= taskDetail.schedule_user[i].realname+':'
+                      p.positive= taskDetail.schedule_detail[i]
+                      p.timeline-item-content-time= item
+        div.main_line
+        div.detail
+          div.text_group
+            div.text_inner
+              label 任务名称:
+              p= taskDetail.name
+              if(taskDetail.status == 0)
+                a.J-changeName(href='javascript:void(0)') 修改
+            div.text_inner
+              label 创建者:
+              p=  taskDetail.from_id[0].realname
+            if(taskDetail.from_id.length>1)
+              div.text_inner
+                label 期间处理者:
+                p
+                  each item, i in taskDetail.from_id
+                    if(i!=0)
+                      span #{item.realname}&nbsp;&nbsp;&nbsp;
+            div.text_inner
+              label 当前处理者:
+              p= taskDetail.to_id.realname
+            div.text_inner
+              label 任务详情:
+              p= taskDetail.detail
+              if(taskDetail.status == 0)
+                a.J-changeDetail(href='javascript:void(0)') 修改
+            div.text_inner
+              label 创建时间:
+              p #{taskDetail.createtime}&nbsp;&nbsp;(#{taskDetail.from_id[0].realname}  创建该任务的时间);
+            div.text_inner
+              label 修改时间:
+              p #{taskDetail.updatetime}&nbsp;&nbsp;(#{taskDetail.from_id[taskDetail.from_id.length-1].realname}  修改该任务的时间);
+            div.text_inner
+              label 截止日期:
+              p #{taskDetail.forecasttime}&nbsp;&nbsp;(规定结束时间);
+            div.text_inner
+              label 当前状态:
+              if(taskDetail.status == 0)
+                p 待完成
+              else if(taskDetail.status == 1)
+                p 已完成
+              else
+                p 已结束
+            if(taskDetail.status != 0)
+              div.text_inner
+                label 结束日期:
+                p #{taskDetail.endtime}&nbsp;&nbsp;(任务结束时间);
+            div.text_action(_id= taskDetail._id)
+              if(taskDetail.status == 0)
+                a.J-complete.btn.btn-success(href='javascript: void(0);') &nbsp;解决&nbsp;
+                  i.iconfont &#xe63b
+                a.J-transmit.btn.btn-blue(href='javascript: void(0);') &nbsp;转发&nbsp;
+                  i.iconfont &#xe63d
+              //
+                a.btn.btn-gray(href='javascript: void(0);') &nbsp;删除&nbsp;
+                  i.iconfont &#xe63c
+
+
 
 append script
-  script(src='/src/plugin/moment.js')
   script(src='/src/manage-task-detail.js')

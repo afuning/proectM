@@ -7,6 +7,10 @@ var TaskSchema = new base.Schema({
         type: ObjectId,
         ref: 'project'
     },
+    schedule_user:[{
+        type: ObjectId,
+        ref: 'UserEntity'
+    }],
     schedule_detail: [{type: String}],
     schedule_time: [{type:Date}],
     from_id: [{
