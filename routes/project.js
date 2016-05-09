@@ -11,7 +11,8 @@ var dbHelper = require('../conf/dbHelper');
 module.exports.autoroute = {
     'get':{
         '/project/list': getList,
-        '/project/add': addProject
+        '/project/add': addProject,
+        '/project/change': changeProject
     },
     'post':{
 
@@ -56,6 +57,31 @@ function addProject(req,res,next){
             return;
         }
         res.send(result.isSuccess(row));//返回成功结果
+    })
+}
+
+function changeProject(req,res,next) {
+    var _id = req.query._id,
+        name = req.query.name,
+        detail = req.query.detail;
+    var isadmin = req.session.user.isadmin;
+    var result = new RestResult(); //添加返回状态格式
+    if(isadmin == 0){
+        res.send(result.isError("SERVER_EXCEPTION_ERROR_CODE","没有权限修改项目"));
+        return ;
+    }
+    ProjectModel.findById(_id).exec(function(err,doc){
+        name&&(doc.name = name);
+        detail&&(doc.detail = detail);
+        console.log(doc);
+        delete doc._id;    //再将其删除
+        ProjectModel.update({_id: _id},doc,function(err,project){
+            if(project){
+                res.send(result.isSuccess(project))
+            }else {
+                res.send(result.isError("SERVER_EXCEPTION_ERROR_CODE",err));
+            }
+        })
     })
 }
 

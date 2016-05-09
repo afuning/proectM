@@ -14,7 +14,8 @@ module.exports.autoroute = {
     'get':{
         '/manage/project': projectList,
         '/manage/task': taskList,
-        '/manage/task/detail': taskDetail
+        '/manage/task/detail': taskDetail,
+        '/manage/project/detail': projectDetail
     },
     'post':{
 
@@ -68,6 +69,43 @@ function taskDetail(req,res,next){
                 doc.schedule_time.reverse();
                 doc.schedule_user.reverse();
                 res.render('manage-task-detail', {taskDetail: doc});
+            }else{
+                next();
+            }
+        })
+}
+
+function projectDetail(req,res,next){
+    var project_id = req.query._id;
+    var _id = req.session.user._id;
+    var ep = new eventproxy();
+    ep.all('project','task', function (project,task) {
+        res.render('manage-project-detail', {project: project,task: task});
+    });
+    ProjectModel.findById(project_id).populate({path: 'creater_id'})
+        .exec(function(err,doc){
+            if(doc){
+                doc.createtime =  moment(doc.createTime).format("YYYY-MM-DD HH:mm:ss");
+                doc.updatetime =  moment(doc.updateTime).format("YYYY-MM-DD HH:mm:ss");
+                ep.emit('project', doc);
+                //res.render('manage-project-detail', {projectDetail: doc});
+            }else{
+                next();
+            }
+        })
+    TaskModel.find({project_id: project_id})
+        .exec(function(err,doc){
+            var isEnd = 0,isIng = 0 ;
+            if(doc){
+                doc.forEach(function(item){
+                    if(item.status==0) {
+                        isIng++;
+                    }else {
+                        isEnd++
+                    }
+                })
+                ep.emit('task', {isIng: isIng,isEnd: isEnd});
+                //res.render('manage-project-detail', {projectDetail: doc});
             }else{
                 next();
             }

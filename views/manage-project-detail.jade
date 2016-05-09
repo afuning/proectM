@@ -1,0 +1,63 @@
+extends layout
+block append head
+  link(rel='stylesheet', href='/css/manage.css')
+block content
+  #container.clearfix
+    include leftside
+    .col-main
+      div.main_hd
+        h2 项目详情
+      div(style='padding-top: 10px')
+      div.main_bd
+        div.change_table
+          h3.table_title 基本信息
+          ul
+            li.row
+              h4 项目名称
+              div.meta_action
+                a(href='javascript:void(0);' class="J-Name") 修改
+              div.meta_content(class= 'projectName') #{project.name}&nbsp;
+            li.row
+              h4 项目详情
+              div.meta_action
+                a(href='javascript:void(0);' class="J-Detail") 修改
+              div.meta_content(class= 'projectName') #{project.detail}&nbsp;
+            li.row
+              h4 创建人
+              div.meta_content(class= 'projectCreate') #{project.creater_id.realname}&nbsp;
+            li.row
+              h4 开始时间
+              div.meta_content(class= 'projectTime') #{project.createtime}&nbsp;
+            li.row
+              h4 最近一次修改
+              div.meta_content(class= 'projectTime') #{project.updatetime}&nbsp;
+            if(project.status == 1)
+              li.row
+                h4 结束时间
+                div.meta_content(class= 'projectTime') &nbsp;
+            li.row
+              h4 项目状态
+              if(project.status == 0)
+                div.meta_content(class= 'projectTime') 正在进行中&nbsp;
+              else if(project.status == 1)
+                div.meta_content(class= 'projectTime') 已结束&nbsp;
+              else
+                div.meta_content(class= 'projectTime') 正在进行中&nbsp;
+          h3.table_title(style= 'border-top: 1px solid #e7e7eb ') 任务信息
+          ul
+            li.row
+              h4 待完成
+              div.meta_content(class= 'projectName') #{task.isIng}&nbsp;
+            li.row
+              h4 已完成
+              div.meta_content(class= 'projectName') #{task.isEnd}&nbsp;
+          h3.table_title(style= 'border-top: 1px solid #e7e7eb ') BUG信息
+          ul
+            li.row
+              h4 已解决
+              div.meta_content(class= 'projectName') #{project.name}&nbsp;
+            li.row
+              h4 未解决
+              div.meta_content(class= 'projectName') #{project.name}&nbsp;
+append script
+  script(src='/src/manage-project-detail.js')

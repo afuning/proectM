@@ -50,13 +50,12 @@
                         }
                         this.hide()
                     }).show();
-                self.getList();
             })
 
             $('.J-changeDetail').on('click',function(){
                 var _id = self._id;
                 var transmit_dialog = new lib.dialog.confirm('修改任务详情',
-                    '<div class="input_group"><div class="input_inner"><label>任务名称</label><textarea id="taskdetail_input" placeholder="请输入任务详情" autocomplete="off"></textarea></div></div>',
+                    '<div class="input_group"><div class="input_inner"><label>任务详情</label><textarea id="taskdetail_input" placeholder="请输入任务详情" autocomplete="off"></textarea></div></div>',
                     function(e,isOk){
                         if(isOk){
                             var taskdetail=$('#taskdetail_input').val();
@@ -64,7 +63,6 @@
                         }
                         this.hide()
                     }).show();
-                self.getList();
             })
         },
 
@@ -111,6 +109,8 @@
 
         transmitUser: function(_data){
             var self = this;
+            if(self.isChange) return ;
+            self.isChange = true;
             lib.api.get({
                 api:'/task/change',
                 data: _data,
@@ -122,7 +122,7 @@
                     lib.notification.simple(err.msg,{bg:'#e15f63',font:'#fff'},2000);
                 },
                 complete: function(){
-
+                    self.isChange = false;
                 }
             })
         }

@@ -6,6 +6,8 @@ var ProjectSchema = new base.Schema({
         type: ObjectId,
         ref: 'UserEntity'
     },
+    detail: {type: String},
+    status: {type: Number,default: 0},
     total: {type: Number,default: 0},
     total_ing: {type: Number,default: 0},
     total_ed: {type: Number,default: 0},

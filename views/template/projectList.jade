@@ -20,7 +20,7 @@ if(projects.length>0)
          td
             span= item.total_ed
          td
-            a(href="javascript:void(0);") 查看详情
+            a(href='./project/detail?_id='+item._id target= '_blank') 查看详情
 else
    tr
       td(colspan=7 style="text-align: center") 当前无项目记录
