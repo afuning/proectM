@@ -31,7 +31,16 @@ else if ((item.rank == 4))
 {
 buf.push("<span href=\"javascript: void(0);\" class=\"rank_label rank_label-green active\">轻微</span>");
 }
-buf.push("</td><td><a" + (jade.attr("href", './task/detail?_id='+item._id, true, false)) + " target=\"_blank\">查看详情</a></td></tr>");
+buf.push("</td><td>");
+if ((item.status == 0))
+{
+buf.push("<span>待解决</span>");
+}
+else if ((item.status == 1))
+{
+buf.push("<span>已解决</span>");
+}
+buf.push("</td><td><a" + (jade.attr("href", './bug/detail?_id='+item._id, true, false)) + " target=\"_blank\">查看详情</a></td></tr>");
     }
 
   } else {
@@ -56,7 +65,16 @@ else if ((item.rank == 4))
 {
 buf.push("<span href=\"javascript: void(0);\" class=\"rank_label rank_label-green active\">轻微</span>");
 }
-buf.push("</td><td><a" + (jade.attr("href", './task/detail?_id='+item._id, true, false)) + " target=\"_blank\">查看详情</a></td></tr>");
+buf.push("</td><td>");
+if ((item.status == 0))
+{
+buf.push("<span>待解决</span>");
+}
+else if ((item.status == 1))
+{
+buf.push("<span>已解决</span>");
+}
+buf.push("</td><td><a" + (jade.attr("href", './bug/detail?_id='+item._id, true, false)) + " target=\"_blank\">查看详情</a></td></tr>");
     }
 
   }
@@ -65,7 +83,7 @@ buf.push("</td><td><a" + (jade.attr("href", './task/detail?_id='+item._id, true,
 }
 else
 {
-buf.push("<tr><td colspan=\"7\" style=\"text-align: center\">当前无任务记录</td></tr>");
+buf.push("<tr><td colspan=\"7\" style=\"text-align: center\">当前无BUG记录</td></tr>");
 }}.call(this,"moment" in locals_for_with?locals_for_with.moment:typeof moment!=="undefined"?moment:undefined,"tasks" in locals_for_with?locals_for_with.tasks:typeof tasks!=="undefined"?tasks:undefined,"undefined" in locals_for_with?locals_for_with.undefined:typeof undefined!=="undefined"?undefined:undefined));;return buf.join("");
 }
 function departList_template(locals) {

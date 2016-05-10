@@ -34,7 +34,7 @@
 
             $('#clear').on('click',function(){
                 $('#name_input').val('');
-                $("select option:first").prop("selected",'selected');
+                $("#project_input option:first").prop("selected",'selected');
                 $('#to_input option:first').prop("selected",'selected');
                 $('#time_input').val('');
                 $('#detail_input').val('');

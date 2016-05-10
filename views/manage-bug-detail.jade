@@ -1,0 +1,99 @@
+extends layout
+block append head
+  link(rel='stylesheet', href='/css/manage.css')
+block content
+  #container.clearfix
+    include leftside
+    .col-main
+      div.main_hd
+        h2 BUG详情&nbsp;&nbsp;&nbsp;
+          if(bugDetail.rank == 1)
+            span.rank_label.rank_label-red.active(href='javascript: void(0);') 立即解决
+          else if(bugDetail.rank == 2)
+            span.rank_label.rank_label-orange.active(href='javascript: void(0);') 严重
+          else if(bugDetail.rank == 3)
+            span.rank_label.rank_label-yellow.active(href='javascript: void(0);') 中等
+          else if(bugDetail.rank == 4)
+            span.rank_label.rank_label-green.active(href='javascript: void(0);') 轻微
+      div(style='padding-top: 10px')
+      div.main_bd.clearfix
+        div.change_table
+          h3.table_title BUG详情
+          ul
+            li.row!= bugDetail.detail
+        div.timeline_group
+            ul.timeline
+              each item, i in bugDetail.schedule_time
+                li.timeline-item
+                  div.timeline-item-tail
+                  if(i == 0)
+                    div.timeline-item-head.timeline-item-head-balanced
+                    div.timeline-item-content.balanced
+                      p.positive= bugDetail.schedule_user[i].realname+':'
+                      p.positive= bugDetail.schedule_detail[i]
+                      p.timeline-item-content-time= item
+                  else
+                    div.timeline-item-head
+                    div.timeline-item-content
+                      p= bugDetail.schedule_user[i].realname+':'
+                      p.positive= bugDetail.schedule_detail[i]
+                      p.timeline-item-content-time= item
+        div.main_line
+        div.detail
+          div.text_group
+            div.text_inner
+              label BUG标题:
+              p= bugDetail.name
+              if(bugDetail.status == 0)
+                a.J-changeName(href='javascript:void(0)') 修改
+            div.text_inner
+              label 创建者:
+              p=  bugDetail.from_id[0].realname
+            if(bugDetail.from_id.length>1)
+              div.text_inner
+                label 期间处理者:
+                p
+                  each item, i in bugDetail.from_id
+                    if(i!=0)
+                      span #{item.realname}&nbsp;&nbsp;&nbsp;
+            div.text_inner
+              label 当前处理者:
+              p= bugDetail.to_id.realname
+            div.text_inner
+              label 创建时间:
+              p #{bugDetail.createtime}&nbsp;&nbsp;(#{bugDetail.from_id[0].realname}  创建该BUG的时间)
+            div.text_inner
+              label 修改时间:
+              p #{bugDetail.updatetime}&nbsp;&nbsp;(#{bugDetail.from_id[bugDetail.from_id.length-1].realname}  修改该BUG的时间)
+            div.text_inner
+              label 当前状态:
+              if(bugDetail.status == 0)
+                p 待解决
+              else if(bugDetail.status == 1)
+                p 已解决
+              else
+                p 已结束
+            if(bugDetail.status != 0)
+              div.text_inner
+                label 结束日期:
+                p #{bugDetail.endtime}&nbsp;&nbsp;(BUG结束时间)
+              div.text_inner
+                label 解决方法:
+                p #{bugDetail.way}
+            div.text_action(_id= bugDetail._id)
+              if(bugDetail.status == 0)
+                a.J-complete.btn.btn-success(href='javascript: void(0);') &nbsp;解决&nbsp;
+                  i.iconfont &#xe63b
+                a.J-transmit.btn.btn-blue(href='javascript: void(0);') &nbsp;转发&nbsp;
+                  i.iconfont &#xe63d
+              else if(bugDetail.status == 1)
+                a.J-delete.btn.btn-success(href='javascript: void(0);') &nbsp;已核实&nbsp;
+                  i.iconfont &#xe63b
+              //
+                a.btn.btn-gray(href='javascript: void(0);') &nbsp;删除&nbsp;
+                  i.iconfont &#xe63c
+
+
+
+append script
+  script(src='/src/manage-bug-detail.js')

@@ -13,7 +13,10 @@ var moment = require('moment');
 module.exports.autoroute = {
     'get':{
         '/bug/list': getList,
-        '/bug/add': addBug
+        '/bug/add': addBug,
+        '/bug/change': changeBug,
+        '/bug/complete': completeBug,
+        '/bug/delete': deleteBug
     },
     'post':{
 
@@ -70,7 +73,7 @@ function addBug(req,res,next){
     var result = new RestResult(); //添加返回状态格式
     var fromList = [],schedule_detail=[],schedule_time=[],schedule_user=[];
     fromList.push(from_id);
-    schedule_detail.push('创建该任务');
+    schedule_detail.push('创建该BUG');
     schedule_time.push(moment().format());
     schedule_user.push(from_id);
     var bugEntity = new BugModel({
@@ -94,25 +97,27 @@ function addBug(req,res,next){
     })
 }
 
-function completeTask(req,res,next) {
-    var _id = req.query._id;
+function completeBug(req,res,next) {
+    var _id = req.query._id,
+        way = req.query.way;
     var user_id = req.session.user._id;
     var result = new RestResult(); //添加返回状态格式
 
 
-    TaskModel.findById(_id).exec(function(err,doc){
+    BugModel.findById(_id).exec(function(err,doc){
         if(user_id != doc.to_id) {
             res.send(result.isError("SERVER_EXCEPTION_ERROR_CODE","你不是当前任务处理用户,没有权限完成该任务"));
             return ;
         }
         doc.status = 1;
+        doc.way = way;
         doc.endTime = Date.now();
         doc.updateTime = Date.now();
         doc.schedule_user.push(user_id);
-        doc.schedule_detail.push('完成该任务');
+        doc.schedule_detail.push('解决该BUG');
         doc.schedule_time.push(Date.now());
         delete doc._id;    //再将其删除
-        TaskModel.update({_id: _id},doc,function(err,task){
+        BugModel.update({_id: _id},doc,function(err,task){
             if(task){
                 res.send(result.isSuccess())
             }else {
@@ -122,41 +127,59 @@ function completeTask(req,res,next) {
     })
 }
 
-function changeTask(req,res,next) {
+
+
+function changeBug(req,res,next) {
     var _id = req.query._id,
         user_id = req.query.user_id,
         user_realname = req.query.user_realname,
-        name = req.query.name,
-        detail = req.query.detail;
+        name = req.query.name;
+        //detail = req.query.detail;
     var session_id = req.session.user._id;
     var result = new RestResult(); //添加返回状态格式
     var schedule_detail = '';
 
-    TaskModel.findById(_id).exec(function(err,doc){
+    BugModel.findById(_id).exec(function(err,doc){
         if(session_id != doc.to_id) {
-            res.send(result.isError("SERVER_EXCEPTION_ERROR_CODE","你不是当前任务处理用户,没有权限完成该任务"));
+            res.send(result.isError("SERVER_EXCEPTION_ERROR_CODE","你不是当前BUG处理用户,没有权限解决该BUG"));
             return ;
         }
         if(user_id) {
-            schedule_detail = '将该任务指向'+user_realname;
+            schedule_detail = '将该BUG指向'+user_realname;
             doc.from_id.push(doc.to_id);
             doc.to_id = user_id;
         }
         if(name) {
-            schedule_detail = '将该任务名称'+doc.name+'改为'+name;
+            schedule_detail = '将该BUG标题'+doc.name+'改为'+name;
             doc.name = name
-        }
-        if(detail) {
-            schedule_detail = '将该任务详情'+doc.detail+'改为'+detail;
-            doc.detail = detail
         }
         doc.updateTime = Date.now();
         doc.schedule_user.push(session_id);
         doc.schedule_detail.push(schedule_detail);
         doc.schedule_time.push(Date.now());
         delete doc._id;    //再将其删除
-        TaskModel.update({_id: _id},doc,function(err,task){
-            if(task){
+        BugModel.update({_id: _id},doc,function(err,bug){
+            if(bug){
+                res.send(result.isSuccess())
+            }else {
+                res.send(result.isError("SERVER_EXCEPTION_ERROR_CODE",err));
+            }
+        })
+    })
+}
+
+function deleteBug(req,res,next){
+    var _id = req.query._id;
+    var result = new RestResult(); //添加返回状态格式
+    var session_id = req.session.user._id;
+
+    BugModel.findById(_id).exec(function(err,doc){
+        if(session_id != doc.from_id[0]) {
+            res.send(result.isError("SERVER_EXCEPTION_ERROR_CODE","你不是当前BUG创建者,没有权限确认该BUG是否解决"));
+            return ;
+        }
+        BugModel.remove({_id: _id},function(err,bug){
+            if(bug){
                 res.send(result.isSuccess())
             }else {
                 res.send(result.isError("SERVER_EXCEPTION_ERROR_CODE",err));

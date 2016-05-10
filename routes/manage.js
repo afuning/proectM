@@ -6,6 +6,7 @@ var crypto = require('../util/tokenUtils');
 var UserModel = require('../models/User').UserModel;
 var ProjectModel = require('../models/Project').ProjectModel;
 var TaskModel = require('../models/Task').TaskModel;
+var BugModel = require('../models/Bug').BugModel;
 var RestResult = require('../conf/RestResult');
 var validator = require('validator');
 var eventproxy =require('eventproxy');
@@ -16,7 +17,8 @@ module.exports.autoroute = {
         '/manage/task': taskList,
         '/manage/task/detail': taskDetail,
         '/manage/project/detail': projectDetail,
-        '/manage/bug': bugList
+        '/manage/bug': bugList,
+        '/manage/bug/detail': bugDetail
     },
     'post':{
 
@@ -133,6 +135,31 @@ function bugList(req,res,next){
             next();
         }
     });
+}
+
+function bugDetail(req,res,next){
+    var bug_id = req.query._id;
+    var _id = req.session.user._id;
+    BugModel.findById(bug_id).populate({path: 'project_id from_id to_id schedule_user'})
+        .exec(function(err,doc){
+            if(doc){
+                for(var i in doc.schedule_time){
+                    doc.schedule_time[i]= moment(doc.schedule_time[i]).format("YYYY-MM-DD HH:mm:ss");
+                }
+
+                doc.createtime = moment(doc.createTime).format("YYYY-MM-DD HH:mm:ss");
+                doc.updatetime = moment(doc.updateTime).format("YYYY-MM-DD HH:mm:ss");
+                if(doc.endTime){
+                    doc.endtime = moment(doc.endTime).format("YYYY-MM-DD HH:mm:ss");
+                }
+                doc.schedule_detail.reverse();
+                doc.schedule_time.reverse();
+                doc.schedule_user.reverse();
+                res.render('manage-bug-detail', {bugDetail: doc});
+            }else{
+                next();
+            }
+        })
 }
 
 

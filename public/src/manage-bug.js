@@ -17,7 +17,7 @@
         addEvent: function(){
             var self = this;
 
-            $('.rank_label').on('click',function(){
+            $('.input_inner .rank_label').on('click',function(){
                 $(this).addClass('active').siblings('.rank_label').removeClass('active');
             });
 
@@ -44,10 +44,10 @@
 
             $('#clear').on('click',function(){
                 $('#name_input').val('');
-                $("select option:first").prop("selected",'selected');
+                $("#project_input option:first").prop("selected",'selected');
                 $('#to_input option:first').prop("selected",'selected');
-                $('#time_input').val('');
-                $('#detail_input').val('');
+                $('.input_inner .rank_label').eq(0).click();
+                self.editor.setValue('');
             })
 
             $('.sort').on('click',function(){

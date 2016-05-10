@@ -26,7 +26,12 @@ if(tasks.length>0)
             else if(item.rank == 4)
                span.rank_label.rank_label-green.active(href='javascript: void(0);') 轻微
          td
-            a(href='./task/detail?_id='+item._id target= '_blank') 查看详情
+            if(item.status == 0)
+               span 待解决
+            else if(item.status == 1)
+               span 已解决
+         td
+            a(href='./bug/detail?_id='+item._id target= '_blank') 查看详情
 else
    tr
-      td(colspan=7 style="text-align: center") 当前无任务记录
+      td(colspan=7 style="text-align: center") 当前无BUG记录

@@ -31,8 +31,8 @@ block content
               label BUG状态:
               select(id='screen_status')
                 option(value= '') 全部状态
-                option(value= 1) 已完成
-                option(value= 0) 待完成
+                option(value= 1) 已解决
+                option(value= 0) 待解决
             span.line |
             div.screen_inner
               label BUG等级:
@@ -68,6 +68,8 @@ block content
                 span 当前执行者
               th
                 span 修改(创建)日期
+              th
+                span 严重程度
               th
                 span 状态
               th

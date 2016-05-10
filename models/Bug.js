@@ -7,6 +7,9 @@ var BugSchema = new base.Schema({
         type: ObjectId,
         ref: 'project'
     },
+    way: {
+      type: String
+    },
     schedule_user:[{
         type: ObjectId,
         ref: 'UserEntity'
