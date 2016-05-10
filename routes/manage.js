@@ -15,7 +15,8 @@ module.exports.autoroute = {
         '/manage/project': projectList,
         '/manage/task': taskList,
         '/manage/task/detail': taskDetail,
-        '/manage/project/detail': projectDetail
+        '/manage/project/detail': projectDetail,
+        '/manage/bug': bugList
     },
     'post':{
 
@@ -110,6 +111,28 @@ function projectDetail(req,res,next){
                 next();
             }
         })
+}
+
+function bugList(req,res,next){
+    var ep = new eventproxy();
+    ep.all('project', 'user', function (project, user) {
+        res.render('manage-bug', {project: project,user: user});
+    });
+    ProjectModel.find({}).exec(function(err,project){
+        if(project){
+            ep.emit('project', project);
+        }else{
+            next();
+        }
+    });
+
+    UserModel.find({}).exec(function(err,user){
+        if(user){
+            ep.emit('user', user);
+        }else{
+            next();
+        }
+    });
 }
 
 

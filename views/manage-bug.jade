@@ -1,0 +1,117 @@
+extends layout
+block append head
+  link(rel='stylesheet', href='/src/plugin/pageination.css')
+  link(rel='stylesheet', href='/src/plugin/timepicker/css/jquery-ui.css')
+  link(rel='stylesheet', href='/src/plugin/simditor/simditor.css')
+  link(rel='stylesheet', href='/css/manage.css')
+block content
+  #container.clearfix
+    include leftside
+    .col-main
+      div.main_hd
+        h2 BUG管理
+        div.tab_inner
+          ul.tab_list
+            li.tab_item.active(data-index = '0')
+              a(href='javascript:void(0);') BUG列表
+            li.tab_item(data-index = '1')
+              a(href='javascript:void(0);') 新增BUG
+      div(style='padding-top: 10px')
+      div.main_bd(data-index = '0')
+        div.clearfix(id="screen")
+          div.screen_group
+            div.screen_inner
+              label 项目:
+              select(id='screen_project')
+                option(value='') 全部
+                each item in project
+                  option(value= item._id)= item.name
+            span.line |
+            div.screen_inner
+              label BUG状态:
+              select(id='screen_status')
+                option(value= '') 全部状态
+                option(value= 1) 已完成
+                option(value= 0) 待完成
+            span.line |
+            div.screen_inner
+              label BUG等级:
+              select(id='screen_rank')
+                option(value= '') 全部
+                option(value= 1) 立即解决
+                option(value= 2) 严重
+                option(value= 3) 中级
+                option(value= 4) 轻微
+            span.line |
+            div.screen_inner
+              input(type="text" id="project_name" placeholder='请输入关键字')
+            div.br
+            div.screen_inner
+              a.sort.btn-line.active(sort-type= '0') 默认排序
+              a.sort.btn-line(sort-type= '1') 按严重程度排序
+            span.line |
+            div.screen_inner
+              a.isown.btn-line 关于自己
+            div.br
+            div.screen_action
+              button(class="btn-success screen_submit" style='margin: 3px 0') 筛选
+        div.common_table
+          table
+            tr.table_hd
+              th
+                span BUG标题
+              th
+                span 所属项目
+              th
+                span 创建者
+              th
+                span 当前执行者
+              th
+                span 修改(创建)日期
+              th
+                span 状态
+              th
+                span 操作
+        div.page_container.clearfix
+          div#page
+      div.main_bd(style= 'display: none' data-index = '1')
+        div.input_group(style= 'text-align: left; margin-top: 50px; ')
+          div.input_inner
+            label BUG标题:
+            input(type="text" id='name_input' placeholder='请输入任务名称')
+          br
+          div.input_inner
+            label 所属项目:
+            select(style= 'width: 332px' id='project_input')
+              each item in project
+                option(value= item._id)= item.name
+          br
+          div.input_inner
+            label 被指派者:
+            select(style= 'width: 332px' id='to_input')
+              each item in user
+                option(value= item._id)= item.realname
+          br
+          div.input_inner
+            label 等级:
+            a.rank_label.rank_label-red.active(href='javascript: void(0);' data-index='1')  立即解决
+            a.rank_label.rank_label-orange(href='javascript: void(0);' data-index='2')  严重
+            a.rank_label.rank_label-yellow(href='javascript: void(0);' data-index='3')  中等
+            a.rank_label.rank_label-green(href='javascript: void(0);' data-index='4')  轻微
+          br
+          div.input_inner
+            label 详情:
+            textarea(id="editor" placeholder="Balabala" style='width: 622px' autofocus)
+          div.btn_inner(style= 'margin: 0; text-align: center;width: 100%')
+            a.btn-line(id= 'clear' style= 'margin-right: 20px') 重置
+            a.btn-success(id= 'submit') 提交
+
+append script
+  script(src='/src/plugin/simditor/jquery.min.js')
+  script(src='/src/plugin/lib-pagination.js')
+  script(src='/src/plugin/simditor/module.js')
+  script(src='/src/plugin/simditor/hotkeys.js')
+  script(src='/src/plugin/simditor/uploader.js')
+  script(src='/src/plugin/simditor/simditor.js')
+  script(src='/src/plugin/moment.js')
+  script(src='/src/manage-bug.js')

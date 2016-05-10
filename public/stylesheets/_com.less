@@ -404,3 +404,64 @@ ul.timeline {
     }
   }
 }
+
+//标签
+.rank_label {
+  display: inline-block;
+  height: 24px;
+  line-height: 24px;
+  border-width: 1px;
+  border-style: solid;
+  padding: 0 5px;
+  font-size: 12px;
+  .border-radius(12px);
+  margin-right: 12px;
+  &-red {
+    border-color: @color-red;
+    color: @color-red;
+    &:hover {
+      color: #fff;
+      background: @color-red;
+    }
+    &.active {
+      color: #fff;
+      background: @color-red;
+    }
+  }
+  &-orange {
+    border-color: @color-orange;
+    color: @color-orange;
+    &:hover {
+      color: #fff;
+      background: @color-orange;
+    }
+    &.active {
+      color: #fff;
+      background: @color-orange;
+    }
+  }
+  &-yellow {
+    border-color: @color-yellow;
+    color: @color-yellow;
+    &:hover {
+      color: #fff;
+      background: @color-yellow;
+    }
+    &.active {
+      color: #fff;
+      background: @color-yellow;
+    }
+  }
+  &-green {
+    border-color: @color-green;
+    color: @color-green;
+    &:hover {
+      color: #fff;
+      background: @color-green;
+    }
+    &.active {
+      color: #fff;
+      background: @color-green;
+    }
+  }
+}

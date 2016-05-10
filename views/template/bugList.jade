@@ -1,0 +1,32 @@
+tr
+   th.table_action(colspan=8 style="text-align: left")
+      a.J-addTask(class='btn-success' href="javascript:void(0)")
+         i.iconfont &#xe639
+         新增BUG
+if(tasks.length>0)
+   each item in tasks
+      tr(_id= item._id)
+         td
+            span= item.name?item.name:'未设置'
+         td
+            span= item.project_id.name
+         td
+            span= item.from_id?item.from_id[0].realname:'未设置'
+         td
+            span= item.to_id?item.to_id.realname:'未设置'
+         td
+            span= moment(item.updateTime).format("YYYY-MM-DD HH:mm:ss")
+         td
+            if(item.rank == 1)
+               span.rank_label.rank_label-red.active(href='javascript: void(0);') 立即解决
+            else if(item.rank == 2)
+               span.rank_label.rank_label-orange.active(href='javascript: void(0);') 严重
+            else if(item.rank == 3)
+               span.rank_label.rank_label-yellow.active(href='javascript: void(0);') 中等
+            else if(item.rank == 4)
+               span.rank_label.rank_label-green.active(href='javascript: void(0);') 轻微
+         td
+            a(href='./task/detail?_id='+item._id target= '_blank') 查看详情
+else
+   tr
+      td(colspan=7 style="text-align: center") 当前无任务记录
