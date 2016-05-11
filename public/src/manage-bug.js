@@ -113,7 +113,7 @@
                 api:'/bug/list',
                 data: {
                     page: pno,
-                    pagesize: 20,
+                    pagesize: 10,
                     keyword: self.keyword,
                     status: self.status,
                     project_id: self.project_id,
