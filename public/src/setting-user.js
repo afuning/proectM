@@ -140,9 +140,9 @@
                         //var domain = up.getOption('domain');
                         //var res = jQuery.parseJSON(info);
                         $('.selectHeaderLog .btn i.iconfont').html('').removeClass('change').hide();
-                        console.log(up);
-                        console.log(file);
-                        console.log(info);
+                        //console.log(up);
+                        //console.log(file);
+                        //console.log(info);
                         var res = JSON.parse(info);
                         /*var domain = up.getOption('domain');
                         var res = JSON.parse(info);

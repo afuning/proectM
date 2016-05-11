@@ -23,10 +23,10 @@
          li.title
             i.iconfont &#xe629
             span 分享
-         li
-            a(href="#" data-index='6') 所有文件
-         li
-            a(href="#" data-index='7') 上传文件
+         li(data-index='file-list')
+            a(href="/file/list") 所有文件
+         li(data-index='file-up')
+            a(href="/file/up") 上传文件
          li
             a(href="#" data-index='8') 公告
       ul
@@ -41,10 +41,11 @@
          li.title
             i.iconfont &#xe62e
             span 统计
-         li
-            a(href="#" data-index='13') BUG统计
-         li
-            a(href="#") 访问统计
+         li(data-index = 'count-bug')
+            a(href="/count/bug") BUG统计
+          //
+            li
+               a(href="#") 访问统计
       ul
          li.title
             i.iconfont &#xe61b;

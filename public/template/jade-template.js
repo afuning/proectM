@@ -1,3 +1,10 @@
+function bugCount_template(locals) {
+var buf = [];
+var jade_mixins = {};
+var jade_interp;
+
+buf.push("<tr><tr><td><span>今日</span></td><td><span>10</span></td><td><span>100</span></td></tr><tr><td><span>当前月份</span></td><td><span>10</span></td><td><span>100</span></td></tr><tr><td colspan=\"3\" style=\"text-align: right\"><span>未解决bug总数: 200</span></td></tr></tr>");;return buf.join("");
+}
 function bugList_template(locals) {
 var buf = [];
 var jade_mixins = {};
@@ -142,6 +149,87 @@ buf.push("<div class=\"select_inner\"><a href=\"javascript:void(0);\"" + (jade.a
 }).call(this);
 
 }}.call(this,"depart" in locals_for_with?locals_for_with.depart:typeof depart!=="undefined"?depart:undefined,"isAdmin" in locals_for_with?locals_for_with.isAdmin:typeof isAdmin!=="undefined"?isAdmin:undefined,"undefined" in locals_for_with?locals_for_with.undefined:typeof undefined!=="undefined"?undefined:undefined));;return buf.join("");
+}
+function fileList_template(locals) {
+var buf = [];
+var jade_mixins = {};
+var jade_interp;
+;var locals_for_with = (locals || {});(function (files, undefined) {
+if ((files.length>0))
+{
+// iterate files
+;(function(){
+  var $$obj = files;
+  if ('number' == typeof $$obj.length) {
+
+    for (var $index = 0, $$l = $$obj.length; $index < $$l; $index++) {
+      var item = $$obj[$index];
+
+buf.push("<tr><td><span>" + (jade.escape(null == (jade_interp = item.title?item.title:'未设置') ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.creater_id?item.creater_id.realname:'未知') ? "" : jade_interp)) + "</span></td><td>");
+// iterate item.file
+;(function(){
+  var $$obj = item.file;
+  if ('number' == typeof $$obj.length) {
+
+    for (var $index = 0, $$l = $$obj.length; $index < $$l; $index++) {
+      var file = $$obj[$index];
+
+buf.push("<span>" + (jade.escape((jade_interp = file.name) == null ? '' : jade_interp)) + "&nbsp;&nbsp;(" + (jade.escape((jade_interp = file.type) == null ? '' : jade_interp)) + "&nbsp;" + (jade.escape((jade_interp = file.size) == null ? '' : jade_interp)) + ")</span><a" + (jade.attr("href", file.url, true, false)) + " target=\"_blank\">&nbsp;&nbsp;&nbsp;&nbsp;下载</a><br/>");
+    }
+
+  } else {
+    var $$l = 0;
+    for (var $index in $$obj) {
+      $$l++;      var file = $$obj[$index];
+
+buf.push("<span>" + (jade.escape((jade_interp = file.name) == null ? '' : jade_interp)) + "&nbsp;&nbsp;(" + (jade.escape((jade_interp = file.type) == null ? '' : jade_interp)) + "&nbsp;" + (jade.escape((jade_interp = file.size) == null ? '' : jade_interp)) + ")</span><a" + (jade.attr("href", file.url, true, false)) + " target=\"_blank\">&nbsp;&nbsp;&nbsp;&nbsp;下载</a><br/>");
+    }
+
+  }
+}).call(this);
+
+buf.push("</td><!--td\n   a.delete(href= 'javascript:void(0);' _id= item._id) 删除--></tr>");
+    }
+
+  } else {
+    var $$l = 0;
+    for (var $index in $$obj) {
+      $$l++;      var item = $$obj[$index];
+
+buf.push("<tr><td><span>" + (jade.escape(null == (jade_interp = item.title?item.title:'未设置') ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.creater_id?item.creater_id.realname:'未知') ? "" : jade_interp)) + "</span></td><td>");
+// iterate item.file
+;(function(){
+  var $$obj = item.file;
+  if ('number' == typeof $$obj.length) {
+
+    for (var $index = 0, $$l = $$obj.length; $index < $$l; $index++) {
+      var file = $$obj[$index];
+
+buf.push("<span>" + (jade.escape((jade_interp = file.name) == null ? '' : jade_interp)) + "&nbsp;&nbsp;(" + (jade.escape((jade_interp = file.type) == null ? '' : jade_interp)) + "&nbsp;" + (jade.escape((jade_interp = file.size) == null ? '' : jade_interp)) + ")</span><a" + (jade.attr("href", file.url, true, false)) + " target=\"_blank\">&nbsp;&nbsp;&nbsp;&nbsp;下载</a><br/>");
+    }
+
+  } else {
+    var $$l = 0;
+    for (var $index in $$obj) {
+      $$l++;      var file = $$obj[$index];
+
+buf.push("<span>" + (jade.escape((jade_interp = file.name) == null ? '' : jade_interp)) + "&nbsp;&nbsp;(" + (jade.escape((jade_interp = file.type) == null ? '' : jade_interp)) + "&nbsp;" + (jade.escape((jade_interp = file.size) == null ? '' : jade_interp)) + ")</span><a" + (jade.attr("href", file.url, true, false)) + " target=\"_blank\">&nbsp;&nbsp;&nbsp;&nbsp;下载</a><br/>");
+    }
+
+  }
+}).call(this);
+
+buf.push("</td><!--td\n   a.delete(href= 'javascript:void(0);' _id= item._id) 删除--></tr>");
+    }
+
+  }
+}).call(this);
+
+}
+else
+{
+buf.push("<tr><td colspan=\"3\" style=\"text-align: center\">无文件记录</td></tr>");
+}}.call(this,"files" in locals_for_with?locals_for_with.files:typeof files!=="undefined"?files:undefined,"undefined" in locals_for_with?locals_for_with.undefined:typeof undefined!=="undefined"?undefined:undefined));;return buf.join("");
 }
 function projectList_template(locals) {
 var buf = [];

@@ -1,0 +1,66 @@
+extends layout
+block append head
+  link(rel='stylesheet', href='/css/count.css')
+block content
+  #container.clearfix
+    include leftside
+    .col-main
+      div.main_hd
+        h2 BUG统计
+      div(style='padding-top: 30px')
+      div.main_bd
+        div.common_table
+          table
+            tr.table_hd
+              th
+                span &nbsp;
+              th
+                span 新增bug
+              th
+                span 解决bug
+            tr
+              td
+                span 今日
+              td
+                span= today_new
+              td
+                span= today_done
+            tr
+              td
+                span 当前月份
+              td
+                span= month_new
+              td
+                span= month_done
+            tr
+              td(colspan=3 style='text-align: right')
+                span 未解决bug总数: #{total}
+        div#screen
+          div.screen_group
+            div.screen_inner
+              label 年:
+              select(id='screen_year')
+                option(value='2016') 2016
+            span.line |
+            div.screen_inner
+              label 月:
+              select(id='screen_month')
+                option(value= 0) 1
+                option(value= 1) 2
+                option(value= 2) 3
+                option(value= 3) 4
+                option(value= 4) 5
+                option(value= 5) 6
+                option(value= 6) 7
+                option(value= 7) 8
+                option(value= 8) 9
+                option(value= 9) 10
+                option(value= 10) 11
+                option(value= 11) 12
+            div.screen_action
+              button(class="btn-success screen_submit" style='margin: 3px 0') 筛选
+        canvas(id='bugChart' style='width: 200px;height: 400px;margin-top: 50px;')
+
+append script
+  script(src='/src/plugin/Chart.js')
+  script(src='/src/count-bug.js')

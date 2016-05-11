@@ -10,23 +10,6 @@ block content
       div(style='padding-top: 10px')
       div.main_bd.clearfix
         div.timeline_group
-            //
-              ul.timeline
-                each item, i in taskDetail.schedule_time
-                  li.timeline-item
-                    div.timeline-item-tail
-                    if(i == 0)
-                      div.timeline-item-head.timeline-item-head-balanced
-                      div.timeline-item-content.balanced
-                        p= taskDetail.schedule_user[i].realname+':'
-                        p.positive= taskDetail.schedule_detail[i]
-                        p.timeline-item-content-time= item
-                    else
-                      div.timeline-item-head
-                      div.timeline-item-content
-                        p= taskDetail.schedule_user[i].realname+':'
-                        p.positive= taskDetail.schedule_detail[i]
-                        p.timeline-item-content-time= item
             ul.timeline
               each item, i in taskDetail.schedule_time
                 li.timeline-item

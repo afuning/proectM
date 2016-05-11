@@ -13,29 +13,23 @@
 
         addEvent: function() {
             var self = this;
+
             $('.screen_submit').on('click',function(){
-                self.keyword = $('#realname').val();
+                self.keyword = $('#title').val();
                 self.getList(1);
             })
 
-            $('body').on('click','.delete_action',function(){
-                var _id = $(this).parent().parent().attr('_id');
-                lib.notification.confirm('确定要删除该用户?','',function(e,isOk){
+            $('body').on('click','.delete',function(){
+                var $this = $(this);
+                var _id =$(this).attr('_id');
+                lib.notification.confirm('确定要删除这些文件?','',function(e,isOk){
                     if(isOk){
-                        self.deleteUser(_id);
+                        self.fileDelete(_id);
                     }
                     this.hide();
                 }).show();
             })
-            $('body').on('click','.change_admin',function(){
-                var _id = $(this).parent().parent().attr('_id');
-                lib.notification.confirm('确定要修改该用户权限?','',function(e,isOk){
-                    if(isOk){
-                        self.addAdmin(_id);
-                    }
-                    this.hide();
-                }).show();
-            })
+
         },
 
         addPage: function(){
@@ -49,7 +43,7 @@
         getList: function(pno){
             var self = this;
             lib.api.get({
-                api:'/user/list',
+                api:'/file/get',
                 data: {
                     page: pno,
                     pagesize: 20,
@@ -62,12 +56,10 @@
 
                     var $inner = $('.common_table table');
                     $('.common_table table tr:not(.table_hd)').remove();
-                    var userhtml = userList_template({
-                        users: data.data.results,
-                        isadmin: lib.storage.get('user').isadmin?lib.storage.get('user').isadmin: 0,
-                        _id: lib.storage.get('user')._id
+                    var filehtml = fileList_template({
+                        files: data.data.results
                     });
-                    $inner.append(userhtml);
+                    $inner.append(filehtml);
 
                     self.addPage();
                 },
@@ -81,39 +73,20 @@
             })
         },
 
-        deleteUser: function(_id){
+        fileDelete: function(_id){
             var self = this;
-            lib.api.get({
-                api:'/user/delete',
-                data: {
-                    _id: _id
-                },
-                success: function(data){
-                    location.reload();
-                },
-                error: function(err){
-                    //console.log(err);
-                    lib.notification.simple(err.msg,{bg:'#e15f63',font:'#fff'},2000);
-                },
-                complete: function(){
-
-                }
-            })
-        },
-
-        addAdmin: function(_id){
-            var self = this;
+            if(self.isDelete) return;
+            self.isDelete = true;
             lib.api.post({
-                api:'/user/addAdmin',
+                api:'/file/del',
                 data: {
-                    _id: _id
+                    id: _id
                 },
                 success: function(data){
-                    lib.notification.simple('设置成功',{bg:'#57c78b',font:'#fff'},2000);
                     location.reload();
                 },
                 error: function(err){
-                    //console.log(err);
+                    console.log(err);
                     lib.notification.simple(err.msg,{bg:'#e15f63',font:'#fff'},2000);
                 },
                 complete: function(){
