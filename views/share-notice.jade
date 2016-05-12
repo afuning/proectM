@@ -1,0 +1,48 @@
+extends layout
+block append head
+  link(rel='stylesheet', href='/src/plugin/pageination.css')
+  link(rel='stylesheet', href='/src/plugin/simditor/simditor.css')
+  link(rel='stylesheet', href='/css/share.css')
+block content
+  #container.clearfix
+    include leftside
+    .col-main
+      div.main_hd
+        h2 公告
+        div.tab_inner
+          ul.tab_list
+            li.tab_item.active(data-index = '0')
+              a(href='javascript:void(0);') 公告列表
+            if(isadmin ==1)
+              li.tab_item(data-index = '1')
+                a(href='javascript:void(0);') 新增公告
+      div(style='padding-top: 10px')
+      div.main_bd(data-index = '0')
+        div.common_table
+          table
+            tr.table_hd
+              th(colspan=4)
+                span 公司公告
+        div.page_container.clearfix
+          div#page
+      if(isadmin ==1)
+        div.main_bd(style= 'display: none' data-index = '1')
+          div.input_group(style= 'margin-top: 40px; text-align: left')
+            div.input_inner
+              label 公告标题
+              input(id = 'title_input' type='text' placeholder='请输入公告标题')
+            div.input_inner
+              label 公告详情
+              textarea(id="editor" placeholder="请填写BUG具体详情" style='width: 622px' autofocus)
+            div.btn_inner(style= 'margin: 0; text-align: center;width: 100%')
+              a.btn-line(id= 'clear' style= 'margin-right: 20px') 重置
+              a.btn-success(id= 'submit') 提交
+append script
+  script(src='/src/plugin/simditor/jquery.min.js')
+  script(src='/src/plugin/lib-pagination.js')
+  script(src='/src/plugin/simditor/module.js')
+  script(src='/src/plugin/simditor/hotkeys.js')
+  script(src='/src/plugin/simditor/uploader.js')
+  script(src='/src/plugin/simditor/simditor.js')
+  script(src='/src/plugin/lib-pagination.js')
+  script(src='/src/share-notice.js')

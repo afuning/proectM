@@ -1,0 +1,18 @@
+if(files.length>0)
+   each item in files
+      tr
+         td
+            span= item.title?item.title:'未设置'
+         td
+            span= item.creater_id?item.creater_id.realname:'未知'
+         td
+            each file in item.file
+               span #{file.name}&nbsp;&nbsp;(#{file.type}&nbsp;#{file.size})
+               a(href= file.url target='_blank') &nbsp;&nbsp;&nbsp;&nbsp;下载
+               br
+         //
+            td
+               a.delete(href= 'javascript:void(0);' _id= item._id) 删除
+else
+   tr
+      td(colspan=3 style="text-align: center") 无文件记录

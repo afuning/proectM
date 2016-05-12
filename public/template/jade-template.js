@@ -231,6 +231,51 @@ else
 buf.push("<tr><td colspan=\"3\" style=\"text-align: center\">无文件记录</td></tr>");
 }}.call(this,"files" in locals_for_with?locals_for_with.files:typeof files!=="undefined"?files:undefined,"undefined" in locals_for_with?locals_for_with.undefined:typeof undefined!=="undefined"?undefined:undefined));;return buf.join("");
 }
+function noticeList_template(locals) {
+var buf = [];
+var jade_mixins = {};
+var jade_interp;
+;var locals_for_with = (locals || {});(function (isadmin, moment, notices, undefined) {
+if ((notices.length>0))
+{
+// iterate notices
+;(function(){
+  var $$obj = notices;
+  if ('number' == typeof $$obj.length) {
+
+    for (var $index = 0, $$l = $$obj.length; $index < $$l; $index++) {
+      var item = $$obj[$index];
+
+buf.push("<tr" + (jade.attr("_id", item._id, true, false)) + "><td><a" + (jade.attr("href", '/share/notice/detail?_id=' + (item._id) + '', true, false)) + " target=\"_blank\">" + (jade.escape(null == (jade_interp = item.title) ? "" : jade_interp)) + "</a></td><td style=\"width: 140px\"><span>" + (jade.escape(null == (jade_interp = moment(item.updateTime).format("YYYY-MM-DD HH:mm:ss")) ? "" : jade_interp)) + "</span></td><td style=\"width: 140px\"><span>" + (jade.escape(null == (jade_interp = item.creater_id?item.creater_id.realname:'未知') ? "" : jade_interp)) + "</span></td>");
+if ((isadmin == 1))
+{
+buf.push("<td style=\"width: 80px\"><a href=\"javascript:void(0);\" class=\"delete_action\">删除</a></td>");
+}
+buf.push("</tr>");
+    }
+
+  } else {
+    var $$l = 0;
+    for (var $index in $$obj) {
+      $$l++;      var item = $$obj[$index];
+
+buf.push("<tr" + (jade.attr("_id", item._id, true, false)) + "><td><a" + (jade.attr("href", '/share/notice/detail?_id=' + (item._id) + '', true, false)) + " target=\"_blank\">" + (jade.escape(null == (jade_interp = item.title) ? "" : jade_interp)) + "</a></td><td style=\"width: 140px\"><span>" + (jade.escape(null == (jade_interp = moment(item.updateTime).format("YYYY-MM-DD HH:mm:ss")) ? "" : jade_interp)) + "</span></td><td style=\"width: 140px\"><span>" + (jade.escape(null == (jade_interp = item.creater_id?item.creater_id.realname:'未知') ? "" : jade_interp)) + "</span></td>");
+if ((isadmin == 1))
+{
+buf.push("<td style=\"width: 80px\"><a href=\"javascript:void(0);\" class=\"delete_action\">删除</a></td>");
+}
+buf.push("</tr>");
+    }
+
+  }
+}).call(this);
+
+}
+else
+{
+buf.push("<tr><td colspan=\"3\" style=\"text-align: center\">无记录</td></tr>");
+}}.call(this,"isadmin" in locals_for_with?locals_for_with.isadmin:typeof isadmin!=="undefined"?isadmin:undefined,"moment" in locals_for_with?locals_for_with.moment:typeof moment!=="undefined"?moment:undefined,"notices" in locals_for_with?locals_for_with.notices:typeof notices!=="undefined"?notices:undefined,"undefined" in locals_for_with?locals_for_with.undefined:typeof undefined!=="undefined"?undefined:undefined));;return buf.join("");
+}
 function projectList_template(locals) {
 var buf = [];
 var jade_mixins = {};
@@ -385,7 +430,7 @@ buf.push("</a></div><div class=\"account\"><a href=\"#\"><i class=\"iconfont\">&
 }
 else if ( isLogin==0)
 {
-buf.push("<div class=\"left\"><div class=\"account un_log\"></div><p>还未注册自己公司账号？<a href=\"reg?step=0\">申请注册</a></p></div>");
+buf.push("<div class=\"left\"><div class=\"account un_log\"></div><p>还未注册自己公司账号？<a href=\"reg?step=0\" style=\"color:#7cbae5\">申请注册</a></p></div>");
 }
 buf.push("</div>");}.call(this,"depart" in locals_for_with?locals_for_with.depart:typeof depart!=="undefined"?depart:undefined,"head_url" in locals_for_with?locals_for_with.head_url:typeof head_url!=="undefined"?head_url:undefined,"isLogin" in locals_for_with?locals_for_with.isLogin:typeof isLogin!=="undefined"?isLogin:undefined,"realname" in locals_for_with?locals_for_with.realname:typeof realname!=="undefined"?realname:undefined,"role" in locals_for_with?locals_for_with.role:typeof role!=="undefined"?role:undefined));;return buf.join("");
 }

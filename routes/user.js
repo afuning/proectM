@@ -162,7 +162,7 @@ function getList(req,res,next){
     var qs=new RegExp(keyword);
     var result = new RestResult(); //添加返回状态格式
 
-    dbHelper.pageQuery(page, pagesize, UserModel,{path:"role",populate: { path: "department" }}, {realname: qs}, {
+    dbHelper.pageQuery(page, pagesize, UserModel,{path:"role",populate: { path: "department" }}, {realname: qs,ishide: {$ne:1}}, {
         createTime: 'desc'
     }, function(error, $page){
         if(error){
@@ -179,12 +179,16 @@ function deleteUser(req,res,next){
     var _id = req.query._id;
     var result =  new RestResult(); //添加返回状态格式
     if(isadmin==1){
-        UserModel.remove({_id: _id}).exec(function(err,docs){
-            if(docs){
-                res.send(result.isSuccess());
-            }else{
-                res.send(result.isError("ILLEGAL_ARGUMENT_ERROR_CODE","删除失败"));
-            }
+        UserModel.findById(_id).exec(function(err,docs){
+            docs.ishide = 1;
+            delete docs._id;
+            UserModel.update({_id: _id},docs,function(){
+                if(docs){
+                    res.send(result.isSuccess());
+                }else{
+                    res.send(result.isError("ILLEGAL_ARGUMENT_ERROR_CODE","删除失败"));
+                }
+            })
         })
     }else{
         res.send(result.isError("ILLEGAL_ARGUMENT_ERROR_CODE","你不是管理员"));

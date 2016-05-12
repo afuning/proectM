@@ -9,6 +9,7 @@ var UserSchema = new base.Schema({
     qq_num: {type: String},
     mobile: {type: String},
     isadmin: {type: Number,default: 0},
+    ishide: {type: Number,default: 0},
     role: {
         type: ObjectId,
         ref: 'role'

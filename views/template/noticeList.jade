@@ -1,0 +1,15 @@
+if(notices.length>0)
+   each item in notices
+      tr(_id= item._id)
+         td
+            a(href='/share/notice/detail?_id=#{item._id}' target='_blank')= item.title
+         td(style='width: 140px')
+            span= moment(item.updateTime).format("YYYY-MM-DD HH:mm:ss")
+         td(style='width: 140px')
+            span= item.creater_id?item.creater_id.realname:'未知'
+         if(isadmin == 1)
+            td(style='width: 80px')
+               a.delete_action(href="javascript:void(0);") 删除
+else
+   tr
+      td(colspan=3 style="text-align: center") 无记录

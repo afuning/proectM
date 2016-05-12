@@ -1,0 +1,25 @@
+extends layout
+block append head
+  link(rel='stylesheet', href='/src/plugin/pageination.css')
+  link(rel='stylesheet', href='/css/share.css')
+block content
+  #container.clearfix
+    //include leftside
+    .col-main(style='float: none;width: 100%')
+      div.main_hd
+        h2 公告
+        div.tab_inner
+          ul.tab_list(style='text-align: center')
+            li.tab_item.active(style='padding-left: 18px')
+              h1= notice.title
+      div(style='padding-top: 10px')
+      div.main_bd
+        div.notice_content(style='padding: 20px')
+          != notice.detail
+        div.notice_footer(style='text-align: right;padding: 20px')
+          p= notice.creater_id.realname
+          p= notice.updatetime
+
+append script
+  script(src='/src/plugin/lib-pagination.js')
+  script(src='/src/share-notice-detail.js')
