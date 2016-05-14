@@ -55,9 +55,9 @@ block content
           ul
             li.row
               h4 已解决
-              div.meta_content(class= 'projectName') #{project.name}&nbsp;
+              div.meta_content(class= 'projectName') #{bug.isIng}&nbsp;
             li.row
               h4 未解决
-              div.meta_content(class= 'projectName') #{project.name}&nbsp;
+              div.meta_content(class= 'projectName') #{bug.isEnd}&nbsp;
 append script
   script(src='/src/manage-project-detail.js')

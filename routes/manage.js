@@ -82,8 +82,8 @@ function projectDetail(req,res,next){
     var project_id = req.query._id;
     var _id = req.session.user._id;
     var ep = new eventproxy();
-    ep.all('project','task', function (project,task) {
-        res.render('manage-project-detail', {project: project,task: task});
+    ep.all('project','task','bug', function (project,task,bug) {
+        res.render('manage-project-detail', {project: project,task: task,bug: bug});
     });
     ProjectModel.findById(project_id).populate({path: 'creater_id'})
         .exec(function(err,doc){
@@ -108,6 +108,23 @@ function projectDetail(req,res,next){
                     }
                 })
                 ep.emit('task', {isIng: isIng,isEnd: isEnd});
+                //res.render('manage-project-detail', {projectDetail: doc});
+            }else{
+                next();
+            }
+        })
+    BugModel.find({project_id: project_id})
+        .exec(function(err,doc){
+            var isEnd = 0,isIng = 0 ;
+            if(doc){
+                doc.forEach(function(item){
+                    if(item.status==0) {
+                        isIng++;
+                    }else {
+                        isEnd++
+                    }
+                })
+                ep.emit('bug', {isIng: isIng,isEnd: isEnd});
                 //res.render('manage-project-detail', {projectDetail: doc});
             }else{
                 next();

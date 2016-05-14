@@ -108,7 +108,7 @@ if ((isAdmin == 1))
     for (var $index = 0, $$l = $$obj.length; $index < $$l; $index++) {
       var item = $$obj[$index];
 
-buf.push("<div class=\"select_inner\"><a href=\"javascript:void(0);\"" + (jade.attr("_id", item._id, true, false)) + " class=\"select\">" + (jade.escape(null == (jade_interp = item.name) ? "" : jade_interp)) + "</a><i class=\"iconfont delete\">&#xe600</i></div>");
+buf.push("<div class=\"select_inner\"><a href=\"javascript:void(0);\"" + (jade.attr("_id", item._id, true, false)) + " class=\"select\">" + (jade.escape(null == (jade_interp = item.name) ? "" : jade_interp)) + "</a><!--i.iconfont(class='delete') &#xe600--></div>");
     }
 
   } else {
@@ -116,7 +116,7 @@ buf.push("<div class=\"select_inner\"><a href=\"javascript:void(0);\"" + (jade.a
     for (var $index in $$obj) {
       $$l++;      var item = $$obj[$index];
 
-buf.push("<div class=\"select_inner\"><a href=\"javascript:void(0);\"" + (jade.attr("_id", item._id, true, false)) + " class=\"select\">" + (jade.escape(null == (jade_interp = item.name) ? "" : jade_interp)) + "</a><i class=\"iconfont delete\">&#xe600</i></div>");
+buf.push("<div class=\"select_inner\"><a href=\"javascript:void(0);\"" + (jade.attr("_id", item._id, true, false)) + " class=\"select\">" + (jade.escape(null == (jade_interp = item.name) ? "" : jade_interp)) + "</a><!--i.iconfont(class='delete') &#xe600--></div>");
     }
 
   }
@@ -283,7 +283,7 @@ var jade_interp;
 ;var locals_for_with = (locals || {});(function (isadmin, moment, projects, undefined) {
 if ((isadmin==1))
 {
-buf.push("<tr><th colspan=\"7\" style=\"text-align: left\" class=\"table_action\"><a href=\"javascript:void(0)\" class=\"J-addProject btn-success\"><i class=\"iconfont\">&#xe639</i>新增项目</a></th></tr>");
+buf.push("<tr><th colspan=\"4\" style=\"text-align: left\" class=\"table_action\"><a href=\"javascript:void(0)\" class=\"J-addProject btn-success\"><i class=\"iconfont\">&#xe639</i>新增项目</a></th></tr>");
 }
 if ((projects.length>0))
 {
@@ -295,7 +295,7 @@ if ((projects.length>0))
     for (var $index = 0, $$l = $$obj.length; $index < $$l; $index++) {
       var item = $$obj[$index];
 
-buf.push("<tr" + (jade.attr("_id", item._id, true, false)) + "><td><span>" + (jade.escape(null == (jade_interp = item.name?item.name:'未设置') ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.creater_id?item.creater_id.realname:'未设置') ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = moment(item.updateTime).format("LLL")) ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.total) ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.total_ing) ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.total_ed) ? "" : jade_interp)) + "</span></td><td><a" + (jade.attr("href", './project/detail?_id='+item._id, true, false)) + " target=\"_blank\">查看详情</a></td></tr>");
+buf.push("<tr" + (jade.attr("_id", item._id, true, false)) + "><td><span>" + (jade.escape(null == (jade_interp = item.name?item.name:'未设置') ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.creater_id?item.creater_id.realname:'未设置') ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = moment(item.updateTime).format("LLL")) ? "" : jade_interp)) + "</span></td><td><a" + (jade.attr("href", './project/detail?_id='+item._id, true, false)) + " target=\"_blank\">查看详情</a></td></tr>");
     }
 
   } else {
@@ -303,7 +303,7 @@ buf.push("<tr" + (jade.attr("_id", item._id, true, false)) + "><td><span>" + (ja
     for (var $index in $$obj) {
       $$l++;      var item = $$obj[$index];
 
-buf.push("<tr" + (jade.attr("_id", item._id, true, false)) + "><td><span>" + (jade.escape(null == (jade_interp = item.name?item.name:'未设置') ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.creater_id?item.creater_id.realname:'未设置') ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = moment(item.updateTime).format("LLL")) ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.total) ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.total_ing) ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.total_ed) ? "" : jade_interp)) + "</span></td><td><a" + (jade.attr("href", './project/detail?_id='+item._id, true, false)) + " target=\"_blank\">查看详情</a></td></tr>");
+buf.push("<tr" + (jade.attr("_id", item._id, true, false)) + "><td><span>" + (jade.escape(null == (jade_interp = item.name?item.name:'未设置') ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = item.creater_id?item.creater_id.realname:'未设置') ? "" : jade_interp)) + "</span></td><td><span>" + (jade.escape(null == (jade_interp = moment(item.updateTime).format("LLL")) ? "" : jade_interp)) + "</span></td><td><a" + (jade.attr("href", './project/detail?_id='+item._id, true, false)) + " target=\"_blank\">查看详情</a></td></tr>");
     }
 
   }
@@ -330,7 +330,7 @@ if ((isAdmin == 1))
     for (var $index = 0, $$l = $$obj.length; $index < $$l; $index++) {
       var item = $$obj[$index];
 
-buf.push("<div class=\"select_inner\"><a href=\"javascript:void(0);\"" + (jade.attr("_id", item._id, true, false)) + " class=\"select\">" + (jade.escape(null == (jade_interp = item.name) ? "" : jade_interp)) + "</a><i class=\"iconfont delete\">&#xe600</i></div>");
+buf.push("<div class=\"select_inner\"><a href=\"javascript:void(0);\"" + (jade.attr("_id", item._id, true, false)) + " class=\"select\">" + (jade.escape(null == (jade_interp = item.name) ? "" : jade_interp)) + "</a><!--i.iconfont(class='delete') &#xe600--></div>");
     }
 
   } else {
@@ -338,7 +338,7 @@ buf.push("<div class=\"select_inner\"><a href=\"javascript:void(0);\"" + (jade.a
     for (var $index in $$obj) {
       $$l++;      var item = $$obj[$index];
 
-buf.push("<div class=\"select_inner\"><a href=\"javascript:void(0);\"" + (jade.attr("_id", item._id, true, false)) + " class=\"select\">" + (jade.escape(null == (jade_interp = item.name) ? "" : jade_interp)) + "</a><i class=\"iconfont delete\">&#xe600</i></div>");
+buf.push("<div class=\"select_inner\"><a href=\"javascript:void(0);\"" + (jade.attr("_id", item._id, true, false)) + " class=\"select\">" + (jade.escape(null == (jade_interp = item.name) ? "" : jade_interp)) + "</a><!--i.iconfont(class='delete') &#xe600--></div>");
     }
 
   }

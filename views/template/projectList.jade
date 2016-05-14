@@ -1,6 +1,6 @@
 if(isadmin==1)
    tr
-      th.table_action(colspan=7 style="text-align: left")
+      th.table_action(colspan=4 style="text-align: left")
          a.J-addProject(class='btn-success' href="javascript:void(0)")
             i.iconfont &#xe639
             新增项目
@@ -13,12 +13,6 @@ if(projects.length>0)
             span= item.creater_id?item.creater_id.realname:'未设置'
          td
             span= moment(item.updateTime).format("LLL")
-         td
-            span= item.total
-         td
-            span= item.total_ing
-         td
-            span= item.total_ed
          td
             a(href='./project/detail?_id='+item._id target= '_blank') 查看详情
 else

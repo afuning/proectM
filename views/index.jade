@@ -9,25 +9,55 @@ block content
         div.index_tap.left
           ul.inner
             li
-              a(href="/users")
+              a(href="/manage/task")
                 span
-                  i.iconfont &#xe601
-                  em 200
-                  strong 测试数
+                  i.iconfont &#xe642
+                  em= task
+                  strong 未完成任务
             li
-              a(href="#")
+              a(href="/group/user")
                 span
-                  i.iconfont &#xe601
-                  em 5
-                  strong 测试人数
+                  i.iconfont &#xe643
+                  em= user
+                  strong 用户数
         &nbsp;
         div.index_tap.right
           ul.inner
             li
-              a(href="#")
+              a(href="/manage/bug")
                 span
-                  i.iconfont &#xe601
-                  em 25
-                  strong 总bug数
+                  i.iconfont &#xe641
+                  em= bug
+                  strong 未解决BUG数
+      div.common_table(style='margin:30px 20px')
+        table
+          tr.table_hd
+            th
+              span 类型
+            th
+              span 我的未解决
+            th
+              span 总未解决
+          tr
+            td bug
+            td= myBug
+            td= bug
+          tr
+            td 任务
+            td= myTask
+            td= task
+      div.common_table(style='margin:30px 20px')
+        table
+          tr.table_hd
+            th(colspan='3')
+              span 本月新增公告
+          each item in notice
+            tr
+              td
+                a(href='/share/notice/detail?_id=#{item._id}' target='_blank')= item.title
+              td(style='width: 140px')
+                = item.updatetime
+              td(style='width: 140px')
+                = item.creater_id?item.creater_id.realname:'未知'
 append script
   script(src='/src/index.js')

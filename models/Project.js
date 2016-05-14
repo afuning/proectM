@@ -8,9 +8,6 @@ var ProjectSchema = new base.Schema({
     },
     detail: {type: String},
     status: {type: Number,default: 0},
-    total: {type: Number,default: 0},
-    total_ing: {type: Number,default: 0},
-    total_ed: {type: Number,default: 0},
     updateTime:{type:Date,default:Date.now},//最后修改时间
     createTime:{type:Date,default:Date.now}//创建时间
 });
