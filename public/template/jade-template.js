@@ -231,6 +231,43 @@ else
 buf.push("<tr><td colspan=\"3\" style=\"text-align: center\">无文件记录</td></tr>");
 }}.call(this,"files" in locals_for_with?locals_for_with.files:typeof files!=="undefined"?files:undefined,"undefined" in locals_for_with?locals_for_with.undefined:typeof undefined!=="undefined"?undefined:undefined));;return buf.join("");
 }
+function msgUser_template(locals) {
+var buf = [];
+var jade_mixins = {};
+var jade_interp;
+;var locals_for_with = (locals || {});(function (undefined, users) {
+if ((users.length>0))
+{
+buf.push("<div class=\"user_list\">");
+// iterate users
+;(function(){
+  var $$obj = users;
+  if ('number' == typeof $$obj.length) {
+
+    for (var $index = 0, $$l = $$obj.length; $index < $$l; $index++) {
+      var item = $$obj[$index];
+
+buf.push("<a href=\"javascript:void(0);\"><img" + (jade.attr("src", item.head_url, true, false)) + "/><p>" + (jade.escape(null == (jade_interp = item.realname) ? "" : jade_interp)) + "</p></a>");
+    }
+
+  } else {
+    var $$l = 0;
+    for (var $index in $$obj) {
+      $$l++;      var item = $$obj[$index];
+
+buf.push("<a href=\"javascript:void(0);\"><img" + (jade.attr("src", item.head_url, true, false)) + "/><p>" + (jade.escape(null == (jade_interp = item.realname) ? "" : jade_interp)) + "</p></a>");
+    }
+
+  }
+}).call(this);
+
+buf.push("</div>");
+}
+else
+{
+buf.push("<div class=\"user_list\"><span style=\"padding-left: 15px;font-size: 12px\">该部门下无职员</span></div>");
+}}.call(this,"undefined" in locals_for_with?locals_for_with.undefined:typeof undefined!=="undefined"?undefined:undefined,"users" in locals_for_with?locals_for_with.users:typeof users!=="undefined"?users:undefined));;return buf.join("");
+}
 function noticeList_template(locals) {
 var buf = [];
 var jade_mixins = {};

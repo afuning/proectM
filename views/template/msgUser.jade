@@ -1,0 +1,9 @@
+if(users.length>0)
+   div.user_list
+      each item in users
+         a(href='javascript:void(0);')
+            img(src= item.head_url)
+            p= item.realname
+else
+   div.user_list
+      span(style= 'padding-left: 15px;font-size: 12px') 该部门下无职员

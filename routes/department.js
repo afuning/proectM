@@ -4,6 +4,7 @@
 var express = require('express');
 var crypto = require('../util/tokenUtils');
 var RoleModel = require('../models/Role').RoleModel;
+var UserModel = require('../models/User').UserModel;
 var DepartmentModel = require('../models/Department').DepartmentModel;
 var RestResult = require('../conf/RestResult');
 var eventproxy =require('eventproxy');
@@ -14,7 +15,7 @@ module.exports.autoroute = {
         '/department/add': addDepartment,
         '/role/list': getRolelist,
         '/role/add': addRole,
-        '/department/delete': delDepart
+        '/department/user/list': departUser
     }
 };
 
@@ -117,6 +118,24 @@ function addRole(req,res,next){
     })
 }
 
-function delDepart(req,res,next){
-
+function departUser(req,res,next){
+    var _id = req.query._id;
+    var result = new RestResult();
+    RoleModel.find({department: _id}).select('_id').exec(function(err,doc){
+        var roles = [];
+        doc.forEach(function(item,i){
+            roles.push({'role':item._id})
+        });
+        UserModel.find({
+            $or: roles,
+            ishide: {$ne:1}
+        }).exec(function(err,user){
+            if(err){
+                res.send(result.isError("SERVER_EXCEPTION_ERROR_CODE","服务器异常"));
+                return;
+            }else {
+                res.send(result.isSuccess(user));
+            }
+        })
+    })
 }

@@ -1,0 +1,60 @@
+extends layout
+block append head
+  link(rel='stylesheet', href='/src/plugin/pageination.css')
+  link(rel='stylesheet', href='/css/message.css')
+block content
+  #container.clearfix
+    include leftside
+    .col-main
+      div.main_hd
+        h2 消息管理
+        div.tab_inner
+          ul.tab_list
+            li.tab_item.active
+              a(href='javascript:void(0);') 私信
+            li.tab_item
+              a(href='javascript:void(0);') 最新消息
+      div.main_bd.clearfix(style='padding:0')
+        //
+          div.clearfix(id="screen")
+            div.screen_group
+              div.screen_inner
+                input(type="text" id="realname" placeholder='请输入真实姓名')
+              div.screen_action
+                button(class="btn-success screen_submit") 筛选
+        div.message-left
+          div.message_group
+            div.message_inner
+              a(href='javascript:void(0)')
+                img(src= 'http://7xthm1.com1.z0.glb.clouddn.com/FjiAdj4WjYS5ZaSaKomu23Wi-vHK?imageView2/1/w/100/h/100/q/100/format/jpg')
+                div.detail
+                  p 宇直街拍
+                    span.right 2月20日 10:20
+                  p 最近一次对话
+              div.action_inner
+                a(href='javascript:void(0);' title='删除')
+                  i.iconfont &#xe63c
+            div.message_inner
+              a(href='javascript:void(0)')
+                img(src= 'http://7xthm1.com1.z0.glb.clouddn.com/FjiAdj4WjYS5ZaSaKomu23Wi-vHK?imageView2/1/w/100/h/100/q/100/format/jpg')
+                div.detail
+                  p 宇直街拍
+                    span.right 2月20日 10:20
+                  p 最近一次对话
+              div.action_inner
+                a(href='javascript:void(0);' title='删除')
+                  i.iconfont &#xe63c
+          div.page_container.clearfix
+            div#page
+        div.message-right
+            h3.title 同事
+            div.user_group
+              each item in depart
+                div.user_inner
+                  a.J-depart(href='javascript:void(0);' _id= item._id)
+                    i.iconfont &#xe637
+                    span= item.name
+
+append script
+  script(src='/src/plugin/lib-pagination.js')
+  script(src='/src/message.js')

@@ -7,6 +7,7 @@ var UserModel = require('../models/User').UserModel;
 var ProjectModel = require('../models/Project').ProjectModel;
 var TaskModel = require('../models/Task').TaskModel;
 var BugModel = require('../models/Bug').BugModel;
+var DepartmentModel = require('../models/Department').DepartmentModel;
 var RestResult = require('../conf/RestResult');
 var validator = require('validator');
 var eventproxy =require('eventproxy');
@@ -18,7 +19,8 @@ module.exports.autoroute = {
         '/manage/task/detail': taskDetail,
         '/manage/project/detail': projectDetail,
         '/manage/bug': bugList,
-        '/manage/bug/detail': bugDetail
+        '/manage/bug/detail': bugDetail,
+        '/manage/message': renderMessage
     },
     'post':{
 
@@ -177,6 +179,16 @@ function bugDetail(req,res,next){
                 next();
             }
         })
+}
+
+function renderMessage(req,res,next){
+    DepartmentModel.find({}).exec(function(err,doc){
+        if(err){
+            next();
+        }else {
+            res.render('manage-message', {depart:doc});
+        }
+    })
 }
 
 
