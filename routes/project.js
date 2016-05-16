@@ -73,6 +73,7 @@ function changeProject(req,res,next) {
     ProjectModel.findById(_id).exec(function(err,doc){
         name&&(doc.name = name);
         detail&&(doc.detail = detail);
+        doc.updateTime = Date.now();
         console.log(doc);
         delete doc._id;    //再将其删除
         ProjectModel.update({_id: _id},doc,function(err,project){
