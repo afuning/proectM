@@ -5,9 +5,7 @@
     var main = {
         init: function(){
             this.addEvent();
-            //this.addPage();
-            this.getList(1);
-            //this.keyword = '';
+            this.chat();
         },
 
 
@@ -30,6 +28,11 @@
                     $('.user_group').find('.user_list').hide();
                     self.getUser(_id,index);
                 }
+
+            })
+
+            //发送信息
+            $('#send').on('click',function(){
 
             })
         },
@@ -62,44 +65,21 @@
             })
         },
 
-        addPage: function(){
-            var self = this;
-            lib.pagination.normal(self.pageNumber,self.pageCount,self.total,'page',function(){//当前页码，总页码，数据总条数，容器，回调函数
-                //console.log(this);
-                self.getList(this.pno);
+        chat: function(){
+            //连接websocket后端服务器
+            var socket = io();
+
+            socket.on('message', function(obj){
+                console.log(obj);
             });
         },
 
-        getList: function(pno){
-            var self = this;
-            lib.api.get({
-                api:'/letter/list',
-                data: {
-                    page: pno,
-                    pagesize: 20
-                },
-                success: function(data){
-                    self.total = data.data.total;
-                    data.data.pageCount==0?(self.pageCount = 1): (self.pageCount= data.data.pageCount) ;
-                    self.pageNumber = data.data.pageNumber;
+        submitLetter: function(){
+            var text = $('#message_input').val();
 
-                    var $inner = $('.message-left .message_group');
-                    var letterhtml = msgLetter_template({
-                        letters: data.data.results
-                    });
-                    $inner.append(letterhtml);
-
-                    self.addPage();
-                },
-                error: function(err){
-                    console.log(err);
-                    //lib.notification.simple(err.msg,{bg:'#e15f63',font:'#fff'},2000);
-                },
-                complete: function(){
-
-                }
-            })
         }
+
+
     }
 
     $(function(){

@@ -231,6 +231,20 @@ else
 buf.push("<tr><td colspan=\"3\" style=\"text-align: center\">无文件记录</td></tr>");
 }}.call(this,"files" in locals_for_with?locals_for_with.files:typeof files!=="undefined"?files:undefined,"undefined" in locals_for_with?locals_for_with.undefined:typeof undefined!=="undefined"?undefined:undefined));;return buf.join("");
 }
+function msgLetter_template(locals) {
+var buf = [];
+var jade_mixins = {};
+var jade_interp;
+;var locals_for_with = (locals || {});(function (letters) {
+if ((letters.length>0))
+{
+buf.push("<div class=\"message_inner\"><a href=\"javascript:void(0)\"><img src=\"http://7xthm1.com1.z0.glb.clouddn.com/FjiAdj4WjYS5ZaSaKomu23Wi-vHK?imageView2/1/w/100/h/100/q/100/format/jpg\"/><div class=\"detail\"><p>宇直街拍<span class=\"right\">2月20日 10:20</span></p><p>最近一次对话</p></div></a><div class=\"action_inner\"><a href=\"javascript:void(0);\" title=\"删除\"><i class=\"iconfont\">&#xe63c</i></a></div></div>");
+}
+else
+{
+buf.push("<p style=\"padding: 20px;font-size: 14px; text-align: center\">暂无私信</p>");
+}}.call(this,"letters" in locals_for_with?locals_for_with.letters:typeof letters!=="undefined"?letters:undefined));;return buf.join("");
+}
 function msgUser_template(locals) {
 var buf = [];
 var jade_mixins = {};
@@ -247,7 +261,7 @@ buf.push("<div class=\"user_list\">");
     for (var $index = 0, $$l = $$obj.length; $index < $$l; $index++) {
       var item = $$obj[$index];
 
-buf.push("<a href=\"javascript:void(0);\"><img" + (jade.attr("src", item.head_url, true, false)) + "/><p>" + (jade.escape(null == (jade_interp = item.realname) ? "" : jade_interp)) + "</p></a>");
+buf.push("<a" + (jade.attr("href", '/manage/message/history?_id='+item._id, true, false)) + "><img" + (jade.attr("src", item.head_url, true, false)) + "/><p>" + (jade.escape(null == (jade_interp = item.realname) ? "" : jade_interp)) + "</p></a>");
     }
 
   } else {
@@ -255,7 +269,7 @@ buf.push("<a href=\"javascript:void(0);\"><img" + (jade.attr("src", item.head_ur
     for (var $index in $$obj) {
       $$l++;      var item = $$obj[$index];
 
-buf.push("<a href=\"javascript:void(0);\"><img" + (jade.attr("src", item.head_url, true, false)) + "/><p>" + (jade.escape(null == (jade_interp = item.realname) ? "" : jade_interp)) + "</p></a>");
+buf.push("<a" + (jade.attr("href", '/manage/message/history?_id='+item._id, true, false)) + "><img" + (jade.attr("src", item.head_url, true, false)) + "/><p>" + (jade.escape(null == (jade_interp = item.realname) ? "" : jade_interp)) + "</p></a>");
     }
 
   }

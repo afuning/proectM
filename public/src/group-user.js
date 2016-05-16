@@ -57,7 +57,7 @@
                 },
                 success: function(data){
                     self.total = data.data.total;
-                    self.pageCount = data.data.pageCount;
+                    data.data.pageCount==0?(self.pageCount = 1): (self.pageCount= data.data.pageCount) ;
                     self.pageNumber = data.data.pageNumber;
 
                     var $inner = $('.common_table table');

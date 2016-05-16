@@ -1,3 +1,4 @@
+var http = require('http');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -16,9 +17,7 @@ var users = require('./routes/users');*/
 var autorouter = require('express-autoroute');
 var app = express();
 
-
-
-
+app.set('port', process.env.PORT || 4000);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -68,6 +67,7 @@ autorouter(app, {
   throwErrors: false,
   routesDir: __dirname+'/routes'
 });
+
 //console.dir(__dirname);
 //app.use(app.router);
 /*app.use('/', routes);
@@ -105,8 +105,6 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
-
 
 
 module.exports = app;

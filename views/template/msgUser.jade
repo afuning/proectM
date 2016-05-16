@@ -1,7 +1,7 @@
 if(users.length>0)
    div.user_list
       each item in users
-         a(href='javascript:void(0);')
+         a(href='/manage/message/history?_id='+item._id)
             img(src= item.head_url)
             p= item.realname
 else

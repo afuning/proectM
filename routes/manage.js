@@ -7,6 +7,7 @@ var UserModel = require('../models/User').UserModel;
 var ProjectModel = require('../models/Project').ProjectModel;
 var TaskModel = require('../models/Task').TaskModel;
 var BugModel = require('../models/Bug').BugModel;
+var LetterModel = require('../models/Letter').LetterModel;
 var DepartmentModel = require('../models/Department').DepartmentModel;
 var RestResult = require('../conf/RestResult');
 var validator = require('validator');
@@ -20,7 +21,8 @@ module.exports.autoroute = {
         '/manage/project/detail': projectDetail,
         '/manage/bug': bugList,
         '/manage/bug/detail': bugDetail,
-        '/manage/message': renderMessage
+        '/manage/message': renderMessage,
+        '/manage/message/history': renderMsgHistory
     },
     'post':{
 
@@ -190,5 +192,43 @@ function renderMessage(req,res,next){
         }
     })
 }
+
+function renderMsgHistory(req,res,next){
+    var to_id = req.query._id;
+    var user = req.session.user;
+    var from_id = user._id;
+    var ep = new eventproxy();
+    ep.all('depart', 'letter', function (depart, letter) {
+        console.log({depart:depart,letter: letter,user: user});
+        res.render('manage-message-history', {depart:depart,letter: letter,user: user});
+    });
+    var screen = {
+        $or: [
+            {to_id:to_id,from_id:from_id},
+            {to_id:from_id,from_id:to_id}
+        ]
+    }
+    LetterModel.find(screen).populate({path:"from_id to_id",populate: { path: "user" }}).exec(function(err,doc){
+        if(err){
+            next();
+        }else {
+            if(doc.length<1){
+                UserModel.findById(to_id).exec(function(err,user){
+                    ep.emit('letter', user);
+                })
+            }else {
+                ep.emit('letter', doc);
+            }
+        }
+    });
+    DepartmentModel.find({}).exec(function(err,doc){
+        if(err){
+            next();
+        }else {
+            ep.emit('depart', doc);
+        }
+    })
+}
+
 
 
