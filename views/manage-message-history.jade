@@ -21,14 +21,24 @@ block content
           div.message-left-content
             if(letter.dialogue)
               each item in letter.dialogue
-                div.content_inner.left
-                  p.time 2016-12-12 12:12:12
-                  div.user
-                    div.img
-                      img(src= 'http://7xthm1.com1.z0.glb.clouddn.com/FjiAdj4WjYS5ZaSaKomu23Wi-vHK?imageView2/1/w/200/h/200/q/100/format/jpg')
-                    div.text
-                      div.arrow
-                      span 哈哈哈哈
+                if(user._id != item.from._id)
+                  div.content_inner.left
+                    p.time= item.formattime
+                    div.user
+                      div.img
+                        img(src= item.from.head_url)
+                      div.text
+                        div.arrow
+                        span= item.content
+                else
+                  div.content_inner.right
+                    p.time= item.formattime
+                    div.user
+                      div.img
+                        img(src= item.from.head_url)
+                      div.text
+                        div.arrow
+                        span= item.content
             //
               div.content_inner.left
                 p.time 2016-12-12 12:12:12

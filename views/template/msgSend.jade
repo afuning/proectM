@@ -1,0 +1,18 @@
+if(isme)
+   div.content_inner.right
+      p.time= moment(msg.time).format('YYYY-MM-DD HH:mm:ss')
+      div.user
+         div.img
+            img(src= msg.from.head_url)
+         div.text
+            div.arrow
+            span= msg.content
+else
+   div.content_inner.left
+      p.time= moment(msg.time).format('YYYY-MM-DD HH:mm:ss')
+      div.user
+         div.img
+            img(src= msg.to.head_url)
+         div.text
+            div.arrow
+            span= msg.content

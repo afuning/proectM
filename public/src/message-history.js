@@ -4,6 +4,10 @@
 ;(function($,win){
     var main = {
         init: function(){
+            var httpurl = new lib.httpurl(location.href);
+            var params = httpurl.params;
+            this._id = params["_id"]?params["_id"]:'';
+            this.user_id = lib.storage.get('user')._id;
             this.addEvent();
             this.chat();
         },
@@ -33,7 +37,7 @@
 
             //发送信息
             $('#send').on('click',function(){
-
+                self.submitLetter();
             })
         },
 
@@ -67,16 +71,43 @@
 
         chat: function(){
             //连接websocket后端服务器
-            var socket = io();
+            var self = this;
+            this.socket = io();
 
-            socket.on('message', function(obj){
-                console.log(obj);
+            this.socket.on(self.user_id, function(obj){
+                if(obj.from._id==obj.to._id) {
+                    return;
+                }
+                self.appendText(obj);
+            });
+
+            this.socket.on(self._id, function(obj){
+                self.appendText(obj);
             });
         },
 
-        submitLetter: function(){
-            var text = $('#message_input').val();
+        appendText: function(obj){
+            console.log(obj);
+            var isme = (obj.from._id == this.user_id) ? true : false;
+            var $inner = $('.message-left-content');
+            var msghtml = msgSend_template({
+                msg: obj,
+                isme: isme
+            });
+            $inner.append(msghtml);
+        },
 
+        submitLetter: function(){
+            var self = this;
+            var text = $('#message_input').val();
+            if(text.length<=0) return;
+            var obj = {
+                from: self.user_id,
+                content: text,
+                time: Date.now(),
+                to: self._id
+            }
+            this.socket.emit('message', obj);
         }
 
 

@@ -199,16 +199,16 @@ function renderMsgHistory(req,res,next){
     var from_id = user._id;
     var ep = new eventproxy();
     ep.all('depart', 'letter', function (depart, letter) {
-        console.log({depart:depart,letter: letter,user: user});
         res.render('manage-message-history', {depart:depart,letter: letter,user: user});
     });
     var screen = {
         $or: [
             {to_id:to_id,from_id:from_id},
             {to_id:from_id,from_id:to_id}
-        ]
+        ],
+        ishide: {$ne:1}
     }
-    LetterModel.find(screen).populate({path:"from_id to_id",populate: { path: "user" }}).exec(function(err,doc){
+    LetterModel.find(screen).populate({path:"to_id from_id dialogue.to dialogue.from"}).exec(function(err,doc){
         if(err){
             next();
         }else {
@@ -217,7 +217,10 @@ function renderMsgHistory(req,res,next){
                     ep.emit('letter', user);
                 })
             }else {
-                ep.emit('letter', doc);
+                doc[0].dialogue.forEach(function(item,i){
+                    item.formattime = moment(item.time).format('YYYY-MM-DD HH:mm:ss');
+                });
+                ep.emit('letter', doc[0]);
             }
         }
     });

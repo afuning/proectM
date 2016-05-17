@@ -12,7 +12,11 @@ var LetterSchema = new base.Schema({
     },
     dialogue: [{
         time:{type: Date},
-        user: {
+        from: {
+            type: ObjectId,
+            ref: 'UserEntity'
+        },
+        to: {
             type: ObjectId,
             ref: 'UserEntity'
         },

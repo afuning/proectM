@@ -235,15 +235,68 @@ function msgLetter_template(locals) {
 var buf = [];
 var jade_mixins = {};
 var jade_interp;
-;var locals_for_with = (locals || {});(function (letters) {
+;var locals_for_with = (locals || {});(function (_id, letters, moment, undefined) {
 if ((letters.length>0))
 {
-buf.push("<div class=\"message_inner\"><a href=\"javascript:void(0)\"><img src=\"http://7xthm1.com1.z0.glb.clouddn.com/FjiAdj4WjYS5ZaSaKomu23Wi-vHK?imageView2/1/w/100/h/100/q/100/format/jpg\"/><div class=\"detail\"><p>宇直街拍<span class=\"right\">2月20日 10:20</span></p><p>最近一次对话</p></div></a><div class=\"action_inner\"><a href=\"javascript:void(0);\" title=\"删除\"><i class=\"iconfont\">&#xe63c</i></a></div></div>");
+// iterate letters
+;(function(){
+  var $$obj = letters;
+  if ('number' == typeof $$obj.length) {
+
+    for (var $index = 0, $$l = $$obj.length; $index < $$l; $index++) {
+      var item = $$obj[$index];
+
+buf.push("<div class=\"message_inner\">");
+if ((item.from_id._id == _id))
+{
+buf.push("<a" + (jade.attr("href", '/manage/message/history?_id='+item.to_id._id, true, false)) + "><img" + (jade.attr("src", item.to_id.head_url, true, false)) + "/><div class=\"detail\"><p>" + (jade.escape(null == (jade_interp = item.to_id.realname) ? "" : jade_interp)) + "<span class=\"right\">" + (jade.escape(null == (jade_interp = moment(item.dialogue[item.dialogue.length-1].time).format('YYYY-MM-DD HH:mm:ss')) ? "" : jade_interp)) + "</span></p><p>" + (jade.escape(null == (jade_interp = item.dialogue[item.dialogue.length-1].content) ? "" : jade_interp)) + "</p></div></a>");
+}
+else
+{
+buf.push("<a" + (jade.attr("href", '/manage/message/history?_id='+item.from_id._id, true, false)) + "><img" + (jade.attr("src", item.from_id.head_url, true, false)) + "/><div class=\"detail\"><p>" + (jade.escape(null == (jade_interp = item.from_id.realname) ? "" : jade_interp)) + "<span class=\"right\">" + (jade.escape(null == (jade_interp = moment(item.dialogue[item.dialogue.length-1].time).format('YYYY-MM-DD HH:mm:ss')) ? "" : jade_interp)) + "</span></p><p>" + (jade.escape(null == (jade_interp = item.dialogue[item.dialogue.length-1].content) ? "" : jade_interp)) + "</p></div></a>");
+}
+buf.push("<div class=\"action_inner\"><a href=\"javascript:void(0);\" title=\"删除\"" + (jade.attr("_id", item._id, true, false)) + " class=\"J-delete\"><i class=\"iconfont\">&#xe63c</i></a></div></div>");
+    }
+
+  } else {
+    var $$l = 0;
+    for (var $index in $$obj) {
+      $$l++;      var item = $$obj[$index];
+
+buf.push("<div class=\"message_inner\">");
+if ((item.from_id._id == _id))
+{
+buf.push("<a" + (jade.attr("href", '/manage/message/history?_id='+item.to_id._id, true, false)) + "><img" + (jade.attr("src", item.to_id.head_url, true, false)) + "/><div class=\"detail\"><p>" + (jade.escape(null == (jade_interp = item.to_id.realname) ? "" : jade_interp)) + "<span class=\"right\">" + (jade.escape(null == (jade_interp = moment(item.dialogue[item.dialogue.length-1].time).format('YYYY-MM-DD HH:mm:ss')) ? "" : jade_interp)) + "</span></p><p>" + (jade.escape(null == (jade_interp = item.dialogue[item.dialogue.length-1].content) ? "" : jade_interp)) + "</p></div></a>");
+}
+else
+{
+buf.push("<a" + (jade.attr("href", '/manage/message/history?_id='+item.from_id._id, true, false)) + "><img" + (jade.attr("src", item.from_id.head_url, true, false)) + "/><div class=\"detail\"><p>" + (jade.escape(null == (jade_interp = item.from_id.realname) ? "" : jade_interp)) + "<span class=\"right\">" + (jade.escape(null == (jade_interp = moment(item.dialogue[item.dialogue.length-1].time).format('YYYY-MM-DD HH:mm:ss')) ? "" : jade_interp)) + "</span></p><p>" + (jade.escape(null == (jade_interp = item.dialogue[item.dialogue.length-1].content) ? "" : jade_interp)) + "</p></div></a>");
+}
+buf.push("<div class=\"action_inner\"><a href=\"javascript:void(0);\" title=\"删除\"" + (jade.attr("_id", item._id, true, false)) + " class=\"J-delete\"><i class=\"iconfont\">&#xe63c</i></a></div></div>");
+    }
+
+  }
+}).call(this);
+
 }
 else
 {
 buf.push("<p style=\"padding: 20px;font-size: 14px; text-align: center\">暂无私信</p>");
-}}.call(this,"letters" in locals_for_with?locals_for_with.letters:typeof letters!=="undefined"?letters:undefined));;return buf.join("");
+}}.call(this,"_id" in locals_for_with?locals_for_with._id:typeof _id!=="undefined"?_id:undefined,"letters" in locals_for_with?locals_for_with.letters:typeof letters!=="undefined"?letters:undefined,"moment" in locals_for_with?locals_for_with.moment:typeof moment!=="undefined"?moment:undefined,"undefined" in locals_for_with?locals_for_with.undefined:typeof undefined!=="undefined"?undefined:undefined));;return buf.join("");
+}
+function msgSend_template(locals) {
+var buf = [];
+var jade_mixins = {};
+var jade_interp;
+;var locals_for_with = (locals || {});(function (isme, moment, msg) {
+if ((isme))
+{
+buf.push("<div class=\"content_inner right\"><p class=\"time\">" + (jade.escape(null == (jade_interp = moment(msg.time).format('YYYY-MM-DD HH:mm:ss')) ? "" : jade_interp)) + "</p><div class=\"user\"><div class=\"img\"><img" + (jade.attr("src", msg.from.head_url, true, false)) + "/></div><div class=\"text\"><div class=\"arrow\"></div><span>" + (jade.escape(null == (jade_interp = msg.content) ? "" : jade_interp)) + "</span></div></div></div>");
+}
+else
+{
+buf.push("<div class=\"content_inner left\"><p class=\"time\">" + (jade.escape(null == (jade_interp = moment(msg.time).format('YYYY-MM-DD HH:mm:ss')) ? "" : jade_interp)) + "</p><div class=\"user\"><div class=\"img\"><img" + (jade.attr("src", msg.to.head_url, true, false)) + "/></div><div class=\"text\"><div class=\"arrow\"></div><span>" + (jade.escape(null == (jade_interp = msg.content) ? "" : jade_interp)) + "</span></div></div></div>");
+}}.call(this,"isme" in locals_for_with?locals_for_with.isme:typeof isme!=="undefined"?isme:undefined,"moment" in locals_for_with?locals_for_with.moment:typeof moment!=="undefined"?moment:undefined,"msg" in locals_for_with?locals_for_with.msg:typeof msg!=="undefined"?msg:undefined));;return buf.join("");
 }
 function msgUser_template(locals) {
 var buf = [];
