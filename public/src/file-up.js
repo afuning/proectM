@@ -21,6 +21,8 @@
                             var title = $('#title_input').val();
                             if(title){
                                 self.saveFile(title);
+                            }else {
+                                lib.notification.simple('请输入标题',{bg:'#e15f63',font:'#fff'},2000);
                             }
                         }
                         this.hide()

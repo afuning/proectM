@@ -32,7 +32,7 @@
                         location.href='index';
                     },
                     error: function(err){
-                        console.log(err.message);
+                        lib.notification.simple(err.msg,{bg:'#e15f63',font:'#fff'},2000);
                     },
                     complete: function(){
                         self.isLogin = false;
@@ -46,10 +46,10 @@
             this.password = $('#password').val();
 
             if(this.username.length<=0){
-                alert('请输入用户名');
+                lib.notification.simple('请输入用户名',{bg:'#e15f63',font:'#fff'},2000);
                 return false;
             }else if(this.password.length<=0){
-                alert('请输入密码');
+                lib.notification.simple('请输入密码',{bg:'#e15f63',font:'#fff'},2000);
                 return false;
             }
 

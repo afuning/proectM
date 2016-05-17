@@ -32,16 +32,17 @@ function goLogin(req,res,next){
     var password = req.body.password;
     var passwordMd5 = crypto.updateMd5(password);
     var query = {username: username,password:passwordMd5};
+    var result = new RestResult();
 
     UserModel.find(query).exec(function(err, user){    //count返回集合中文档的数量，和 find 一样可以接收查询条件。query 表示查询的条件
         console.log(user.length);
         if(user.length >= 1){
             res.statusCode = 200;
             req.session.user = user[0];
-            res.send({ code: 10000,msg:'登录成功',data:{}});
+            res.send(result.isSuccess());
         }else{
             res.statusCode = 200;
-            res.send({ code: 10000,msg:'该用户不存在或密码不正确',data:{}});
+            res.send(result.isError('SERVER_EXCEPTION_ERROR_CODE','该用户不存在或密码不正确'));
         }
     });
 }
