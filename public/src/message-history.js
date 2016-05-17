@@ -87,7 +87,7 @@
         },
 
         appendText: function(obj){
-            console.log(obj);
+            //console.log(obj);
             var isme = (obj.from._id == this.user_id) ? true : false;
             var $inner = $('.message-left-content');
             var msghtml = msgSend_template({
@@ -95,6 +95,7 @@
                 isme: isme
             });
             $inner.append(msghtml);
+            $('#message_input').val('');
         },
 
         submitLetter: function(){

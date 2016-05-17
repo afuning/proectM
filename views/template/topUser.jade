@@ -2,18 +2,19 @@ div#user
    if isLogin==1
       .left
          div.account
-            a(href="#").tag.group= depart
-            a(href="#").tag.job= role
+            a(href="/group/company").tag.group= depart
+            a(href="/group/company").tag.job= role
             br
-            a(href="#").name= realname
-            a(href="#").head
+            a(href="/index").name= realname
+            a(href="/setting/user").head
                if head_url
                  img(src = head_url)
                else
                  i.iconfont &#xe630
          div.account
-            a(href="#")
+            a(href="/manage/message")
                i.iconfont &#xe62f;
+               span.red.J-red
          div.account
             a.J-logout(href="javascript:void(0);").logout 退出
    else if isLogin==0

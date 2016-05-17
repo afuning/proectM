@@ -32,9 +32,9 @@ io.on('connection', function(socket){
                 })
             }else {
                 var doc_id = doc._id;
-                console.log(doc.dialogue[doc.dialogue.length-1]);
                 doc.dialogue.push(obj);
                 doc.updateTime = Date.now();
+                doc.isRead = 0;
                 delete doc._id;
                 LetterModel.update({_id:doc_id},doc).exec(function(){
                     LetterModel.findById({_id: doc_id}).populate({path: 'to_id from_id dialogue.to dialogue.from'}).exec(function(err,letter){

@@ -3,6 +3,8 @@ if(letters.length>0)
       div.message_inner
             if(item.from_id._id == _id)
                a(href='/manage/message/history?_id='+item.to_id._id)
+                  if(!item.isRead && _id != item.dialogue[item.dialogue.length-1].from._id)
+                     div.red
                   img(src= item.to_id.head_url)
                   div.detail
                      p= item.to_id.realname
@@ -10,6 +12,8 @@ if(letters.length>0)
                      p= item.dialogue[item.dialogue.length-1].content
             else
                a(href='/manage/message/history?_id='+item.from_id._id)
+                  if(!item.isRead && _id != item.dialogue[item.dialogue.length-1].from._id)
+                     div.red
                   img(src= item.from_id.head_url)
                   div.detail
                      p= item.from_id.realname

@@ -54,12 +54,24 @@ header{
       }
       a{
         font-size: 14px;
+        position: relative;
         i.iconfont{
           color: @color-gray-9;
           font-size: 22px;
           margin-right: 5px;
           margin-top: 2px;
           vertical-align: middle;
+        }
+        .red {
+          display: inline-block;
+          display: none;
+          position: absolute;
+          top: -4px;
+          right: 3px;
+          width: 10px;
+          height: 10px;
+          background: @color-red;
+          .border-radius(50%);
         }
         &.logout{
           border-left: 1px solid @border-color;

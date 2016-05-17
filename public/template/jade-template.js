@@ -249,11 +249,21 @@ if ((letters.length>0))
 buf.push("<div class=\"message_inner\">");
 if ((item.from_id._id == _id))
 {
-buf.push("<a" + (jade.attr("href", '/manage/message/history?_id='+item.to_id._id, true, false)) + "><img" + (jade.attr("src", item.to_id.head_url, true, false)) + "/><div class=\"detail\"><p>" + (jade.escape(null == (jade_interp = item.to_id.realname) ? "" : jade_interp)) + "<span class=\"right\">" + (jade.escape(null == (jade_interp = moment(item.dialogue[item.dialogue.length-1].time).format('YYYY-MM-DD HH:mm:ss')) ? "" : jade_interp)) + "</span></p><p>" + (jade.escape(null == (jade_interp = item.dialogue[item.dialogue.length-1].content) ? "" : jade_interp)) + "</p></div></a>");
+buf.push("<a" + (jade.attr("href", '/manage/message/history?_id='+item.to_id._id, true, false)) + ">");
+if ((!item.isRead && _id != item.dialogue[item.dialogue.length-1].from._id))
+{
+buf.push("<div class=\"red\"></div>");
+}
+buf.push("<img" + (jade.attr("src", item.to_id.head_url, true, false)) + "/><div class=\"detail\"><p>" + (jade.escape(null == (jade_interp = item.to_id.realname) ? "" : jade_interp)) + "<span class=\"right\">" + (jade.escape(null == (jade_interp = moment(item.dialogue[item.dialogue.length-1].time).format('YYYY-MM-DD HH:mm:ss')) ? "" : jade_interp)) + "</span></p><p>" + (jade.escape(null == (jade_interp = item.dialogue[item.dialogue.length-1].content) ? "" : jade_interp)) + "</p></div></a>");
 }
 else
 {
-buf.push("<a" + (jade.attr("href", '/manage/message/history?_id='+item.from_id._id, true, false)) + "><img" + (jade.attr("src", item.from_id.head_url, true, false)) + "/><div class=\"detail\"><p>" + (jade.escape(null == (jade_interp = item.from_id.realname) ? "" : jade_interp)) + "<span class=\"right\">" + (jade.escape(null == (jade_interp = moment(item.dialogue[item.dialogue.length-1].time).format('YYYY-MM-DD HH:mm:ss')) ? "" : jade_interp)) + "</span></p><p>" + (jade.escape(null == (jade_interp = item.dialogue[item.dialogue.length-1].content) ? "" : jade_interp)) + "</p></div></a>");
+buf.push("<a" + (jade.attr("href", '/manage/message/history?_id='+item.from_id._id, true, false)) + ">");
+if ((!item.isRead && _id != item.dialogue[item.dialogue.length-1].from._id))
+{
+buf.push("<div class=\"red\"></div>");
+}
+buf.push("<img" + (jade.attr("src", item.from_id.head_url, true, false)) + "/><div class=\"detail\"><p>" + (jade.escape(null == (jade_interp = item.from_id.realname) ? "" : jade_interp)) + "<span class=\"right\">" + (jade.escape(null == (jade_interp = moment(item.dialogue[item.dialogue.length-1].time).format('YYYY-MM-DD HH:mm:ss')) ? "" : jade_interp)) + "</span></p><p>" + (jade.escape(null == (jade_interp = item.dialogue[item.dialogue.length-1].content) ? "" : jade_interp)) + "</p></div></a>");
 }
 buf.push("<div class=\"action_inner\"><a href=\"javascript:void(0);\" title=\"删除\"" + (jade.attr("_id", item._id, true, false)) + " class=\"J-delete\"><i class=\"iconfont\">&#xe63c</i></a></div></div>");
     }
@@ -266,11 +276,21 @@ buf.push("<div class=\"action_inner\"><a href=\"javascript:void(0);\" title=\"�
 buf.push("<div class=\"message_inner\">");
 if ((item.from_id._id == _id))
 {
-buf.push("<a" + (jade.attr("href", '/manage/message/history?_id='+item.to_id._id, true, false)) + "><img" + (jade.attr("src", item.to_id.head_url, true, false)) + "/><div class=\"detail\"><p>" + (jade.escape(null == (jade_interp = item.to_id.realname) ? "" : jade_interp)) + "<span class=\"right\">" + (jade.escape(null == (jade_interp = moment(item.dialogue[item.dialogue.length-1].time).format('YYYY-MM-DD HH:mm:ss')) ? "" : jade_interp)) + "</span></p><p>" + (jade.escape(null == (jade_interp = item.dialogue[item.dialogue.length-1].content) ? "" : jade_interp)) + "</p></div></a>");
+buf.push("<a" + (jade.attr("href", '/manage/message/history?_id='+item.to_id._id, true, false)) + ">");
+if ((!item.isRead && _id != item.dialogue[item.dialogue.length-1].from._id))
+{
+buf.push("<div class=\"red\"></div>");
+}
+buf.push("<img" + (jade.attr("src", item.to_id.head_url, true, false)) + "/><div class=\"detail\"><p>" + (jade.escape(null == (jade_interp = item.to_id.realname) ? "" : jade_interp)) + "<span class=\"right\">" + (jade.escape(null == (jade_interp = moment(item.dialogue[item.dialogue.length-1].time).format('YYYY-MM-DD HH:mm:ss')) ? "" : jade_interp)) + "</span></p><p>" + (jade.escape(null == (jade_interp = item.dialogue[item.dialogue.length-1].content) ? "" : jade_interp)) + "</p></div></a>");
 }
 else
 {
-buf.push("<a" + (jade.attr("href", '/manage/message/history?_id='+item.from_id._id, true, false)) + "><img" + (jade.attr("src", item.from_id.head_url, true, false)) + "/><div class=\"detail\"><p>" + (jade.escape(null == (jade_interp = item.from_id.realname) ? "" : jade_interp)) + "<span class=\"right\">" + (jade.escape(null == (jade_interp = moment(item.dialogue[item.dialogue.length-1].time).format('YYYY-MM-DD HH:mm:ss')) ? "" : jade_interp)) + "</span></p><p>" + (jade.escape(null == (jade_interp = item.dialogue[item.dialogue.length-1].content) ? "" : jade_interp)) + "</p></div></a>");
+buf.push("<a" + (jade.attr("href", '/manage/message/history?_id='+item.from_id._id, true, false)) + ">");
+if ((!item.isRead && _id != item.dialogue[item.dialogue.length-1].from._id))
+{
+buf.push("<div class=\"red\"></div>");
+}
+buf.push("<img" + (jade.attr("src", item.from_id.head_url, true, false)) + "/><div class=\"detail\"><p>" + (jade.escape(null == (jade_interp = item.from_id.realname) ? "" : jade_interp)) + "<span class=\"right\">" + (jade.escape(null == (jade_interp = moment(item.dialogue[item.dialogue.length-1].time).format('YYYY-MM-DD HH:mm:ss')) ? "" : jade_interp)) + "</span></p><p>" + (jade.escape(null == (jade_interp = item.dialogue[item.dialogue.length-1].content) ? "" : jade_interp)) + "</p></div></a>");
 }
 buf.push("<div class=\"action_inner\"><a href=\"javascript:void(0);\" title=\"删除\"" + (jade.attr("_id", item._id, true, false)) + " class=\"J-delete\"><i class=\"iconfont\">&#xe63c</i></a></div></div>");
     }
@@ -521,7 +541,7 @@ var jade_interp;
 buf.push("<div id=\"user\">");
 if ( isLogin==1)
 {
-buf.push("<div class=\"left\"><div class=\"account\"><a href=\"#\" class=\"tag group\">" + (jade.escape(null == (jade_interp = depart) ? "" : jade_interp)) + "</a><a href=\"#\" class=\"tag job\">" + (jade.escape(null == (jade_interp = role) ? "" : jade_interp)) + "</a><br/><a href=\"#\" class=\"name\">" + (jade.escape(null == (jade_interp = realname) ? "" : jade_interp)) + "</a><a href=\"#\" class=\"head\">");
+buf.push("<div class=\"left\"><div class=\"account\"><a href=\"/group/company\" class=\"tag group\">" + (jade.escape(null == (jade_interp = depart) ? "" : jade_interp)) + "</a><a href=\"/group/company\" class=\"tag job\">" + (jade.escape(null == (jade_interp = role) ? "" : jade_interp)) + "</a><br/><a href=\"/index\" class=\"name\">" + (jade.escape(null == (jade_interp = realname) ? "" : jade_interp)) + "</a><a href=\"/setting/user\" class=\"head\">");
 if ( head_url)
 {
 buf.push("<img" + (jade.attr("src", head_url, true, false)) + "/>");
@@ -530,7 +550,7 @@ else
 {
 buf.push("<i class=\"iconfont\">&#xe630</i>");
 }
-buf.push("</a></div><div class=\"account\"><a href=\"#\"><i class=\"iconfont\">&#xe62f;</i></a></div><div class=\"account\"><a href=\"javascript:void(0);\" class=\"J-logout logout\">退出</a></div></div>");
+buf.push("</a></div><div class=\"account\"><a href=\"/manage/message\"><i class=\"iconfont\">&#xe62f;</i><span class=\"red J-red\"></span></a></div><div class=\"account\"><a href=\"javascript:void(0);\" class=\"J-logout logout\">退出</a></div></div>");
 }
 else if ( isLogin==0)
 {

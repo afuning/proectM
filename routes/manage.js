@@ -217,10 +217,22 @@ function renderMsgHistory(req,res,next){
                     ep.emit('letter', user);
                 })
             }else {
-                doc[0].dialogue.forEach(function(item,i){
-                    item.formattime = moment(item.time).format('YYYY-MM-DD HH:mm:ss');
-                });
-                ep.emit('letter', doc[0]);
+                if(from_id == doc[0].dialogue[doc[0].dialogue.length-1].to._id) {
+                    var doc_id = doc[0]._id;
+                    doc[0].isRead = 1;
+                    delete doc[0]._id;
+                    LetterModel.update({_id:doc_id},doc[0],function(){
+                        doc[0].dialogue.forEach(function(item,i){
+                            item.formattime = moment(item.time).format('YYYY-MM-DD HH:mm:ss');
+                        });
+                        ep.emit('letter', doc[0]);
+                    })
+                }else {
+                    doc[0].dialogue.forEach(function(item,i){
+                        item.formattime = moment(item.time).format('YYYY-MM-DD HH:mm:ss');
+                    });
+                    ep.emit('letter', doc[0]);
+                }
             }
         }
     });

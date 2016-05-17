@@ -8,6 +8,7 @@
             this.config();
             this.addEvent();
             this.isLogin();
+
         },
 
         config: function(){
@@ -53,6 +54,7 @@
         },
 
         renderUser: function(isLogin){
+            var self = this;
             lib.api.get({
                 api:'/user/detail',
                 success: function(data){
@@ -69,6 +71,8 @@
                         $inner.append(userhtml);
                     }
                     lib.storage.set('user',user);
+                    //socket
+                    self.chat(user._id);
                 },
                 error: function(err){
                     //console.log(err);
@@ -78,6 +82,22 @@
 
                 }
             })
+        },
+
+        chat: function(_id){
+            var self = this;
+            this.socket = io();
+
+            this.socket.on(_id, function(obj){
+                if(obj.from._id==obj.to._id) {
+                    return;
+                }
+                self.showRed();
+            });
+        },
+
+        showRed: function(){
+            $('#user').find('.J-red').show();
         }
     }
 
