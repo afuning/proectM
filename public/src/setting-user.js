@@ -107,6 +107,7 @@
                 runtimes: 'html5,flash,html4',    //上传模式,依次退化
                 browse_button: 'pickfiles',       //上传选择的点选按钮，**必需**
                 uptoken_url: '/qiniu/upToken',
+                unique_names: true,
                 save_key: true,
                 domain: 'http://7xthm1.com1.z0.glb.clouddn.com',
                 container: 'upContainer',           //上传区域DOM ID，默认是browser_button的父元素，
@@ -134,6 +135,7 @@
                     },
                     'UploadProgress': function(up, file) {
                         // 每个文件上传时,处理相关的事情
+                        $('.selectHeaderLog .btn img').remove();
                         $('.selectHeaderLog .btn i.iconfont').html('&#xe63a;').addClass('change');
                     },
                     'FileUploaded': function(up, file, info) {

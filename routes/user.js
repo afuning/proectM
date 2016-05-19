@@ -96,11 +96,12 @@ function changeUser(req,res,next){
 }
 
 function getupToken(req,res,next){
+    console.log(req.query);
     var myUptoken = new qiniu.rs.PutPolicy(settings.QINIUCMSBUCKETNAME);
     var token = myUptoken.token();
     var result = new RestResult();
     moment.locale('en');
-    var currentKey = moment(new Date()).format('YYYY-MM-DD--HH-mm-ss');
+    var currentKey = '$(bucket)-$(year)-$(mon)-$(day)-$(hour)-$(min)-$(sec)-$(x:username)';
     res.header("Cache-Control", "max-age=0, private, must-revalidate");
     res.header("Pragma", "no-cache");
     res.header("Expires", 0);
